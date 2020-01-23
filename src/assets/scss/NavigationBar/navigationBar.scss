@@ -1,0 +1,43 @@
+@import '../globalVariable';
+
+.nav-bar {
+  width: 100vw;
+  position: fixed;
+  
+  .wrapper {
+    width: 85%;
+    margin: 0 auto;
+    padding: 3rem 0 3rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    .logo {
+      position: relative;
+      font-size: 1.5rem;
+      font-style: bold 800;
+      color: $backgroundColor;
+
+      h1:nth-child(1) {
+        text-shadow: -3px -3px 3px $foreGround;
+      }
+
+      h1:nth-child(2) {
+        position: absolute;
+        top: 0%;
+        text-shadow: 3px 3px 3px $backGround;
+      }
+    }
+
+    .menu-icon {
+      padding-top: 1rem;
+
+      .cls-1 {
+        fill: $fontColor;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

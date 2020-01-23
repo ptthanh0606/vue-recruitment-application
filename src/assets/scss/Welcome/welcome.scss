@@ -1,0 +1,26 @@
+@import '../globalVariable';
+
+@mixin firstSection {
+  background-image: url('https://i.imgur.com/pEV5nUc.png');
+  background-size: cover;
+}
+
+//---------------------------------------------
+.welcome-container {
+  
+  .firstSection {
+    height: 100vh;
+
+    @include firstSection();
+
+    .section-container {
+      width: 85%;
+      margin: 0 auto;   
+      padding-top: 20rem;
+      h1 {
+        font-size: 6rem;
+        color: $fontColor;
+      }
+    }
+  }
+}

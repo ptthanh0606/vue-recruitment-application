@@ -1,32 +1,35 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <router-view/> -->
+
+    <welcome-page></welcome-page>
   </div>
 </template>
 
+<script>
+import WelcomePage from './views/Welcome/Welcome.vue';
+
+export default {
+  name: 'mainApp',
+  components: {
+    'welcome-page': WelcomePage,
+  },
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  background:#EFEFEF;
 }
 </style>
