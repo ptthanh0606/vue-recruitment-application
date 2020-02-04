@@ -22,6 +22,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import './assets/scss/_globalVariable.scss';
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -29,7 +31,12 @@ export default {
 }
 
 body {
-  font-family: 'Nunito Sans', sans-serif;
-  background:#EFEFEF;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+  background-color: $backgroundColor;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 </style>

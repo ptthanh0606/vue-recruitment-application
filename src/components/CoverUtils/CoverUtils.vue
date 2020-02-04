@@ -3,6 +3,7 @@
   <div class="cover-utils-container">
     <div class="wrapper">
       <svg
+        class="social-svg"
         xmlns="http://www.w3.org/2000/svg"
         width="14.661"
         height="95.321"
@@ -26,29 +27,26 @@
           />
         </g>
       </svg>
-    </div>
-    <div class="wrapper">
+
       <svg
+        class="next-svg"
         xmlns="http://www.w3.org/2000/svg"
-        width="23.06"
-        height="23.06"
-        viewBox="0 0 23.06 23.06"
+        width="13.678"
+        height="93.243"
+        viewBox="0 0 13.678 93.243"
       >
-        <g id="search" transform="translate(0 1)">
+        <g id="next" transform="translate(17.495 20) rotate(90)">
           <path
-            id="Path_318"
-            data-name="Path 318"
+            id="Path_322"
+            data-name="Path 322"
             class="cls-1"
-            d="M22.919,22.24,15.9,15.223a9.163,9.163,0,1,0-.679.679l7.016,7.016a.48.48,0,1,0,.679-.679ZM9.128,17.3A8.167,8.167,0,1,1,17.3,9.128,8.177,8.177,0,0,1,9.128,17.3Z"
-            transform="translate(0 -1)"
+            d="M15.724,45.838v5.7h-84.36c-.762,0-1.364-.041-1.364.365v1.17c0,.5.6.425,1.364.425h84.36v6.015l7.52-6.995Z"
+            transform="translate(50 -42.022)"
           />
         </g>
       </svg>
-      <div class="input-container">
-        <input class="effect-1" type="text" placeholder="ENTER YOUR JOB" />
-        <span class="focus-border"></span>
-      </div>
     </div>
+    <!--  -->
   </div>
 </template>
 
