@@ -167,7 +167,7 @@
             data-sal-delay="500"
             data-sal-easing="ease-out-quint"
             data-sal-duration="2000"
-          >Companies hiring.</h3>
+          >Companies</h3>
         </div>
       </div>
     </section>
@@ -192,17 +192,60 @@
     </section>
     <!--  -->
     <section class="fifthSection">
-
+      <div class="section-container">
+        <h2
+          class="title"
+          data-sal="slide-right"
+          data-sal-delay="100"
+          data-sal-easing="ease-out-quint"
+          data-sal-duration="2000"
+        >MANAGE</h2>
+        <h3
+          class="sub-title"
+          data-sal="slide-up"
+          data-sal-delay="500"
+          data-sal-easing="ease-out-quint"
+          data-sal-duration="2000"
+        >Your organization HR</h3>
+      </div>
     </section>
     <!--  -->
     <section class="sixthSection">
-      <div class="button-label">
-        Start
+      <div class="start-button" :class="{ 'rgb-animation' : btnJoinFlg }" @click="() => { btnJoinFlg = !btnJoinFlg }">
+        <div class="label">
+          Start
+          <div class="label-down back"></div>
+          <div class="label-down">As an...</div>
+        </div>
       </div>
-      <div class="neu-button-wrapper">
-        <div class="neu-button">Join Us</div>
+
+      <div class="selection employer" :class="{ 'display' : btnJoinFlg }">
+        <div class="shadow">
+          <h1 class="role-card-title">Employee</h1>
+          <p class="role-card-detail">Discover many interesting jobs.</p>
+        </div>
+      </div>
+
+      <div class="selection employee" :class="{ 'display' : btnJoinFlg }">
+        <div class="shadow">
+          <h1 class="role-card-title">Employer</h1>
+          <p class="role-card-detail">Have full control of your HR.</p>
+        </div>
       </div>
     </section>
+    <!--  -->
+    <div class="footer">
+      <div class="rgb-bar"></div>
+      <h1 class="footer-title">JOBSNAP.</h1>
+      <div class="social-wrapper">
+        <div class="social facebook"></div>
+        <div class="social instagram"></div>
+        <div class="social twitter"></div>
+      </div>
+      <div class="copyright">
+        @Phan Thong Thanh - Ly Phuoc Hiep, SE1304 - SWD101 Project
+      </div>
+    </div>
   </div>
 </template>
 
@@ -280,6 +323,7 @@ export default {
       this.isFourth = false;
       this.isFifth = true;
       this.isSixth = false;
+      this.btnJoinFlg = false;
 
       this.googleFlg = false;
       this.appleFlg = false;
@@ -386,6 +430,8 @@ export default {
       colaFlg: false,
       nikeFlg: false,
       paypalFlg: false,
+
+      btnJoinFlg: false,
     };
   },
 };
