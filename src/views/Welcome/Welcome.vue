@@ -3,8 +3,10 @@
   <!-- eslint-disable max-len -->
   <!-- eslint-disable prefer-const -->
   <div class="welcome-container">
-    <welcome-frame></welcome-frame>
 
+    <navigation-frame :targetSection="targetSection"></navigation-frame>
+    <footer-frame></footer-frame>
+    <!--  -->
     <div class="cover-color" :class="{
       'firstSectionBackground' : isFirst,
       'secondSectionBackground' : isSecond,
@@ -14,7 +16,7 @@
       'sixthSectionBackground' : isSixth,
     }">
     </div>
-
+    <!--  -->
     <div class="cover-color brandCover" :class="{
       'colaBackground' : colaFlg,
       'appleBackground' : appleFlg,
@@ -23,14 +25,12 @@
       'googleBackground' : googleFlg,
     }">
     </div>
-
     <!--  -->
-    <section class="firstSection">
+    <section id="firstSection">
       <div class="section-container">
         <svg
-          class="logo"
-          viewBox="0 0 98 20"
-          width="1080"
+          id="slogan-text"
+          viewBox="0 0 61.1 11.7"
           data-sal="slide-up"
           data-sal-delay="500"
           data-sal-easing="ease-out-quint"
@@ -61,25 +61,18 @@
             </pattern>
           </defs>
           <text
-            text-anchor="middle"
-            x="50"
-            y="15"
-            font-size="20"
-            font-weight="800"
+            y="11.5"
             fill="url(#wave)"
             fill-opacity="1"
-          >JUSTIFY</text>
+          >ASCEND</text>
           <text
-            text-anchor="middle"
-            x="50"
-            y="15"
-            font-size="20"
-            font-weight="800"
+            y="11.5"
             fill="url(#gradient)"
             fill-opacity="0.5"
-          >JUSTIFY</text>
+          >ASCEND</text>
         </svg>
         <h3
+          id="slogan-alt"
           data-sal="slide-up"
           data-sal-delay="500"
           data-sal-duration="3000"
@@ -87,28 +80,33 @@
       </div>
     </section>
     <!--  -->
-    <section class="secondSection">
+    <section id="secondSection">
       <div class="section-container">
+        <h3
+          class="keyword"
+          data-sal="slide-up"
+          data-sal-delay="500"
+          data-sal-easing="ease-out-quint"
+          data-sal-duration="2000"
+        >SIMPLE</h3>
         <h2
           class="title"
           data-sal="slide-right"
           data-sal-delay="100"
           data-sal-easing="ease-out-quint"
           data-sal-duration="2000"
-        >1st</h2>
+        >All-in-one</h2>
         <h3
           class="sub-title"
           data-sal="slide-up"
           data-sal-delay="500"
           data-sal-easing="ease-out-quint"
           data-sal-duration="2000"
-        >Leading recruitment system in Vietnam</h3>
+        >Recruitment software  in Vietnam</h3>
       </div>
     </section>
-
-    <img v-if="isSecond" class="feature-photo photo1" src="../../assets/img/office-lady.png"/>
     <!--  -->
-    <section class="thirdSection">
+    <section id="thirdSection">
       <div class="section-container">
         <div class="three-dot">
           <div class="dot dot1">
@@ -152,15 +150,21 @@
             }" src="../../assets/img/paypal-logo.png" alt="PayPal">
           </div>
         </div>
-
         <div class="third-title">
+          <h3
+            class="keyword"
+            data-sal="slide-up"
+            data-sal-delay="500"
+            data-sal-easing="ease-out-quint"
+            data-sal-duration="2000"
+          >TRUST</h3>
           <h2
             class="title"
             data-sal="slide-up"
             data-sal-delay="100"
             data-sal-easing="ease-out-quint"
             data-sal-duration="2000"
-          >615</h2>
+          >6,371</h2>
           <h3
             class="sub-title"
             data-sal="slide-left"
@@ -172,34 +176,59 @@
       </div>
     </section>
     <!--  -->
-    <section class="fourthSection">
+    <section id="fourthSection">
       <div class="section-container">
-        <h2
-          class="title"
-          data-sal="slide-right"
-          data-sal-delay="100"
-          data-sal-easing="ease-out-quint"
-          data-sal-duration="2000"
-        >1,012,578</h2>
+        <div class="presentation-jobs-wrapper">
+          <div class="feature-jobs">
+            <job-card></job-card>
+            <job-card></job-card>
+            <job-card></job-card>
+            <job-card></job-card>
+          </div>
+        </div>
+
+        <div class="label-desc">
+          <h3
+            class="keyword"
+            data-sal="slide-up"
+            data-sal-delay="500"
+            data-sal-easing="ease-out-quint"
+            data-sal-duration="2000"
+          >DIVERSE</h3>
+          <h2
+            class="title"
+            data-sal="slide-right"
+            data-sal-delay="100"
+            data-sal-easing="ease-out-quint"
+            data-sal-duration="2000"
+          >1,012,578</h2>
+          <h3
+            class="sub-title"
+            data-sal="slide-up"
+            data-sal-delay="500"
+            data-sal-easing="ease-out-quint"
+            data-sal-duration="2000"
+          >Jobs currently open.</h3>
+        </div>
+      </div>
+    </section>
+    <!--  -->
+    <section id="fifthSection">
+      <div class="section-container">
         <h3
-          class="sub-title"
+          class="keyword"
           data-sal="slide-up"
           data-sal-delay="500"
           data-sal-easing="ease-out-quint"
           data-sal-duration="2000"
-        >Jobs currently open.</h3>
-      </div>
-    </section>
-    <!--  -->
-    <section class="fifthSection">
-      <div class="section-container">
+        >MANAGE</h3>
         <h2
           class="title"
           data-sal="slide-right"
           data-sal-delay="100"
           data-sal-easing="ease-out-quint"
           data-sal-duration="2000"
-        >MANAGE</h2>
+        >Control</h2>
         <h3
           class="sub-title"
           data-sal="slide-up"
@@ -210,54 +239,79 @@
       </div>
     </section>
     <!--  -->
-    <section class="sixthSection">
-      <div class="start-button" :class="{ 'rgb-animation' : btnJoinFlg }" @click="() => { btnJoinFlg = !btnJoinFlg }">
-        <div class="label">
-          Start
-          <div class="label-down back"></div>
-          <div class="label-down">As an...</div>
+    <section id="sixthSection">
+      <div class="start-button-wrapper">
+        <div class="selection employee" :class="{ 'display' : btnJoinFlg }">
+          <div class="contain-box">
+            <h1 class="role-card-title">Employee</h1>
+            <p class="role-card-detail">Discover hiring.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="selection employer" :class="{ 'display' : btnJoinFlg }">
-        <div class="shadow">
-          <h1 class="role-card-title">Employee</h1>
-          <p class="role-card-detail">Discover many interesting jobs.</p>
+        <div class="start-button" :class="{ 'rgb-animation' : btnJoinFlg }" @click="() => { btnJoinFlg = !btnJoinFlg }">
+          <div class="label">
+            Start
+            <div class="label-down back"></div>
+            <div class="label-down">As</div>
+          </div>
         </div>
-      </div>
 
-      <div class="selection employee" :class="{ 'display' : btnJoinFlg }">
-        <div class="shadow">
-          <h1 class="role-card-title">Employer</h1>
-          <p class="role-card-detail">Have full control of your HR.</p>
+        <div class="selection employer" :class="{ 'display' : btnJoinFlg }">
+          <div class="contain-box">
+            <h1 class="role-card-title">Employer</h1>
+            <p class="role-card-detail">Control your HR.</p>
+          </div>
         </div>
       </div>
     </section>
     <!--  -->
-    <div class="footer">
-      <div class="rgb-bar"></div>
-      <h1 class="footer-title">JOBSNAP.</h1>
+    <div class="rgb-bar"></div>
+    <!--  -->
+    <footer class="footer">
+      <h1 class="back-mask">
+        JSN
+      </h1>
       <div class="social-wrapper">
-        <div class="social facebook"></div>
-        <div class="social instagram"></div>
-        <div class="social twitter"></div>
+        <a href="https://www.facebook.com/" target="_blank" >
+          <svg id="facebook-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.661 29.321">
+            <path data-name="Path 520" class="cls-1" d="M16.493,10.079V6.414a1.833,1.833,0,0,1,1.833-1.833h1.833V0H16.493A5.5,5.5,0,0,0,11,5.5v4.581H7.33v4.581H11V29.321h5.5V14.661h3.665l1.833-4.581Z" transform="translate(-7.33)"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" >
+          <svg id="instagram-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.861 28.861">
+            <path data-name="Path 522" d="M24.633,0H4.228A4.233,4.233,0,0,0,0,4.228V24.633a4.233,4.233,0,0,0,4.228,4.228H24.633a4.233,4.233,0,0,0,4.228-4.228V4.228A4.233,4.233,0,0,0,24.633,0ZM14.487,21.984a7.61,7.61,0,1,1,7.61-7.61A7.618,7.618,0,0,1,14.487,21.984ZM22.942,8.455a2.537,2.537,0,1,1,2.537-2.537A2.539,2.539,0,0,1,22.942,8.455Zm0,0"/>
+            <path data-name="Path 523" d="M392.846,90a.846.846,0,1,0,.846.846A.846.846,0,0,0,392.846,90Zm0,0" transform="translate(-369.904 -84.927)"/>
+            <path data-name="Path 524" d="M157.919,150a5.919,5.919,0,1,0,5.919,5.919A5.926,5.926,0,0,0,157.919,150Zm0,0" transform="translate(-143.432 -141.545)"/>
+          </svg>
+        </a>
+        <a href="https://twitter.com/" target="_blank" >
+          <svg id="twitter-icon" xmlns="http://www.w3.org/2000/svg" width="30.853" height="25.068" viewBox="0 0 30.853 25.068">
+            <path data-name="Path 525" d="M30.853,50.968a13.188,13.188,0,0,1-3.645,1,6.29,6.29,0,0,0,2.783-3.5A12.641,12.641,0,0,1,25.98,50a6.325,6.325,0,0,0-10.941,4.325,6.513,6.513,0,0,0,.147,1.442A17.9,17.9,0,0,1,2.148,49.153a6.327,6.327,0,0,0,1.944,8.454,6.247,6.247,0,0,1-2.858-.779V56.9A6.354,6.354,0,0,0,6.3,63.112a6.313,6.313,0,0,1-1.658.208,5.593,5.593,0,0,1-1.2-.108,6.385,6.385,0,0,0,5.91,4.406,12.709,12.709,0,0,1-7.843,2.7A11.85,11.85,0,0,1,0,70.23a17.807,17.807,0,0,0,9.7,2.839c11.639,0,18-9.642,18-18,0-.28-.01-.55-.023-.818A12.619,12.619,0,0,0,30.853,50.968Z" transform="translate(0 -48)"/>
+          </svg>
+        </a>
       </div>
       <div class="copyright">
-        @Phan Thong Thanh - Ly Phuoc Hiep, SE1304 - SWD101 Project
+        © Phan Thong Thanh, Ly Phuoc Hiep - SE1304 - SWD101 Project
       </div>
-    </div>
+    </footer>
+
   </div>
 </template>
 
 <script>
 import sal from 'sal.js';
 import anime from 'animejs';
-import WelcomeFrame from './WelcomeFrame/WelcomeFrame.vue';
+import NavigationFrame from '../NavigationFrame/NavigationFrame.vue';
+import FooterFrame from '../FooterFrame/FooterFrame.vue';
+
+import JobPreviewCard from '../../components/JobPreviewCard/JobPreviewCard.vue';
 
 export default {
   name: 'welcome',
   components: {
-    'welcome-frame': WelcomeFrame,
+    'navigation-frame': NavigationFrame,
+    'footer-frame': FooterFrame,
+    'job-card': JobPreviewCard,
   },
   mounted() {
     sal({
@@ -269,12 +323,14 @@ export default {
     this.createIntersectObserver(() => {
       this.isSecond = false;
       this.isFirst = true;
+
+      this.targetSection = '#secondSection';
     }, {
       targets: '.cover-color',
       width: '0%',
       easing: 'easeInOutQuad',
       delay: '300',
-    }, { threshold: 0.3 }).observe(document.querySelector('.firstSection'));
+    }, { threshold: 0.3 }).observe(document.querySelector('#firstSection'));
 
     // Second Section animation
     this.createIntersectObserver(() => {
@@ -287,20 +343,24 @@ export default {
       this.colaFlg = false;
       this.nikeFlg = false;
       this.paypalFlg = false;
+
+      this.targetSection = '#thirdSection';
     }, {
       targets: '.cover-color',
       width: '30%',
-    }, { threshold: 0.7 }).observe(document.querySelector('.secondSection'));
+    }, { threshold: 0.7 }).observe(document.querySelector('#secondSection'));
 
     // Third Section animation
     this.createIntersectObserver(() => {
       this.isSecond = false;
       this.isThird = true;
       this.isFourth = false;
+
+      this.targetSection = '#fourthSection';
     }, {
       targets: '.cover-color',
       width: '100%',
-    }, { threshold: 0.7 }).observe(document.querySelector('.thirdSection'));
+    }, { threshold: 0.7 }).observe(document.querySelector('#thirdSection'));
 
     // Fourth Section animation
     this.createIntersectObserver(() => {
@@ -313,10 +373,12 @@ export default {
       this.colaFlg = false;
       this.nikeFlg = false;
       this.paypalFlg = false;
+
+      this.targetSection = '#fifthSection';
     }, {
       targets: '.cover-color',
       width: '70%',
-    }, { threshold: 0.7 }).observe(document.querySelector('.fourthSection'));
+    }, { threshold: 0.7 }).observe(document.querySelector('#fourthSection'));
 
     // Fifth Section animation
     this.createIntersectObserver(() => {
@@ -330,10 +392,12 @@ export default {
       this.colaFlg = false;
       this.nikeFlg = false;
       this.paypalFlg = false;
+
+      this.targetSection = '#sixthSection';
     }, {
       targets: '.cover-color',
       width: '30%',
-    }, { threshold: 0.7 }).observe(document.querySelector('.fifthSection'));
+    }, { threshold: 0.7 }).observe(document.querySelector('#fifthSection'));
 
     // Sixth Section animation
     this.createIntersectObserver(() => {
@@ -346,10 +410,12 @@ export default {
       this.colaFlg = false;
       this.nikeFlg = false;
       this.paypalFlg = false;
+
+      this.targetSection = '#firstSection';
     }, {
       targets: '.cover-color',
       width: '0%',
-    }, { threshold: 0.7 }).observe(document.querySelector('.sixthSection'));
+    }, { threshold: 0.7 }).observe(document.querySelector('#sixthSection'));
   },
 
   updated() {
@@ -357,7 +423,7 @@ export default {
       this.createIntersectObserver(() => {
       }, {
         targets: '.photo1',
-        right: '10%',
+        right: '0vw',
       }, { threshold: 0.7 }).observe(document.querySelector('.photo1'));
     }
 
@@ -403,7 +469,7 @@ export default {
       scale: (el, i, l) => (l - i) + 6,
       duration: () => '1800',
       delay: () => '100',
-    }, { threshold: 0.7 }).observe(document.querySelector('.thirdSection'));
+    }, { threshold: 0.7 }).observe(document.querySelector('#thirdSection'));
   },
   methods: {
     createIntersectObserver(callback, animateOption, intersectOption) {
@@ -432,6 +498,8 @@ export default {
       paypalFlg: false,
 
       btnJoinFlg: false,
+
+      targetSection: '',
     };
   },
 };

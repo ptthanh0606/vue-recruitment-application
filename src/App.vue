@@ -1,23 +1,13 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/> -->
-
-    <welcome-page></welcome-page>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import WelcomePage from './views/Welcome/Welcome.vue';
 
 export default {
-  name: 'mainApp',
-  components: {
-    'welcome-page': WelcomePage,
-  },
+  name: 'main-component',
 };
 </script>
 
@@ -28,15 +18,18 @@ export default {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: $fontColor;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
   overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
   background-color: $backgroundColor;
 }
 
-html {
-  scroll-behavior: smooth;
-}
 </style>

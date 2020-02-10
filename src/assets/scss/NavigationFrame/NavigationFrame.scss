@@ -1,0 +1,147 @@
+@import '../globalVariable';
+
+@mixin searchBar {
+  .input-container {
+    :focus {
+      outline: none;
+    }
+
+    display: block;
+
+    @media only screen and (max-width: 769px) {
+      display: none;
+    }
+
+    height: 24px;
+    position: relative;
+
+    input[type="text"]{
+      width: 100%;
+      height: 1rem;
+      background-color: transparent;
+  
+      border: none;
+      font-size: 1rem;
+      color: #7e7e7e;
+      letter-spacing: 2px;
+    }
+  
+    .focus-border{
+      height: 3px;
+      width: 0;
+
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background-color: $pColorPink;
+      transition: 0.4s;
+    }
+  
+    .effect-1:focus~.focus-border {
+      width: 100%;
+      transition: 0.4s;
+    }
+  }
+}
+
+// -------------------------
+.nav-bar {
+  width: 100vw;
+  height: 5rem;
+
+  display: flex;
+  position: fixed;
+  z-index: 3;
+
+  .search-overlay-box {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    z-index: 1001;
+    transition: width ease-in-out 0.5s;
+
+    .search-wrapper {
+      height: 100%;
+      width: 100%;
+      max-width: 1350px;
+      margin: 0 auto;
+      padding: 0 1rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @include searchBar();
+
+      .input-container{
+        display: block;
+      }
+
+      #search-box-close {
+        height: 20px;
+        fill: $backgroundColor;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    background-color: #3f3f3f;
+  }
+
+  .header-container {
+    height: 100%;
+    width: 100%;
+    max-width: 1350px;
+    
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    .search-bar {
+      height: 100%;
+      min-width: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      #search-icon {
+        height: 1.5rem;
+        width: 1.5rem;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      
+      @include searchBar();
+    }
+    
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      text-align: center;
+      color: $iconColor;
+
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .hamburger {
+      position: relative;
+      z-index: 1000;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .menu-overlay {
+
+  }
+}

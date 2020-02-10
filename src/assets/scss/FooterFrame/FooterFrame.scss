@@ -1,0 +1,47 @@
+@import '../globalVariable';
+
+.footer-frame-container {
+  width: 100%;
+  height: 10%;
+  position: fixed;
+  bottom: 5%;
+  z-index: 5;
+
+  .wrapper {
+    width: 100%;
+    max-width: 1350px;
+    height: 100%;
+
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    #social-icon {
+      height: 200%;
+      width: 1.5rem;
+      text-align: left;
+      
+      path {
+        fill: $iconColor;
+      }
+    }
+
+    #next-button {
+      width: 10%;
+      height: 100%;
+      text-align: right;
+      
+      #next-icon {
+        fill: $iconColor;
+        height: 100%;
+  
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

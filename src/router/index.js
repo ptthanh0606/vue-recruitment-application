@@ -1,19 +1,18 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Welcome from '../views/Welcome/Welcome.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/welcome',
+    path: '/',
     name: 'welcome',
-    component: Welcome,
+    component: () => import('../views/Welcome/Welcome.vue'),
   },
   {
-    path: '/jobs',
-    name: 'jobs',
-    component: () => import(/* webpackChunkName: "about" */ '../views/JobSearchResult/JobsSearchResult.vue'),
+    path: '/test',
+    name: 'test',
+    component: () => import('../components/TestComponents/TestScreen.vue'),
   },
 ];
 
