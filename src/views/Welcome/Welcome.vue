@@ -2,10 +2,11 @@
   <!-- eslint-disable object-shorthand -->
   <!-- eslint-disable max-len -->
   <!-- eslint-disable prefer-const -->
+  <!-- eslint-disable no-unused-vars -->
   <div class="welcome-container">
 
-    <navigation-frame :targetSection="targetSection"></navigation-frame>
-    <footer-frame></footer-frame>
+    <navigation-frame></navigation-frame>
+    <footer-frame :targetSection="targetSection"></footer-frame>
     <!--  -->
     <div class="cover-color" :class="{
       'firstSectionBackground' : isFirst,
@@ -15,6 +16,7 @@
       'fifthSectionBackground' : isFifth,
       'sixthSectionBackground' : isSixth,
     }">
+      {{ sectionName }}
     </div>
     <!--  -->
     <div class="cover-color brandCover" :class="{
@@ -82,27 +84,32 @@
     <!--  -->
     <section id="secondSection">
       <div class="section-container">
-        <h3
-          class="keyword"
-          data-sal="slide-up"
-          data-sal-delay="500"
-          data-sal-easing="ease-out-quint"
-          data-sal-duration="2000"
-        >SIMPLE</h3>
-        <h2
-          class="title"
-          data-sal="slide-right"
-          data-sal-delay="100"
-          data-sal-easing="ease-out-quint"
-          data-sal-duration="2000"
-        >All-in-one</h2>
-        <h3
-          class="sub-title"
-          data-sal="slide-up"
-          data-sal-delay="500"
-          data-sal-easing="ease-out-quint"
-          data-sal-duration="2000"
-        >Recruitment software  in Vietnam</h3>
+        <div class="label-desc">
+          <h3
+            class="keyword"
+            data-sal="slide-up"
+            data-sal-delay="500"
+            data-sal-easing="ease-out-quint"
+            data-sal-duration="2000">FIND
+          </h3>
+          <form class="typing-animation" method="get">
+            <div class="typing">
+              <input class="word" name="jobTitle"/>
+            </div>
+            <button class="button-search-job" type="submit">
+              <svg class="search-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 60">
+                <path d="M36.3,12.482a2.07,2.07,0,0,0-2.724.06,1.634,1.634,0,0,0,.066,2.469l14.78,12.7H9.927a1.755,1.755,0,1,0,0,3.493H48.365L33.647,43.915a1.633,1.633,0,0,0-.066,2.469,2.07,2.07,0,0,0,2.724.059l16.81-14.511a3.266,3.266,0,0,0-.034-4.968Z"/>
+              </svg>
+            </button>
+          </form>
+          <h3
+            class="sub-title"
+            data-sal="slide-up"
+            data-sal-delay="500"
+            data-sal-easing="ease-out-quint"
+            data-sal-duration="2000">Jobs have never been so easy.
+          </h3>
+        </div>
       </div>
     </section>
     <!--  -->
@@ -178,37 +185,50 @@
     <!--  -->
     <section id="fourthSection">
       <div class="section-container">
-        <div class="presentation-jobs-wrapper">
-          <div class="feature-jobs">
+        <div class="content-wrapper-outer">
+          <div class="content-wrapper-inner">
+            <div class="label-desc">
+              <div class="desc">
+                <h3
+                  class="keyword"
+                  data-sal="slide-up"
+                  data-sal-delay="500"
+                  data-sal-easing="ease-out-quint"
+                  data-sal-duration="2000"
+                >DIVERSE</h3>
+                <h2
+                  class="title"
+                  data-sal="slide-left"
+                  data-sal-delay="100"
+                  data-sal-easing="ease-out-quint"
+                  data-sal-duration="2000"
+                >1,012,578</h2>
+                <h3
+                  class="sub-title"
+                  data-sal="slide-up"
+                  data-sal-delay="500"
+                  data-sal-easing="ease-out-quint"
+                  data-sal-duration="2000"
+                >Jobs currently open.</h3>
+              </div>
+              <div
+                class="info"
+                data-sal="slide-right"
+                data-sal-delay="500"
+                data-sal-easing="ease-out-quint"
+                data-sal-duration="2000"
+              >
+                SCROLL TO VIEW
+                <svg class="right-arrow" xmlns="http://www.w3.org/2000/svg" width="23.279" height="9.859" viewBox="0 0 23.279 9.859">
+                  <path d="M18.026,14.1a.684.684,0,0,0-.943.991l5.272,3.063H1.824a.684.684,0,0,0,0,1.368H22.332l-5.25,3.068a.684.684,0,1,0,.943.991l5.992-3.776a1.367,1.367,0,0,0-.012-1.946Z" transform="translate(-1.14 -13.915)"/>
+                </svg>
+              </div>
+            </div>
             <job-card></job-card>
             <job-card></job-card>
             <job-card></job-card>
             <job-card></job-card>
           </div>
-        </div>
-
-        <div class="label-desc">
-          <h3
-            class="keyword"
-            data-sal="slide-up"
-            data-sal-delay="500"
-            data-sal-easing="ease-out-quint"
-            data-sal-duration="2000"
-          >DIVERSE</h3>
-          <h2
-            class="title"
-            data-sal="slide-right"
-            data-sal-delay="100"
-            data-sal-easing="ease-out-quint"
-            data-sal-duration="2000"
-          >1,012,578</h2>
-          <h3
-            class="sub-title"
-            data-sal="slide-up"
-            data-sal-delay="500"
-            data-sal-easing="ease-out-quint"
-            data-sal-duration="2000"
-          >Jobs currently open.</h3>
         </div>
       </div>
     </section>
@@ -299,8 +319,10 @@
 </template>
 
 <script>
-import sal from 'sal.js';
-import anime from 'animejs';
+import Sal from 'sal.js';
+import Anime from 'animejs';
+import Typed from 'typed.js';
+
 import NavigationFrame from '../NavigationFrame/NavigationFrame.vue';
 import FooterFrame from '../FooterFrame/FooterFrame.vue';
 
@@ -314,9 +336,30 @@ export default {
     'job-card': JobPreviewCard,
   },
   mounted() {
-    sal({
+    Sal({
       threshold: 0.5,
       once: false,
+    });
+
+    // eslint-disable-next-line no-unused-vars
+    const type = new Typed('.word', {
+      strings: ['Software Developer.',
+        'Dentist',
+        'Physician Assistant',
+        'Veterian',
+        'Therapist',
+        'Fiancial Manager',
+        'Pilot',
+        'MRI Technologist',
+        'Plumber',
+        'HR Specialist',
+      ],
+      shuffle: true,
+      typeSpeed: 60,
+      backSpeed: 30,
+      showCursor: true,
+      attr: 'placeholder',
+      loop: true,
     });
 
     // First Section animation
@@ -325,12 +368,13 @@ export default {
       this.isFirst = true;
 
       this.targetSection = '#secondSection';
+      this.sectionName = '';
     }, {
       targets: '.cover-color',
       width: '0%',
       easing: 'easeInOutQuad',
       delay: '300',
-    }, { threshold: 0.3 }).observe(document.querySelector('#firstSection'));
+    }, { threshold: 0.6 }).observe(document.querySelector('#firstSection'));
 
     // Second Section animation
     this.createIntersectObserver(() => {
@@ -345,10 +389,11 @@ export default {
       this.paypalFlg = false;
 
       this.targetSection = '#thirdSection';
+      this.sectionName = 'FIND';
     }, {
       targets: '.cover-color',
       width: '30%',
-    }, { threshold: 0.7 }).observe(document.querySelector('#secondSection'));
+    }, { threshold: 0.6 }).observe(document.querySelector('#secondSection'));
 
     // Third Section animation
     this.createIntersectObserver(() => {
@@ -357,10 +402,11 @@ export default {
       this.isFourth = false;
 
       this.targetSection = '#fourthSection';
+      this.sectionName = '';
     }, {
       targets: '.cover-color',
       width: '100%',
-    }, { threshold: 0.7 }).observe(document.querySelector('#thirdSection'));
+    }, { threshold: 0.6 }).observe(document.querySelector('#thirdSection'));
 
     // Fourth Section animation
     this.createIntersectObserver(() => {
@@ -375,10 +421,11 @@ export default {
       this.paypalFlg = false;
 
       this.targetSection = '#fifthSection';
+      this.sectionName = 'DIVERSE';
     }, {
       targets: '.cover-color',
       width: '70%',
-    }, { threshold: 0.7 }).observe(document.querySelector('#fourthSection'));
+    }, { threshold: 0.6 }).observe(document.querySelector('#fourthSection'));
 
     // Fifth Section animation
     this.createIntersectObserver(() => {
@@ -394,10 +441,11 @@ export default {
       this.paypalFlg = false;
 
       this.targetSection = '#sixthSection';
+      this.sectionName = 'MANAGE';
     }, {
       targets: '.cover-color',
       width: '30%',
-    }, { threshold: 0.7 }).observe(document.querySelector('#fifthSection'));
+    }, { threshold: 0.6 }).observe(document.querySelector('#fifthSection'));
 
     // Sixth Section animation
     this.createIntersectObserver(() => {
@@ -412,23 +460,16 @@ export default {
       this.paypalFlg = false;
 
       this.targetSection = '#firstSection';
+      this.sectionName = '';
     }, {
       targets: '.cover-color',
       width: '0%',
-    }, { threshold: 0.7 }).observe(document.querySelector('#sixthSection'));
+    }, { threshold: 0.6 }).observe(document.querySelector('#sixthSection'));
   },
 
   updated() {
-    if (this.isSecond) {
-      this.createIntersectObserver(() => {
-      }, {
-        targets: '.photo1',
-        right: '0vw',
-      }, { threshold: 0.7 }).observe(document.querySelector('.photo1'));
-    }
-
     this.createIntersectObserver(() => {
-      anime({
+      Anime({
         targets: '.dot2 img',
         translateY: () => '10vw',
         translateX: () => '-25vw',
@@ -437,7 +478,7 @@ export default {
         delay: () => '100',
       });
 
-      anime({
+      Anime({
         targets: '.dot3 img',
         translateY: () => '17vw',
         scale: (el, i, l) => (l - i) + 6,
@@ -445,7 +486,7 @@ export default {
         delay: () => '100',
       });
 
-      anime({
+      Anime({
         targets: '.dot4 img',
         translateY: () => '10vw',
         translateX: () => '25vw',
@@ -454,7 +495,7 @@ export default {
         delay: () => '100',
       });
 
-      anime({
+      Anime({
         targets: '.dot5 img',
         translateY: () => '-10vw',
         translateX: () => '28vw',
@@ -471,16 +512,18 @@ export default {
       delay: () => '100',
     }, { threshold: 0.7 }).observe(document.querySelector('#thirdSection'));
   },
+
   methods: {
     createIntersectObserver(callback, animateOption, intersectOption) {
       return new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
           callback();
-          anime(animateOption);
+          Anime(animateOption);
         }
       }, intersectOption);
     },
   },
+
   data() {
     return {
       isFirst: false,
@@ -500,6 +543,7 @@ export default {
       btnJoinFlg: false,
 
       targetSection: '',
+      sectionName: '',
     };
   },
 };

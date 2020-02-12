@@ -4,7 +4,7 @@
   width: 370px;
 
   @media only screen and (max-width: 769px) {
-    width: 80%;
+    width: 300px;
   }
 
   padding: 1rem;
@@ -25,12 +25,12 @@
     top: 0;
     left: 0;
     z-index: -1;
-    box-shadow: 4px 4px 10px 0px #0000001f; // Option 1
+    // box-shadow: 4px 4px 10px 0px #0000001f; // Option 1
     // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.342); // Option 2
   }
 
   &::after {
-    box-shadow: -4px -4px 10px 0px #ffffffa9; // Option 1
+    // box-shadow: -4px -4px 10px 0px #ffffffa9; // Option 1
   }
 
   .card-header {
@@ -74,6 +74,7 @@
       }
 
       .company-name {
+        font-size: 14px;
         color: $fontColor;
         text-align: center;
       }

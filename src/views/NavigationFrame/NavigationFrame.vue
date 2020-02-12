@@ -44,32 +44,179 @@
     </div>
 
     <div class="menu-overlay">
-      <ul>
-        <li class="menu-item"></li>
-        <li class="menu-item"></li>
-        <li class="menu-item"></li>
-        <li class="menu-item"></li>
-        <li class="menu-item"></li>
-      </ul>
+      <div class="menu-container">
+        <ul class="menu">
+          <li class="menu-item">
+            <a href="" item="home">HOME</a>
+          </li>
+          <li class="menu-item">
+            <a href="" item="login">LOG IN</a>
+          </li>
+          <li class="menu-item">
+            <a href="" item="jobs">JOBS</a>
+          </li>
+          <li class="menu-item">
+            <a href="" item="employers">EMPLOYERS</a>
+          </li>
+          <li class="menu-item">
+            <a href="" item="about">ABOUT</a>
+          </li>
+        </ul>
+      </div>
+      <span class="big-item-name">{{ menuItemDesc }}</span>
     </div>
   </header>
 </template>
 
 <script>
+import Anime from 'animejs';
+
 export default {
   name: 'navigation-bar',
-  mounted() {
-    const observer = new IntersectionObserver(() => {
-      this.loadingPercent += 2;
-    }, { threshold: 0.7 });
 
-    observer.observe(document.querySelector('section'));
+  mounted() {
+    this.addHoverListener(".menu-item > a[item='home']",
+      () => {
+        Anime({
+          targets: '.menu-item:nth-of-type(1)',
+          translateX: 10,
+          fontSize: '55px',
+        });
+        Anime({
+          targets: '.big-item-name',
+          opacity: 1,
+        });
+
+        this.menuItemDesc = 'BACK TO HOME';
+      },
+      () => {
+        Anime({
+          targets: '.menu-item:nth-of-type(1)',
+          translateX: 0,
+          fontSize: '48px',
+        });
+        Anime({
+          targets: '.big-item-name',
+          opacity: 0,
+        });
+      });
+
+    this.addHoverListener(".menu-item > a[item='login']",
+      () => {
+        Anime({
+          targets: ".menu-item > a[item='login']",
+          fontSize: '64px',
+        });
+        Anime({
+          targets: '.big-item-name',
+          opacity: 1,
+        });
+        this.menuItemDesc = 'ACCESS OUR FEATURE';
+      },
+      () => {
+        Anime({
+          targets: ".menu-item > a[item='login']",
+          fontSize: '48px',
+        });
+        Anime({
+          targets: '.big-item-name',
+          opacity: 0,
+        });
+      });
+
+    this.addHoverListener(".menu-item > a[item='jobs']",
+      () => {
+        Anime({
+          targets: ".menu-item > a[item='jobs']",
+          fontSize: '64px',
+        });
+        Anime({
+          targets: '.big-item-name',
+          opacity: 1,
+        });
+        this.menuItemDesc = 'VIEW ALL JOBS';
+      },
+      () => {
+        Anime({
+          targets: ".menu-item > a[item='jobs']",
+          fontSize: '48px',
+        });
+        Anime({
+          targets: '.big-item-name',
+          opacity: 0,
+        });
+      });
+
+    this.addHoverListener(".menu-item > a[item='employers']",
+      () => {
+        Anime({
+          targets: ".menu-item > a[item='employers']",
+          fontSize: '64px',
+        });
+        Anime({
+          targets: '.big-item-name',
+          opacity: 1,
+        });
+        this.menuItemDesc = 'HR FOR YOUR TEAM';
+      },
+      () => {
+        Anime({
+          targets: ".menu-item > a[item='employers']",
+          fontSize: '48px',
+        });
+        Anime({
+          targets: '.big-item-name',
+          opacity: 0,
+        });
+      });
+
+    this.addHoverListener(".menu-item > a[item='about']",
+      () => {
+        Anime({
+          targets: ".menu-item > a[item='about']",
+          fontSize: '64px',
+        });
+        Anime({
+          targets: '.big-item-name',
+          opacity: 1,
+        });
+        this.menuItemDesc = 'MORE INFO ABOUT US';
+      },
+      () => {
+        Anime({
+          targets: ".menu-item > a[item='about']",
+          fontSize: '48px',
+        });
+        Anime({
+          targets: '.big-item-name',
+          opacity: 0,
+        });
+      });
   },
+
+  watch: {
+    menuActiveFlg(newVal) {
+      if (newVal) {
+        Anime({
+          targets: '.menu-overlay',
+          height: '100vh',
+        });
+      } else {
+        Anime({
+          targets: '.menu-overlay',
+          easing: 'easeOutBounce',
+          duration: '1000',
+          height: '0',
+        });
+      }
+    },
+  },
+
   data() {
     return {
-      loadingPercent: 0,
       searchOverlayShowFlg: false,
       menuActiveFlg: false,
+      menuItemDesc: '',
     };
   },
 
@@ -80,6 +227,11 @@ export default {
       } else document.querySelector('.search-overlay-box').style.width = '100%';
 
       this.searchOverlayShowFlg = !this.searchOverlayShowFlg;
+    },
+
+    addHoverListener(elementQuery, mouseOverFunction, mouseOutFunction) {
+      document.querySelector(elementQuery).addEventListener('mouseover', mouseOverFunction);
+      document.querySelector(elementQuery).addEventListener('mouseout', mouseOutFunction);
     },
   },
 };

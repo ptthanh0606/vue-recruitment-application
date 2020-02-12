@@ -56,7 +56,7 @@
 
       @media only screen and (max-width: 769px ) {
         #slogan-text {
-          width: 100%;
+          width: 80%;
           font-size: 1rem;
           font-weight: bolder;
         }
@@ -78,12 +78,82 @@
   &:nth-of-type(2) {
     .section-container {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      align-items: center;
 
-      .keyword {
-        color: #01a5a5;
+      .label-desc {
+        width: 100%;
+
+        .typing-animation {
+          width: 950px;
+
+          @media only screen and (max-width: 769px) {
+            width: 100%;
+          }
+          
+          display: flex;
+          justify-content: space-between;
+          
+          margin: 16px 0;
+          position: relative;
+
+          &::after {
+            width: 100%;
+            height: 4px;
+  
+            display: block;
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: $iconColor;
+          }
+  
+          .typing {
+            width: 100%;
+
+            .word {
+              width: 100%;
+              font-size: 80px;
+              
+              @media only screen and (max-width: 769px) {
+                font-size: 32px;
+              }
+              color: $fontColor;
+              font-family: 'Prata', serif;
+              font-weight: bolder;
+
+              border: none;
+              background-color: transparent;
+
+              &:focus {
+                outline: none;
+              }
+            }
+          }
+  
+          .button-search-job {
+            border: none;
+            background-color: transparent;
+
+            &:focus {
+              outline: none;
+            }
+            
+            .search-arrow {
+              height: 32px;
+    
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        .keyword {
+          color: #01a5a5;
+        }
       }
+
     }
   }
 }
@@ -145,60 +215,75 @@
 @mixin fourthSection {
   &:nth-of-type(4) {
     .section-container {
+      width: 100%;
       display: flex;
-      flex-wrap: wrap-reverse;
-      align-items: center;
-      justify-content: space-between;
+      align-items: flex-end;
       
-      .presentation-jobs-wrapper {
-        width: 53%;
+      .content-wrapper-outer {
+        width: 100%;
         overflow-x: scroll;
 
+        display: flex;
+        flex-direction: row-reverse;
+        
+        margin-bottom: 8rem;
+
+        .content-wrapper-inner {
+          flex-direction: row-reverse;
+          display: flex;
+          align-items: center;
+
+          .job-preview-card-container {
+            margin: 17px 7px;
+    
+            &::before {
+              box-shadow: 0 0 7px 0 #00000057;
+            }
+          }
+    
+          .label-desc {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+            text-align: right;
+            margin-left: 20px;
+
+            @media only screen and (max-width: 1106px) { 
+              text-align: left;
+            }
+
+            .desc {
+              .keyword {
+                color: #f7f7f7;
+              }
+            }
+
+            .info {
+              font-weight: bolder;
+              color: #f7f7f7;
+
+              .right-arrow {
+                margin-left: 10px;
+                fill: #f7f7f7;
+              }
+            }
+          }
+        }
+  
         &::-webkit-scrollbar {
           background-color: transparent;
         }
         
         &::-webkit-scrollbar-thumb {
-          background-color: $iconColor;
-        }
-        
-        .feature-jobs {
-          width: 200%;
-          display: flex;
-
-          .job-preview-card-container {
-            margin: 17px 10px;
-
-            &::before {
-              box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.342);
-            }
-          }
+          background-color: #00000027;
+          border-radius: 30px;
         }
       }
 
-      @media only screen and (max-width: 834px) {
-        .presentation-jobs-wrapper {
-          width: 100%;
-          
-          .feature-jobs {
-            width: 350%;
-          }
-        }
-      }
-
-      .label-desc {
-        text-align: right;
-        
-        @media only screen and (max-width: 834px) {
-          
-          text-align: left;
-        }
-
-        .keyword {
-          color: #f7f7f7;
-        }
-      }
     }
+    
   }
 }
 
@@ -533,22 +618,16 @@
   .cover-color {
     height: 100%;
     width: 0%;
+
     position: fixed;
-    z-index: -1;
     right: 0%;
-    transition: background-color 1s ease;
-  }
-
-  .feature-photo {
-    height: 90%;
-    position: fixed;
-    bottom: 0%;
-    right: 10vw;
     z-index: -1;
 
-    .photo1 {
-      bottom: 10%;
-    }
+    padding-top: 5rem;
+    font-size: 10rem;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.185);
+    transition: background-color 1s ease;
   }
 
   section {
@@ -717,7 +796,7 @@
 @include brandColors();
 
 .firstSectionBackground {
-  background-color: $pColorPink;
+  background-color: $backgroundColor;
 }
 
 .secondSectionBackground {
@@ -737,5 +816,5 @@
 }
 
 .sixthSectionBackground {
-  background-color: $pColorCyan;
+  background-color: $backgroundColor;
 }

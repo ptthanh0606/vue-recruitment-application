@@ -27,13 +27,13 @@
     }
   
     .focus-border{
-      height: 3px;
+      height: 2px;
       width: 0;
 
       position: absolute;
       left: 0;
       bottom: 0;
-      background-color: $pColorPink;
+      background-color: $pColorCyan;
       transition: 0.4s;
     }
   
@@ -78,7 +78,7 @@
       }
 
       #search-box-close {
-        height: 20px;
+        height: 15px;
         fill: $backgroundColor;
 
         &:hover {
@@ -110,8 +110,9 @@
       justify-content: space-between;
 
       #search-icon {
-        height: 1.5rem;
-        width: 1.5rem;
+        fill: $iconColor;
+        height: 1.2rem;
+        width: 1.2rem;
 
         &:hover {
           cursor: pointer;
@@ -122,7 +123,7 @@
     }
     
     .logo {
-      font-size: 1.6rem;
+      font-size: 18px;
       font-weight: bold;
       text-align: center;
       color: $iconColor;
@@ -142,6 +143,67 @@
   }
 
   .menu-overlay {
+    width: 100%;
+    height: 0;
 
+    overflow-x: hidden;
+
+    background-color: #111111;
+
+    position: absolute;
+    display: flex;
+    align-items: center;
+
+    .menu-container {
+      width: 100%;
+      max-width: 1350px;
+
+      position: relative;
+      z-index: 2;
+
+      margin: 0 auto;
+      padding: 1rem;
+
+      .menu {
+        list-style-type: none;
+        font-size: 48px;
+        
+        @media only screen and (max-width: 769px) {
+          font-size: 38px;
+        }
+        
+        .menu-item {
+          margin: 0.5em 0;
+          a {
+            color: $backgroundColor;
+            text-shadow: 3px 3px #242424;
+            font-weight: bolder;
+          }
+        }
+      }
+    }
+
+    .big-item-name {
+      width: 100%;
+
+      position: absolute;
+      right: 1rem;
+      opacity: 0;
+      z-index: 1;
+
+      font-size: 1130%;
+      
+      @media only screen and (max-width: 769px) {
+        font-size: 756%;
+      }
+
+      line-height: 132px;
+      text-align: right;
+      font-weight: bolder;
+
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: #00eeff54;
+      color: transparent;
+    }
   }
 }
