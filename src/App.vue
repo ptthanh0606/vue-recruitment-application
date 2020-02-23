@@ -1,13 +1,19 @@
 <template>
   <div id="app">
+    <navigation-frame></navigation-frame>
     <router-view/>
   </div>
 </template>
 
 <script>
+import NavigationFrame from './views/NavigationFrame/NavigationFrame.vue';
 
 export default {
   name: 'main-component',
+  components: {
+    'navigation-frame': NavigationFrame,
+
+  },
 };
 </script>
 

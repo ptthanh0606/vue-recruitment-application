@@ -1,38 +1,14 @@
 @import '../globalVariable.scss';
 
 .job-preview-card-container {
-  width: 370px;
-
-  @media only screen and (max-width: 769px) {
-    width: 300px;
-  }
-
+  width: 330px;
   padding: 1rem;
   border-radius: 15px;
   position: relative;
   background-color: $backgroundColor;
+  // box-shadow: 4px 4px 6px 0px #00000025, -4px -4px 6px 0px #ffffff81; // Option 1
+  // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.342); // Option 2
   
-  &::before, &::after {
-    display: block;
-    content: '';
-
-    height: 100%;
-    width: 100%;
-    
-    border-radius: 15px;
-    
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    // box-shadow: 4px 4px 10px 0px #0000001f; // Option 1
-    // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.342); // Option 2
-  }
-
-  &::after {
-    // box-shadow: -4px -4px 10px 0px #ffffffa9; // Option 1
-  }
-
   .card-header {
     display: flex;
     justify-content: space-between;
@@ -99,24 +75,7 @@
         text-align: center;
         border-radius: 30px;
         position: relative;
-
-        &::before, &::after {
-          content: '';
-          border-radius: 30px;
-
-          display: block;
-          width: 100%;
-          height: 100%;
-
-          position: absolute;
-          top: 0;
-          left: 0;
-          box-shadow: 2px 2px 7px 0px #00000025;
-        }
-
-        &::before {
-          box-shadow: -2px -2px 7px 0px #ffffffc0;
-        }
+        box-shadow: -2px -2px 3px 0px #ffffffd2, 2px 2px 3px 0px #00000033;
       }
     }
   }

@@ -4,8 +4,6 @@
   <!-- eslint-disable prefer-const -->
   <!-- eslint-disable no-unused-vars -->
   <div class="welcome-container">
-
-    <navigation-frame></navigation-frame>
     <footer-frame :targetSection="targetSection"></footer-frame>
     <!--  -->
     <div class="cover-color" :class="{
@@ -92,8 +90,12 @@
             data-sal-easing="ease-out-quint"
             data-sal-duration="2000">FIND
           </h3>
-          <form class="typing-animation" method="get">
-            <div class="typing">
+          <form class="typing-animation" method="get"
+          data-sal="slide-up"
+          data-sal-delay="500"
+          data-sal-easing="ease-out-quint"
+          data-sal-duration="2000">
+            <div class="typing" >
               <input class="word" name="jobTitle"/>
             </div>
             <button class="button-search-job" type="submit">
@@ -211,23 +213,20 @@
                   data-sal-duration="2000"
                 >Jobs currently open.</h3>
               </div>
+
               <div
                 class="info"
                 data-sal="slide-right"
                 data-sal-delay="500"
                 data-sal-easing="ease-out-quint"
-                data-sal-duration="2000"
-              >
+                data-sal-duration="2000">
                 SCROLL TO VIEW
                 <svg class="right-arrow" xmlns="http://www.w3.org/2000/svg" width="23.279" height="9.859" viewBox="0 0 23.279 9.859">
                   <path d="M18.026,14.1a.684.684,0,0,0-.943.991l5.272,3.063H1.824a.684.684,0,0,0,0,1.368H22.332l-5.25,3.068a.684.684,0,1,0,.943.991l5.992-3.776a1.367,1.367,0,0,0-.012-1.946Z" transform="translate(-1.14 -13.915)"/>
                 </svg>
               </div>
             </div>
-            <job-card></job-card>
-            <job-card></job-card>
-            <job-card></job-card>
-            <job-card></job-card>
+            <job-card v-for="postInfo in jobResult" :key="postInfo"  :postInfo="postInfo"></job-card>
           </div>
         </div>
       </div>
@@ -271,7 +270,6 @@
         <div class="start-button" :class="{ 'rgb-animation' : btnJoinFlg }" @click="() => { btnJoinFlg = !btnJoinFlg }">
           <div class="label">
             Start
-            <div class="label-down back"></div>
             <div class="label-down">As</div>
           </div>
         </div>
@@ -323,7 +321,6 @@ import Sal from 'sal.js';
 import Anime from 'animejs';
 import Typed from 'typed.js';
 
-import NavigationFrame from '../NavigationFrame/NavigationFrame.vue';
 import FooterFrame from '../FooterFrame/FooterFrame.vue';
 
 import JobPreviewCard from '../../components/JobPreviewCard/JobPreviewCard.vue';
@@ -331,7 +328,6 @@ import JobPreviewCard from '../../components/JobPreviewCard/JobPreviewCard.vue';
 export default {
   name: 'welcome',
   components: {
-    'navigation-frame': NavigationFrame,
     'footer-frame': FooterFrame,
     'job-card': JobPreviewCard,
   },
@@ -544,6 +540,87 @@ export default {
 
       targetSection: '',
       sectionName: '',
+
+      jobResult: [
+        {
+          location: 'Ho Chi Minh City',
+          jobType: 'Full-time',
+          logoUrl: 'https://i.imgur.com/iVtNw0H.png',
+          companyName: 'FPT Sofware',
+          jobTitle: 'Back-end Developer',
+          jobSkills: [
+            'Java',
+            'Spring Boot',
+            'MySql',
+          ],
+          expDate: 'June 6 2020',
+        },
+        {
+          location: 'Ha Noi City',
+          jobType: 'Full-time',
+          logoUrl: 'https://i.imgur.com/iVtNw0H.png',
+          companyName: 'Facebook Inc.',
+          jobTitle: 'Data Sicentist',
+          jobSkills: [
+            'Python',
+            'Excel',
+            'PyCharm',
+          ],
+          expDate: 'June 6 2020',
+        },
+        {
+          location: 'Ha Noi City',
+          jobType: 'Full-time',
+          logoUrl: 'https://i.imgur.com/iVtNw0H.png',
+          companyName: 'Knorex Inc.',
+          jobTitle: 'Front-end Developer',
+          jobSkills: [
+            'VueJS',
+            'HTML5',
+            'CSS3',
+          ],
+          expDate: 'June 6 2020',
+        },
+        {
+          location: 'Ho Chi Minh City',
+          jobType: 'Full-time',
+          logoUrl: 'https://i.imgur.com/iVtNw0H.png',
+          companyName: 'FPT Sofware',
+          jobTitle: 'Back-end Developer',
+          jobSkills: [
+            'Java',
+            'Spring Boot',
+            'MySql',
+          ],
+          expDate: 'June 6 2020',
+        },
+        {
+          location: 'Ha Noi City',
+          jobType: 'Full-time',
+          logoUrl: 'https://i.imgur.com/iVtNw0H.png',
+          companyName: 'Facebook Inc.',
+          jobTitle: 'Data Sicentist',
+          jobSkills: [
+            'Python',
+            'Excel',
+            'PyCharm',
+          ],
+          expDate: 'June 6 2020',
+        },
+        {
+          location: 'Ha Noi City',
+          jobType: 'Full-time',
+          logoUrl: 'https://i.imgur.com/iVtNw0H.png',
+          companyName: 'Knorex Inc.',
+          jobTitle: 'Front-end Developer',
+          jobSkills: [
+            'VueJS',
+            'HTML5',
+            'CSS3',
+          ],
+          expDate: 'June 6 2020',
+        },
+      ],
     };
   },
 };

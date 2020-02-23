@@ -7,11 +7,6 @@
     }
 
     display: block;
-
-    @media only screen and (max-width: 769px) {
-      display: none;
-    }
-
     height: 24px;
     position: relative;
 
@@ -101,36 +96,11 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
-
-    .search-bar {
-      height: 100%;
-      min-width: 20%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      #search-icon {
-        fill: $iconColor;
-        height: 1.2rem;
-        width: 1.2rem;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-      
-      @include searchBar();
-    }
     
     .logo {
       font-size: 18px;
       font-weight: bold;
-      text-align: center;
       color: $iconColor;
-
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
     }
 
     .hamburger {
@@ -145,17 +115,16 @@
   .menu-overlay {
     width: 100%;
     height: 0;
-
     overflow-x: hidden;
-
-    background-color: #111111;
-
+    background-color: #1b1b1b;
     position: absolute;
     display: flex;
-    align-items: center;
 
     .menu-container {
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       max-width: 1350px;
 
       position: relative;
@@ -174,10 +143,64 @@
         
         .menu-item {
           margin: 0.5em 0;
+          
           a {
             color: $backgroundColor;
             text-shadow: 3px 3px #242424;
             font-weight: bolder;
+          }
+        }
+      }
+
+      .quick-search-container {
+        width: 100%;
+        
+        .input-box {
+          font-size: 16px;
+          width: 300px;
+
+          @media only screen and(max-width:769px) {
+            width: 100%;
+          }
+          
+          padding: 13px 13px 13px 13px;
+          position: relative;
+          bottom: 0;
+          
+          .search-icon {
+            height: 1rem;
+            margin-right: 10px;
+            fill: $subfontColor;
+  
+            transform: translateY(3px);
+          }
+  
+          .search-box {
+            color: $backgroundColor;
+            border: none;
+            background-color: transparent;
+            
+            &:focus {
+              outline: none;
+            }
+          }
+  
+          &::before, &::after {
+            content: '';
+            display: block;
+            border-radius: 7px;
+  
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 3px 3px 5px #000000f6;
+          }
+  
+          &::after { 
+            box-shadow: inset -3px -3px 5px #ffffff15;
           }
         }
       }
@@ -187,6 +210,8 @@
       width: 100%;
 
       position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
       right: 1rem;
       opacity: 0;
       z-index: 1;

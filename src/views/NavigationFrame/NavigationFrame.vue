@@ -16,25 +16,7 @@
     </div>
 
     <div class="header-container">
-      <div class="search-bar">
-        <svg @click="showSearchOverlay"
-          id="search-icon"
-          viewBox="0 0 512 512"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g>
-            <path d="M495,466.2L377.2,348.4c29.2-35.6,46.8-81.2,46.8-130.9C424,103.5,331.5,11,217.5,11C103.4,11,11,103.5,11,217.5   S103.4,424,217.5,424c49.7,0,95.2-17.5,130.8-46.7L466.1,495c8,8,20.9,8,28.9,0C503,487.1,503,474.1,495,466.2z M217.5,382.9   C126.2,382.9,52,308.7,52,217.5S126.2,52,217.5,52C308.7,52,383,126.3,383,217.5S308.7,382.9,217.5,382.9z"/>
-          </g>
-        </svg>
-        <div class="input-container">
-          <form action="#">
-            <input class="effect-1" type="text" placeholder="ENTER YOUR JOB" />
-            <span class="focus-border"></span>
-          </form>
-        </div>
-      </div>
-
-      <a href="#firstSection" class="logo">JOBSNAP.</a>
+      <a href="" class="logo">JOBSNAP.</a>
 
       <button class="hamburger hamburger--arrow" type="button" @click="() => { this.menuActiveFlg = !this.menuActiveFlg }" :class="{ 'is-active' : menuActiveFlg }">
         <span class="hamburger-box">
@@ -47,13 +29,13 @@
       <div class="menu-container">
         <ul class="menu">
           <li class="menu-item">
-            <a href="" item="home">HOME</a>
+            <a @click="handleMenuRoute($event, 'welcome')" href="" item="home">HOME</a>
           </li>
           <li class="menu-item">
-            <a href="" item="login">LOG IN</a>
+            <a @click="handleMenuRoute($event, 'login')" href="" item="login">LOG IN</a>
           </li>
           <li class="menu-item">
-            <a href="" item="jobs">JOBS</a>
+            <a @click="handleMenuRoute($event, 'jobs')" href="" item="jobs">JOBS</a>
           </li>
           <li class="menu-item">
             <a href="" item="employers">EMPLOYERS</a>
@@ -62,6 +44,17 @@
             <a href="" item="about">ABOUT</a>
           </li>
         </ul>
+        <form action="" class="quick-search-container">
+          <div class="input-box">
+            <svg
+            class="search-icon"
+            viewBox="0 0 500 500"
+            xmlns="http://www.w3.org/2000/svg">
+              <path d="M495,466.2L377.2,348.4c29.2-35.6,46.8-81.2,46.8-130.9C424,103.5,331.5,11,217.5,11C103.4,11,11,103.5,11,217.5   S103.4,424,217.5,424c49.7,0,95.2-17.5,130.8-46.7L466.1,495c8,8,20.9,8,28.9,0C503,487.1,503,474.1,495,466.2z M217.5,382.9   C126.2,382.9,52,308.7,52,217.5S126.2,52,217.5,52C308.7,52,383,126.3,383,217.5S308.7,382.9,217.5,382.9z"/>
+            </svg>
+            <input class="search-box" type="text" placeholder="Quick job search">
+          </div>
+        </form>
       </div>
       <span class="big-item-name">{{ menuItemDesc }}</span>
     </div>
@@ -204,8 +197,8 @@ export default {
       } else {
         Anime({
           targets: '.menu-overlay',
-          easing: 'easeOutBounce',
-          duration: '1000',
+          easing: 'easeInOutQuad',
+          duration: '400',
           height: '0',
         });
       }
@@ -232,6 +225,14 @@ export default {
     addHoverListener(elementQuery, mouseOverFunction, mouseOutFunction) {
       document.querySelector(elementQuery).addEventListener('mouseover', mouseOverFunction);
       document.querySelector(elementQuery).addEventListener('mouseout', mouseOutFunction);
+    },
+
+    handleMenuRoute(event, routeName) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      this.$router.push({ name: routeName });
+      this.menuActiveFlg = false;
     },
   },
 };
