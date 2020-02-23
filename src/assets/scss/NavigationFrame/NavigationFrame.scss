@@ -1,0 +1,234 @@
+@import '../globalVariable';
+
+@mixin searchBar {
+  .input-container {
+    :focus {
+      outline: none;
+    }
+
+    display: block;
+    height: 24px;
+    position: relative;
+
+    input[type="text"]{
+      width: 100%;
+      height: 1rem;
+      background-color: transparent;
+  
+      border: none;
+      font-size: 1rem;
+      color: #7e7e7e;
+      letter-spacing: 2px;
+    }
+  
+    .focus-border{
+      height: 2px;
+      width: 0;
+
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background-color: $pColorCyan;
+      transition: 0.4s;
+    }
+  
+    .effect-1:focus~.focus-border {
+      width: 100%;
+      transition: 0.4s;
+    }
+  }
+}
+
+// -------------------------
+.nav-bar {
+  width: 100vw;
+  height: 5rem;
+
+  display: flex;
+  position: fixed;
+  z-index: 3;
+
+  .search-overlay-box {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    z-index: 1001;
+    transition: width ease-in-out 0.5s;
+
+    .search-wrapper {
+      height: 100%;
+      width: 100%;
+      max-width: 1350px;
+      margin: 0 auto;
+      padding: 0 1rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @include searchBar();
+
+      .input-container{
+        display: block;
+      }
+
+      #search-box-close {
+        height: 15px;
+        fill: $backgroundColor;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    background-color: #3f3f3f;
+  }
+
+  .header-container {
+    height: 100%;
+    width: 100%;
+    max-width: 1350px;
+    
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    
+    .logo {
+      font-size: 18px;
+      font-weight: bold;
+      color: $iconColor;
+    }
+
+    .hamburger {
+      position: relative;
+      z-index: 1000;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .menu-overlay {
+    width: 100%;
+    height: 0;
+    overflow-x: hidden;
+    background-color: #1b1b1b;
+    position: absolute;
+    display: flex;
+
+    .menu-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 1350px;
+
+      position: relative;
+      z-index: 2;
+
+      margin: 0 auto;
+      padding: 1rem;
+
+      .menu {
+        list-style-type: none;
+        font-size: 48px;
+        
+        @media only screen and (max-width: 769px) {
+          font-size: 38px;
+        }
+        
+        .menu-item {
+          margin: 0.5em 0;
+          
+          a {
+            color: $backgroundColor;
+            text-shadow: 3px 3px #242424;
+            font-weight: bolder;
+          }
+        }
+      }
+
+      .quick-search-container {
+        width: 100%;
+        
+        .input-box {
+          font-size: 16px;
+          width: 300px;
+
+          @media only screen and(max-width:769px) {
+            width: 100%;
+          }
+          
+          padding: 13px 13px 13px 13px;
+          position: relative;
+          bottom: 0;
+          
+          .search-icon {
+            height: 1rem;
+            margin-right: 10px;
+            fill: $subfontColor;
+  
+            transform: translateY(3px);
+          }
+  
+          .search-box {
+            color: $backgroundColor;
+            border: none;
+            background-color: transparent;
+            
+            &:focus {
+              outline: none;
+            }
+          }
+  
+          &::before, &::after {
+            content: '';
+            display: block;
+            border-radius: 7px;
+  
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 3px 3px 5px #000000f6;
+          }
+  
+          &::after { 
+            box-shadow: inset -3px -3px 5px #ffffff15;
+          }
+        }
+      }
+    }
+
+    .big-item-name {
+      width: 100%;
+
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 1rem;
+      opacity: 0;
+      z-index: 1;
+
+      font-size: 1130%;
+      
+      @media only screen and (max-width: 769px) {
+        font-size: 756%;
+      }
+
+      line-height: 132px;
+      text-align: right;
+      font-weight: bolder;
+
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: #00eeff54;
+      color: transparent;
+    }
+  }
+}

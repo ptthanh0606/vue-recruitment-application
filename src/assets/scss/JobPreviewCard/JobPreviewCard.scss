@@ -1,0 +1,91 @@
+@import '../globalVariable.scss';
+
+.job-preview-card-container {
+  width: 330px;
+  padding: 1rem;
+  border-radius: 15px;
+  position: relative;
+  background-color: $backgroundColor;
+  // box-shadow: 4px 4px 6px 0px #00000025, -4px -4px 6px 0px #ffffff81; // Option 1
+  // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.342); // Option 2
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+
+    .label {
+      color: $iconColor;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    
+    .pair {
+      max-width: 10rem;
+      display: flex;
+      
+      .icon {
+        height: 1rem;
+        fill: $iconColor;
+        margin-right: 10px;
+      }
+    }
+  }
+  
+  .card-body {
+    width: 100%;
+
+    .company-info-wrapper {
+      width: 100%;
+      max-width: 250px;
+      margin: 0 auto;
+      padding: 1rem 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .company-logo {
+        height: 5rem;
+        border-radius: 100%;
+      }
+
+      .company-name {
+        font-size: 14px;
+        color: $fontColor;
+        text-align: center;
+      }
+      
+      .job-name {
+        padding-top: 1rem;
+        text-align: center;
+        color: $fontColor;
+      }
+    }
+
+    .skill-wrapper {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .skill-box {
+        margin: 6px 10px;
+        padding: 6px 10px;
+
+        text-align: center;
+        border-radius: 30px;
+        position: relative;
+        box-shadow: -2px -2px 3px 0px #ffffffd2, 2px 2px 3px 0px #00000033;
+      }
+    }
+  }
+
+  .card-footer {
+    width: 100%;
+    padding-top: 1rem;
+
+    text-align: center;
+    font-size: 14px;
+    color: $subfontColor;
+  }
+}
