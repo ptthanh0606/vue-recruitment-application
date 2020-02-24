@@ -44,10 +44,12 @@
 </template>
 
 <script>
+
 export default {
   name: 'coverUtils',
   props: ['targetSection'],
 };
+/* eslint linebreak-style: [2, "windows"] */
 </script>
 
 <style lang="scss">

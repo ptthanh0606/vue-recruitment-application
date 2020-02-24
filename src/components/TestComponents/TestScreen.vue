@@ -17,6 +17,7 @@ export default {
     'job-card': JobPreviewCard,
   },
 };
+/* eslint linebreak-style: [2, "windows"] */
 </script>
 
 <style lang="scss">

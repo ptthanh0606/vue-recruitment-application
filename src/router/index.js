@@ -1,3 +1,4 @@
+/* eslint linebreak-style: [2, "windows"] */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
