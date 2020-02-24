@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <navigation-frame></navigation-frame>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -12,7 +12,6 @@ export default {
   name: 'main-component',
   components: {
     'navigation-frame': NavigationFrame,
-
   },
 };
 </script>
@@ -34,8 +33,7 @@ a {
 
 body {
   overflow-x: hidden;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: $backgroundColor;
 }
-
 </style>

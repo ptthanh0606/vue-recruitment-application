@@ -625,9 +625,10 @@ export default {
     };
   },
 };
+
 </script>
 
 <style lang="scss">
-@import "../../assets/scss/Welcome/Welcome.scss";
+@import "../../../src/assets/scss/Welcome/welcome.scss";
 @import "../../../node_modules/sal.js/dist/sal.css";
 </style>
