@@ -4,7 +4,7 @@
     <job-card></job-card>
     <!-- <job-card></job-card>
     <job-card></job-card>
-    <job-card></job-card> -->
+    <job-card></job-card>-->
   </div>
 </template>
 
@@ -17,9 +17,8 @@ export default {
     'job-card': JobPreviewCard,
   },
 };
-/* eslint linebreak-style: [2, "windows"] */
 </script>
 
 <style lang="scss">
-@import '../../assets/scss/TestComponents/TestScreen.scss';
+@import "../../assets/scss/TestComponents/TestScreen.scss";
 </style>

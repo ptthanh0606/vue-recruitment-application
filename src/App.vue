@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <navigation-frame></navigation-frame>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -12,14 +12,12 @@ export default {
   name: 'main-component',
   components: {
     'navigation-frame': NavigationFrame,
-
   },
 };
-/* eslint linebreak-style: [2, "windows"] */
 </script>
 
 <style lang="scss">
-@import './assets/scss/_globalVariable.scss';
+@import "./assets/scss/_globalVariable.scss";
 
 * {
   box-sizing: border-box;
@@ -35,8 +33,7 @@ a {
 
 body {
   overflow-x: hidden;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: $backgroundColor;
 }
-
 </style>
