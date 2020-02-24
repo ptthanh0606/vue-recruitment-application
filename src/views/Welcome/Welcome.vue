@@ -603,6 +603,7 @@ export default {
           jobSkills: [
             'Python',
             'Excel',
+            'Notepad',
             'PyCharm',
           ],
           expDate: 'June 6 2020',
