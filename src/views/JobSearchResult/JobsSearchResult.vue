@@ -182,5 +182,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/scss/JobSearchResults/JobSearchResult.scss';
+@import '../../../src/assets/scss/JobSearchResults/JobSearchResult.scss';
 </style>

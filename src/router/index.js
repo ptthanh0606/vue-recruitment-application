@@ -5,19 +5,19 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
+    path: '',
     name: 'welcome',
-    component: () => import('../views/Welcome/Welcome.vue'),
+    component: () => import('../../src/views/Welcome/Welcome.vue'),
   },
   {
     path: '/jobs',
     name: 'jobs',
-    component: () => import('../views/JobSearchResult/JobsSearchResult.vue'),
+    component: () => import('../../src/views/JobSearchResult/JobsSearchResult.vue'),
   },
   {
     path: '/test',
     name: 'test',
-    component: () => import('../components/TestComponents/TestScreen.vue'),
+    component: () => import('../../src/components/TestComponents/TestScreen.vue'),
   },
 ];
 

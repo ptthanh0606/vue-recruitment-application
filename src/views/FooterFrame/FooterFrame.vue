@@ -51,5 +51,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../assets/scss/FooterFrame/FooterFrame.scss";
+@import "../../../src/assets/scss/FooterFrame/FooterFrame.scss";
 </style>

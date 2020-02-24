@@ -53,6 +53,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/scss/JobPreviewCard/JobPreviewCard.scss';
+@import '../../../src/assets/scss/JobPreviewCard/JobPreviewCard.scss';
 @import '../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss';
 </style>
