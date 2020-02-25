@@ -22,6 +22,6 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '/home/vsts/work/1/s'
     ArtifactName: 'frontend-drop'
     publishLocation: 'Container'
