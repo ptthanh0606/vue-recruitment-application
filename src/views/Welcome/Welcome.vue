@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable no-console -->
   <!-- eslint-disable object-shorthand -->
   <!-- eslint-disable max-len -->
   <!-- eslint-disable prefer-const -->
@@ -226,7 +227,7 @@
                 </svg>
               </div>
             </div>
-            <job-card v-for="postInfo in jobResult" :key="postInfo"  :postInfo="postInfo"></job-card>
+            <job-card v-for="(postInfo, index) in jobResults" :key="index"  :postInfo="postInfo"></job-card>
           </div>
         </div>
       </div>
@@ -321,9 +322,10 @@ import Sal from 'sal.js';
 import Anime from 'animejs';
 import Typed from 'typed.js';
 
+import { mapActions, mapState } from 'vuex';
 import FooterFrame from '../FooterFrame/FooterFrame.vue';
-
 import JobPreviewCard from '../../components/JobPreviewCard/JobPreviewCard.vue';
+
 
 export default {
   name: 'welcome',
@@ -331,6 +333,11 @@ export default {
     'footer-frame': FooterFrame,
     'job-card': JobPreviewCard,
   },
+
+  computed: {
+    ...mapState('Welcome', ['initJobsList']),
+  },
+
   mounted() {
     Sal({
       threshold: 0.5,
@@ -461,6 +468,10 @@ export default {
       targets: '.cover-color',
       width: '0%',
     }, { threshold: 0.6 }).observe(document.querySelector('#sixthSection'));
+
+    this.getInitJobs().then(() => {
+      this.jobResults = this.initJobsList;
+    });
   },
 
   updated() {
@@ -510,6 +521,7 @@ export default {
   },
 
   methods: {
+    ...mapActions('Welcome', ['getInitJobs']),
     createIntersectObserver(callback, animateOption, intersectOption) {
       return new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
@@ -541,87 +553,7 @@ export default {
       targetSection: '',
       sectionName: '',
 
-      jobResult: [
-        {
-          location: 'Ho Chi Minh City',
-          jobType: 'Full-time',
-          logoUrl: 'https://i.imgur.com/iVtNw0H.png',
-          companyName: 'FPT Sofware',
-          jobTitle: 'Back-end Developer',
-          jobSkills: [
-            'Java',
-            'Spring Boot',
-            'MySql',
-          ],
-          expDate: 'June 6 2020',
-        },
-        {
-          location: 'Ha Noi City',
-          jobType: 'Full-time',
-          logoUrl: 'https://i.imgur.com/iVtNw0H.png',
-          companyName: 'Facebook Inc.',
-          jobTitle: 'Data Sicentist',
-          jobSkills: [
-            'Python',
-            'Excel',
-            'PyCharm',
-          ],
-          expDate: 'June 6 2020',
-        },
-        {
-          location: 'Ha Noi City',
-          jobType: 'Full-time',
-          logoUrl: 'https://i.imgur.com/iVtNw0H.png',
-          companyName: 'Knorex Inc.',
-          jobTitle: 'Front-end Developer',
-          jobSkills: [
-            'VueJS',
-            'HTML5',
-            'CSS3',
-          ],
-          expDate: 'June 6 2020',
-        },
-        {
-          location: 'Ho Chi Minh City',
-          jobType: 'Full-time',
-          logoUrl: 'https://i.imgur.com/iVtNw0H.png',
-          companyName: 'FPT Sofware',
-          jobTitle: 'Back-end Developer',
-          jobSkills: [
-            'Java',
-            'Spring Boot',
-            'MySql',
-          ],
-          expDate: 'June 6 2020',
-        },
-        {
-          location: 'Ha Noi City',
-          jobType: 'Full-time',
-          logoUrl: 'https://i.imgur.com/iVtNw0H.png',
-          companyName: 'Facebook Inc.',
-          jobTitle: 'Data Sicentist',
-          jobSkills: [
-            'Python',
-            'Excel',
-            'Notepad',
-            'PyCharm',
-          ],
-          expDate: 'June 6 2020',
-        },
-        {
-          location: 'Ha Noi City',
-          jobType: 'Full-time',
-          logoUrl: 'https://i.imgur.com/iVtNw0H.png',
-          companyName: 'Knorex Inc.',
-          jobTitle: 'Front-end Developer',
-          jobSkills: [
-            'VueJS',
-            'HTML5',
-            'CSS3',
-          ],
-          expDate: 'June 6 2020',
-        },
-      ],
+      jobResults: [],
     };
   },
 };

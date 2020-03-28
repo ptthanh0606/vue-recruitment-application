@@ -14,7 +14,7 @@
             transform="translate(-47.692 0)"
           />
         </svg>
-        <span class="label">{{ postInfo.location }}</span>
+        <span class="label">{{ postInfo.address }}</span>
       </div>
 
       <div class="pair job-alt">
@@ -44,29 +44,36 @@
     <!--  -->
     <div class="card-body">
       <div class="company-info-wrapper">
-        <img class="company-logo" :src="postInfo.logoUrl" alt />
-        <h3 class="company-name">{{ postInfo.companyName }}</h3>
-        <h4 class="job-name">{{ postInfo.jobTitle }}</h4>
+        <img class="company-logo" :src="postInfo.imageUrl" alt />
+        <h3 class="company-name">{{ postInfo.compName }}</h3>
+        <h4 class="job-name">{{ postInfo.postTitle }}</h4>
       </div>
 
       <div class="skill-wrapper">
-        <div class="skill-box" v-for="skill in postInfo.jobSkills" :key="skill">{{ skill }}</div>
+        <div class="skill-box" v-for="(skill, index) in postInfo.skills" :key="index">{{ skill.skillName }}</div>
       </div>
     </div>
     <!--  -->
     <div class="card-footer">
-      <span class="job-expiration-date">Until {{ postInfo.expDate }}</span>
+      <span class="job-expiration-date">Until {{ postInfo.expiryDateTime | filterDateTime }}</span>
     </div>
   </div>
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   name: 'JobPreviewCard',
   props: {
     postInfo: {
       type: Object,
       required: true,
+    },
+  },
+  filters: {
+    filterDateTime(stringDate) {
+      return moment(stringDate.slice(0, 7)).format('MMMM Do YYYY');
     },
   },
 };
