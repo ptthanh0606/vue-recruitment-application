@@ -14,7 +14,7 @@ export default {
   actions: {
     getInitJobs(context) {
       return new Promise((resolve, reject) => {
-        Axios.get('https://recruitmentswdapi.azurewebsites.net/posts?choice=1&limit=5').then(response => {
+        Axios.get('https://cors-anywhere.herokuapp.com/https://recruitmentswdapi.azurewebsites.net/posts?choice=1&limit=5').then(response => {
           context.commit('setInitJobsList', response.data);
           resolve();
         })

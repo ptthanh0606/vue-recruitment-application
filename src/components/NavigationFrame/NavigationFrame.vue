@@ -1,32 +1,8 @@
 <template>
   <!-- eslint-disable max-len -->
   <header class="nav-bar">
-    <div class="search-overlay-box">
-      <div class="search-wrapper">
-        <div class="input-container">
-          <form action="#">
-            <input class="effect-1" type="text" placeholder="ENTER YOUR JOB" />
-            <span class="focus-border"></span>
-          </form>
-        </div>
-        <svg
-          @click="showSearchOverlay"
-          id="search-box-close"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 30.06 30.059"
-        >
-          <path
-            data-name="Path 525"
-            d="M17.689,15.031,29.509,3.21A1.88,1.88,0,1,0,26.851.552L15.03,12.373,3.209.552A1.88,1.88,0,0,0,.551,3.21L12.372,15.031.551,26.852a1.879,1.879,0,1,0,2.658,2.658L15.03,17.688,26.851,29.509a1.88,1.88,0,0,0,2.658-2.658Z"
-            transform="translate(0 -0.001)"
-          />
-        </svg>
-      </div>
-    </div>
-
     <div class="header-container">
       <a href class="logo">JOBSNAP.</a>
-
       <button
         class="hamburger hamburger--arrow"
         type="button"
@@ -46,28 +22,24 @@
             <a @click="handleMenuRoute($event, 'welcome')" href item="home">HOME</a>
           </li>
           <li class="menu-item">
-            <a @click="handleMenuRoute($event, 'login')" href item="login">LOG IN</a>
-          </li>
-          <li class="menu-item">
             <a @click="handleMenuRoute($event, 'jobs')" href item="jobs">JOBS</a>
           </li>
           <li class="menu-item">
-            <a href item="employers">EMPLOYERS</a>
+            <a @click="handleMenuRoute($event, 'employers')" href item="employers">EMPLOYERS</a>
+          </li>
+          <li class="menu-item" v-if="isLogin">
+            <a href item="account">ACCOUNT</a>
           </li>
           <li class="menu-item">
             <a href item="about">ABOUT</a>
           </li>
+          <li class="menu-item" v-if="!isLogin">
+            <a @click="handleMenuRoute($event, 'login')" href item="login">LOG IN</a>
+          </li>
+          <li class="menu-item" v-if="isLogin">
+            <a @click="handleMenuRoute($event, 'log-out')" href item="log-out">LOG OUT</a>
+          </li>
         </ul>
-        <form action class="quick-search-container">
-          <div class="input-box">
-            <svg class="search-icon" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M495,466.2L377.2,348.4c29.2-35.6,46.8-81.2,46.8-130.9C424,103.5,331.5,11,217.5,11C103.4,11,11,103.5,11,217.5   S103.4,424,217.5,424c49.7,0,95.2-17.5,130.8-46.7L466.1,495c8,8,20.9,8,28.9,0C503,487.1,503,474.1,495,466.2z M217.5,382.9   C126.2,382.9,52,308.7,52,217.5S126.2,52,217.5,52C308.7,52,383,126.3,383,217.5S308.7,382.9,217.5,382.9z"
-              />
-            </svg>
-            <input class="search-box" type="text" placeholder="Quick job search" />
-          </div>
-        </form>
       </div>
       <span class="big-item-name">{{ menuItemDesc }}</span>
     </div>
@@ -80,7 +52,7 @@ import Anime from 'animejs';
 export default {
   name: 'navigation-bar',
 
-  mounted() {
+  updated() {
     this.addHoverListener(
       ".menu-item > a[item='home']",
       () => {
@@ -100,31 +72,6 @@ export default {
         Anime({
           targets: '.menu-item:nth-of-type(1)',
           translateX: 0,
-          fontSize: '48px',
-        });
-        Anime({
-          targets: '.big-item-name',
-          opacity: 0,
-        });
-      },
-    );
-
-    this.addHoverListener(
-      ".menu-item > a[item='login']",
-      () => {
-        Anime({
-          targets: ".menu-item > a[item='login']",
-          fontSize: '64px',
-        });
-        Anime({
-          targets: '.big-item-name',
-          opacity: 1,
-        });
-        this.menuItemDesc = 'ACCESS OUR FEATURE';
-      },
-      () => {
-        Anime({
-          targets: ".menu-item > a[item='login']",
           fontSize: '48px',
         });
         Anime({
@@ -208,6 +155,83 @@ export default {
         });
       },
     );
+
+    if (this.isLogin) {
+      this.addHoverListener(
+        ".menu-item > a[item='account']",
+        () => {
+          Anime({
+            targets: ".menu-item > a[item='account']",
+            fontSize: '64px',
+          });
+          Anime({
+            targets: '.big-item-name',
+            opacity: 1,
+          });
+          this.menuItemDesc = 'YOUR INFO';
+        },
+        () => {
+          Anime({
+            targets: ".menu-item > a[item='account']",
+            fontSize: '48px',
+          });
+          Anime({
+            targets: '.big-item-name',
+            opacity: 0,
+          });
+        },
+      );
+
+      this.addHoverListener(
+        ".menu-item > a[item='log-out']",
+        () => {
+          Anime({
+            targets: ".menu-item > a[item='log-out']",
+            fontSize: '64px',
+          });
+          Anime({
+            targets: '.big-item-name',
+            opacity: 1,
+          });
+          this.menuItemDesc = 'LOG OUT OF YOUR ACCOUNT';
+        },
+        () => {
+          Anime({
+            targets: ".menu-item > a[item='log-out']",
+            fontSize: '48px',
+          });
+          Anime({
+            targets: '.big-item-name',
+            opacity: 0,
+          });
+        },
+      );
+    } else {
+      this.addHoverListener(
+        ".menu-item > a[item='login']",
+        () => {
+          Anime({
+            targets: ".menu-item > a[item='login']",
+            fontSize: '64px',
+          });
+          Anime({
+            targets: '.big-item-name',
+            opacity: 1,
+          });
+          this.menuItemDesc = 'ACCESS OUR FEATURE';
+        },
+        () => {
+          Anime({
+            targets: ".menu-item > a[item='login']",
+            fontSize: '48px',
+          });
+          Anime({
+            targets: '.big-item-name',
+            opacity: 0,
+          });
+        },
+      );
+    }
   },
 
   watch: {
@@ -217,6 +241,7 @@ export default {
           targets: '.menu-overlay',
           height: '100vh',
         });
+        this.isLogin = !!localStorage.getItem('LOGIN_TOKEN');
       } else {
         Anime({
           targets: '.menu-overlay',
@@ -233,6 +258,8 @@ export default {
       searchOverlayShowFlg: false,
       menuActiveFlg: false,
       menuItemDesc: '',
+      searchValue: '',
+      isLogin: false,
     };
   },
 
@@ -256,10 +283,16 @@ export default {
 
     handleMenuRoute(event, routeName) {
       event.preventDefault();
-      event.stopPropagation();
+      let finalRoute = routeName;
 
-      this.$router.push({ name: routeName });
+      if (routeName === 'log-out') {
+        localStorage.removeItem('LOGIN_TOKEN');
+        finalRoute = 'login';
+      }
       this.menuActiveFlg = false;
+      setTimeout(() => {
+        this.$router.push({ name: finalRoute });
+      }, 500);
     },
   },
 };
@@ -267,5 +300,5 @@ export default {
 
 <style lang="scss">
 @import "../../../src/assets/scss/NavigationFrame/NavigationFrame.scss";
-@import '../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss';
+@import "../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
 </style>

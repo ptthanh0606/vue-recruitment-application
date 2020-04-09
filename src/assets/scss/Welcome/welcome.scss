@@ -380,12 +380,12 @@
           border-radius: 20px;
           position: absolute;
           z-index: -1;
-          background-color: #fd7de8;
+          background-color: #E900F8;
           animation: 2s selection-cw-animate infinite;
         }
 
         &:hover:after {
-          background-color: #7deefd;
+          background-color: #4BE7E4;
           animation: 1.5s selection-ccw-animate infinite;
         }
 
@@ -627,31 +627,7 @@
     text-align: center;
     padding: 90px 0;
     overflow: hidden;
-    background-color: $iconColor;
-
-    .back-mask {
-      color: #0000001c;
-      position: absolute;
-      z-index: -1;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-
-      @media only screen and (min-width: 769px) {
-        font-size: 20rem;
-        letter-spacing: 5rem;
-        font-weight: bolder;
-      }
-      
-      @media only screen and (max-width: 769px) {
-        font-size: 14rem;
-        letter-spacing: 3rem;
-      }
-
-      &:hover {
-        cursor: default;
-      }
-    }
+    background-color: #3d3d3d;
 
     .social-wrapper {
       width: 100%;
@@ -690,7 +666,6 @@
     .copyright {
       width: 100%;
       margin: 0 auto;
-      padding: 2rem 0;
 
       font-size: 12px;
       color: #b1b1b1;
