@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import welcome from './Welcome/welcome';
+import welcome from './welcome/welcome';
 import jobSearchResult from './JobSearchResult/jobSearchResult';
 import loginPage from './LoginPage/loginPage';
 
