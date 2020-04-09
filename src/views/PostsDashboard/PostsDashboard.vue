@@ -1,6 +1,10 @@
 <template>
+<!-- eslint-disable object-shorthand -->
+  <!-- eslint-disable max-len -->
+  <!-- eslint-disable prefer-const -->
+  <!-- eslint-disable no-unused-vars -->
   <div class="posts-dashboard">
-    Post
+    Postt
   </div>
 </template>
 
