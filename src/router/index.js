@@ -44,11 +44,6 @@ const routes = [
         name: 'candidates',
         component: () => import('../views/CandidatesDashboard/CandidatesDashboard.vue'),
       },
-      {
-        path: 'post-job',
-        name: 'post-job',
-        component: () => import('../views/PostJobDashboard/PostJobDashboard.vue'),
-      },
     ],
   },
   {

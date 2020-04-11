@@ -283,25 +283,24 @@ export default {
     },
     handleUpdatePost(event) {
       event.preventDefault();
-      // const skills = this.updateSkillStringList
-      //   .trim()
-      //   .split(',')
-      //   .map(skill => skill.trim());
+      const skills = this.updateSkillStringList
+        .trim()
+        .split(',')
+        .map(skill => skill.trim());
 
-      // let selectedMonth = this.updateValidUntil.getMonth() + 1;
-      // selectedMonth = selectedMonth < 10 ? `0${selectedMonth}` : `${selectedMonth}`;
-      // const stringDate = `${this.updateValidUntil.getFullYear()}
-      // -${selectedMonth}-${this.updateValidUntil.getDate()}`;
+      let selectedMonth = this.updateValidUntil.getMonth() + 1;
+      selectedMonth = selectedMonth < 10 ? `0${selectedMonth}` : `${selectedMonth}`;
+      const stringDate = `${this.updateValidUntil.getFullYear()}-${selectedMonth}-${this.updateValidUntil.getDate()}`;
 
-      // console.log({
-      //   postTitle: this.updatePostTitle,
-      //   monthlySalary: this.updateSalaryValue,
-      //   skills,
-      //   expiryDate: stringDate,
-      //   addressBranchID: this.selectedCity,
-      //   jobType: this.selectedJobType,
-      //   postDesc: this.updatePostDesc,
-      // });
+      console.log({
+        postTitle: this.updatePostTitle,
+        monthlySalary: this.updateSalaryValue,
+        skills,
+        expiryDate: stringDate,
+        addressBranchID: this.selectedCity,
+        jobType: this.selectedJobType,
+        postDesc: this.updatePostDesc,
+      });
     },
   },
 };
