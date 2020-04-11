@@ -12,8 +12,6 @@
         <img src="#" class="candidate-image" />
         <span class="candidate-name">Phan Thong Thanh</span>
       </div>
-
-      <a href class="view-cv-button">Detail</a>
     </div>
   </div>
 </template>

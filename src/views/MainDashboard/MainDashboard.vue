@@ -12,7 +12,14 @@
       <div class="main-col">
         <h3 class="instant-start-label">Instant start with these suggestions</h3>
         <div class="marginT start-wrapper">
-          <div class="container-box post-job-container">
+          <div
+            class="container-box post-job-container"
+            @click="() => {
+              if (this.$route.name !== 'post-job') {
+                this.$router.push({name: 'post-job'})
+              }
+            }"
+          >
             <svg
               class="icon post-job"
               xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +43,10 @@
             <h2 class="container-title">Post jobs</h2>
             <span class="description">Find the best people for your team.</span>
           </div>
-          <div class="container-box manage-post-container">
+          <div
+            class="container-box manage-post-container"
+            @click="() => {this.$router.push({name: 'posts'})}"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="icon manage-post"
@@ -108,7 +118,11 @@
       <div class="candidates-col">
         <div class="candidates-title">
           <h2 class="title-label">Latest candidates</h2>
-          <a href class="view-all-button">view all</a>
+          <a
+            href
+            class="view-all-button"
+            @click="(event) => {event.preventDefault(); this.$router.push({name: 'candidates'})}"
+          >view all</a>
         </div>
         <div class="post-candidates-list">
           <candidate-post-preview></candidate-post-preview>

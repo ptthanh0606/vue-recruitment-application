@@ -71,7 +71,7 @@
         </svg>
       </div>
     </div>
-    <div class="home-function-button" :class="{'clicked' : isClicked}" @click="handleRoute('home')">
+    <div class="home-function-button" @click="handleRoute('home')">
       <div class="func-button home-dashboard">
         <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.331 19.324">
           <path
@@ -92,24 +92,31 @@ export default {
   name: 'dashboard-bar',
   methods: {
     handleRoute(routeName) {
+      const currentRouteName = this.$route.name;
       switch (routeName) {
         case 'main':
           this.isMainClicked = true;
           this.isPostClicked = false;
           this.isCandClicked = false;
-          this.$router.push({ name: 'main' });
+          if (currentRouteName !== 'main') {
+            this.$router.push({ name: 'main' });
+          }
           break;
         case 'posts':
           this.isMainClicked = false;
           this.isPostClicked = true;
           this.isCandClicked = false;
-          this.$router.push({ name: 'posts' });
+          if (currentRouteName !== 'posts') {
+            this.$router.push({ name: 'posts' });
+          }
           break;
         case 'candidates':
           this.isMainClicked = false;
           this.isPostClicked = false;
           this.isCandClicked = true;
-          this.$router.push({ name: 'candidates' });
+          if (currentRouteName !== 'candidates') {
+            this.$router.push({ name: 'candidates' });
+          }
           break;
         case 'home':
           this.$router.push({ name: 'welcome' });
@@ -120,7 +127,10 @@ export default {
     },
   },
   mounted() {
-    this.$router.push({ name: 'main' });
+    const currentRouteName = this.$route.name;
+    if (currentRouteName !== 'main') {
+      this.$router.push({ name: 'main' });
+    }
   },
   data() {
     return {
@@ -128,6 +138,35 @@ export default {
       isPostClicked: false,
       isCandClicked: false,
     };
+  },
+  watch: {
+    $route(toRoute) {
+      const routeName = toRoute.name;
+      switch (routeName) {
+        case 'main':
+          this.isMainClicked = true;
+          this.isPostClicked = false;
+          this.isCandClicked = false;
+
+          break;
+        case 'posts':
+          this.isMainClicked = false;
+          this.isPostClicked = true;
+          this.isCandClicked = false;
+
+          break;
+        case 'candidates':
+          this.isMainClicked = false;
+          this.isPostClicked = false;
+          this.isCandClicked = true;
+
+          break;
+        case 'home':
+          break;
+        default:
+          this.$router.push({ name: '' });
+      }
+    },
   },
 };
 </script>
@@ -214,7 +253,7 @@ export default {
     width: 100%;
     .home-dashboard {
       margin-bottom: 2rem;
-      background-color: #707070;
+      background-color: $darkBlueGray;
 
       .icon {
         fill: white;
