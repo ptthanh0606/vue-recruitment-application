@@ -15,8 +15,8 @@
           <div
             class="container-box post-job-container"
             @click="() => {
-              if (this.$route.name !== 'post-job') {
-                this.$router.push({name: 'post-job'})
+              if (this.$route.name !== 'postJob') {
+                this.$router.push({name: 'postJob'})
               }
             }"
           >
