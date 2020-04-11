@@ -38,7 +38,7 @@
 
           <div class="policy">
             <span>By continuing, you've agreed to JobSnap's</span>
-            <span class="bold"> terms of Service, Privacy Policy.</span>
+            <span class="bold">terms of Service, Privacy Policy.</span>
           </div>
         </div>
         <div class="right-wrapper"></div>

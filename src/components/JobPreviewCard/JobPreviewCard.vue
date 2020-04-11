@@ -50,7 +50,11 @@
       </div>
 
       <div class="skill-wrapper">
-        <div class="skill-box" v-for="(skill, index) in postInfo.skills" :key="index">{{ skill.skillName }}</div>
+        <div
+          class="skill-box"
+          v-for="(skill, index) in postInfo.skills"
+          :key="index"
+        >{{ skill.skillName }}</div>
       </div>
     </div>
     <!--  -->
@@ -80,6 +84,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../src/assets/scss/JobPreviewCard/JobPreviewCard.scss';
-@import '../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss';
+@import "../../../src/assets/scss/JobPreviewCard/JobPreviewCard.scss";
+@import "../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
 </style>

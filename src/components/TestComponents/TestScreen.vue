@@ -21,5 +21,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../src/assets/scss/TestComponents/TestScreen.scss';
+@import "../../../src/assets/scss/TestComponents/TestScreen.scss";
 </style>

@@ -29,7 +29,7 @@ export default {
     },
     setJobDetail(state, data) {
       state.jobDetail = data;
-    },
+    }
   },
   actions: {
     initAllJobs(context, { limit, page }) {
@@ -80,9 +80,7 @@ export default {
     },
     getJobDetail(context, { postID }) {
       return new Promise((resolve, reject) => {
-        Axios.get(
-          `https://recruitmentswdapi.azurewebsites.net/posts/${postID}`
-        ).then(response => {
+        Axios.get(`https://recruitmentswdapi.azurewebsites.net/posts/${postID}`).then(response => {
           context.commit("setJobDetail", response.data);
           resolve();
         });
@@ -98,7 +96,10 @@ export default {
               authorization: `Bearer ${localStorage.getItem("LOGIN_TOKEN")}`
             }
           };
-          Axios.get(`https://cors-anywhere.herokuapp.com/https://recruitmentswdapi.azurewebsites.net/user/me`, params)
+          Axios.get(
+            `https://cors-anywhere.herokuapp.com/https://recruitmentswdapi.azurewebsites.net/user/me`,
+            params
+          )
             .then(response => {
               context.commit("setUserInfo", response.data);
               resolve();

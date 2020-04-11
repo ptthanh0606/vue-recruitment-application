@@ -208,7 +208,11 @@
             <option value="hcm">Ho chi Minh</option>
             <option value="hcm">Ho chi Minh</option>
           </select>
-          <select name="job-type-dropdown" class="userinput job-type-dropdown" v-model="selectedJobType">
+          <select
+            name="job-type-dropdown"
+            class="userinput job-type-dropdown"
+            v-model="selectedJobType"
+          >
             <option value disabled selected>Specify job type</option>
             <option value="hcm">Ho chi Minh</option>
             <option value="hcm">Ho chi Minh</option>
