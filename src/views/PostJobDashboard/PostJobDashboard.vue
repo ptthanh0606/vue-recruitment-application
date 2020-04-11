@@ -90,23 +90,24 @@ export default {
   methods: {
     handleCreatePost(event) {
       event.preventDefault();
-      const skills = this.createSkillStringList
-        .trim()
-        .split(',')
-        .map(skill => skill.trim());
-      let selectedMonth = this.createValidUntil.getMonth() + 1;
-      selectedMonth = selectedMonth < 10 ? `0${selectedMonth}` : `${selectedMonth}`;
-      const stringDate = `${this.createValidUntil.getFullYear()}-${selectedMonth}-${this.createValidUntil.getDate()}`;
+      // const skills = this.createSkillStringList
+      //   .trim()
+      //   .split(',')
+      //   .map(skill => skill.trim());
+      // let selectedMonth = this.createValidUntil.getMonth() + 1;
+      // selectedMonth = selectedMonth < 10 ? `0${selectedMonth}` : `${selectedMonth}`;
+      // const stringDate = `${this.createValidUntil.getFullYear()}-${selectedMonth}-
+      // ${this.createValidUntil.getDate()}`;
 
-      console.log({
-        postTitle: this.createPostTitle,
-        monthlySalary: this.createSalaryValue,
-        skills,
-        expiryDate: stringDate,
-        addressBranchID: this.selectedCity,
-        jobType: this.selectedJobType,
-        postDesc: this.createPostDesc,
-      });
+      // console.log({
+      //   postTitle: this.createPostTitle,
+      //   monthlySalary: this.createSalaryValue,
+      //   skills,
+      //   expiryDate: stringDate,
+      //   addressBranchID: this.selectedCity,
+      //   jobType: this.selectedJobType,
+      //   postDesc: this.createPostDesc,
+      // });
     },
   },
 };

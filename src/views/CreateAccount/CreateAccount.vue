@@ -94,19 +94,19 @@ export default {
   },
   methods: {
     handleCreateAccount() {
-      let month = this.inputDate.getMonth() + 1;
-      let date = this.inputDate.getDate();
-      month = month < 10 ? `0${month}` : `${month}`;
-      date = date < 10 ? `0${date}` : `${date}`;
+      // let month = this.inputDate.getMonth() + 1;
+      // let date = this.inputDate.getDate();
+      // month = month < 10 ? `0${month}` : `${month}`;
+      // date = date < 10 ? `0${date}` : `${date}`;
 
-      console.log({
-        userName: this.userName,
-        password: this.userPassword,
-        email: this.userEmail,
-        fullname: `${this.userLastName} ${this.userFirstName}`,
-        phoneNumber: this.phoneNumber,
-        dateOfBirth: this.inputDate.getFullYear().toString() + month + date,
-      });
+      // console.log({
+      //   userName: this.userName,
+      //   password: this.userPassword,
+      //   email: this.userEmail,
+      //   fullname: `${this.userLastName} ${this.userFirstName}`,
+      //   phoneNumber: this.phoneNumber,
+      //   dateOfBirth: this.inputDate.getFullYear().toString() + month + date,
+      // });
     },
   },
 };
