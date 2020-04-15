@@ -4,11 +4,15 @@ import Axios from "axios";
 export default {
   namespaced: true,
   state: {
-    jobList: []
+    jobList: [],
+    outdatedJobList: []
   },
   mutations: {
     setJobList(state, data) {
       state.jobList = data;
+    },
+    setOutdatedJobList(state, data) {
+      state.outdatedJobList = data;
     }
   },
   actions: {
@@ -19,6 +23,20 @@ export default {
         )
           .then(response => {
             context.commit("setJobList", response.data);
+            resolve();
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
+    },
+    initOutdatedJobListByCompID(context, compID) {
+      return new Promise((resolve, reject) => {
+        Axios.get(
+          `https://recruitmentswdapi.azurewebsites.net/posts?choice=2&initFlag=2&orderChoice=3&compID=${compID}&limit=10&page=0`
+        )
+          .then(response => {
+            context.commit("setOutdatedJobList", response.data);
             resolve();
           })
           .catch(err => {

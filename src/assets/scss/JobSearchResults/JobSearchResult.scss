@@ -174,19 +174,9 @@
 			background-color: $backgroundColor;
 			position: sticky;
 			right: -433px;
-			top: 6rem;
+			top: 4rem;
 			z-index: 1;
 			padding: 0 0 0 1rem;
-
-			// .company-image-detail-wrapper {
-			// 	width: 100%;
-
-			// 	.company-logo-detail {
-			// 		width: 4rem;
-			// 		height: 4rem;
-			// 		border-radius: 300px;
-			// 	}
-			// }
 
 			.company-title-detail,.company-type-detail {
 				width: 100%;
@@ -393,54 +383,54 @@
 
 		@keyframes selection-cw-animate {
 			0% {
-				top: -5%;
+				top: -7%;
 				left: 0;
 			}
 
 			25% {
 				top: 0;
-				left: 5%;
+				left: 7%;
 			}
 
 			50% {
-				top: 5%;
+				top: 7%;
 				left: 0;
 			}
 
 			75% {
 				top: 0;
-				left: -5%;
+				left: -7%;
 			}
 
 			100% {
-				top: -5%;
+				top: -7%;
 				left: 0;
 			}
 		}
 
 		@keyframes selection-ccw-animate {
 			0% {
-				top: -5%;
+				top: -7%;
 				left: 0;
 			}
 
 			25% {
 				top: 0;
-				left: -5%;
+				left: -7%;
 			}
 
 			50% {
-				top: 5%;
+				top: 7%;
 				left: 0;
 			}
 
 			75% {
 				top: 0;
-				left: 5%;
+				left: 7%;
 			}
 
 			100% {
-				top: -5%;
+				top: -7%;
 				left: 0;
 			}
 		}
@@ -459,4 +449,8 @@
 	width: 100%;
 	display: block;
 	padding: 2rem;
+}
+
+.custom-confirm-button {
+	background-color: red;
 }

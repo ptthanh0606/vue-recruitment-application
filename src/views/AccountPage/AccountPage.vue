@@ -11,13 +11,13 @@
           <div class="user-info-wrapper">
             <div class="user-avatar">
               <a href="#">
-                <img :src="this.userInfoLocal.imageUrl" height="50px" width="80px" alt />
+                <img src="https://i.imgur.com/nb30rLD.jpg" height="50px" width="80px" alt />
               </a>
             </div>
             <a href="#" class="user-name">{{ this.userInfoLocal.fullName }}</a>
             <span class="user-email">{{this.userInfoLocal.email}}</span>
           </div>
-          <a href @click="handleEditInfoRoute" class="edit-info-label">Edit your info</a>
+          <a href @click.prevent="handleEditInfoRoute" class="edit-info-label">Edit your info</a>
           <div class="log-out-wrapper">
             <svg id="log-out-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 19">
               <path
@@ -32,15 +32,48 @@
                 transform="translate(-164.084 -102.554)"
               />
             </svg>
-            <a href @click="handleLogout">Log out</a>
+            <a href @click.prevent="handleLogout">Log out</a>
           </div>
         </div>
 
         <div class="middle-col" v-if="isLoaded">
-          <job-post :isCandidate="true"></job-post>
-          <job-post :isCandidate="true"></job-post>
-          <job-post :isCandidate="true"></job-post>
-          <job-post :isCandidate="true"></job-post>
+          <h1 class="application-title">Your applications</h1>
+          <div class="no-result-wrapper" v-if="!this.appliedPosts.length">
+            <svg
+              class="icon warning"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 19.193 19.193"
+            >
+              <path
+                id="Path_525"
+                data-name="Path 525"
+                d="M9.6,0a9.6,9.6,0,1,0,9.6,9.6A9.591,9.591,0,0,0,9.6,0Zm0,17.693a8.1,8.1,0,1,1,8.1-8.1A8.092,8.092,0,0,1,9.6,17.693Z"
+              />
+              <path
+                id="Path_526"
+                data-name="Path 526"
+                d="M236.75,128.877a.75.75,0,0,0-.75.75v4.828a.75.75,0,0,0,1.5,0v-4.828A.75.75,0,0,0,236.75,128.877Z"
+                transform="translate(-227.153 -124.046)"
+              />
+              <circle
+                id="Ellipse_63"
+                data-name="Ellipse 63"
+                cx="1.012"
+                cy="1.012"
+                r="1.012"
+                transform="translate(8.584 12.077)"
+              />
+            </svg>
+
+            <span class="no-result-label">You have not applied to any company.</span>
+            <a href class="find-job-button" @click.prevent="handleFindJob">Find your job now.</a>
+          </div>
+          <job-post
+            v-for="(post, index) in appliedPosts"
+            :jobInfo="post"
+            :key="index"
+            :isCandidate="true"
+          ></job-post>
         </div>
 
         <div v-else class="loading-overlay">
@@ -48,6 +81,7 @@
         </div>
       </div>
     </div>
+    <footer-page-component></footer-page-component>
   </div>
 </template>
 
@@ -55,38 +89,56 @@
 import { mapActions, mapState } from 'vuex';
 import NavigationFrame from '../../components/NavigationFrame/NavigationFrame.vue';
 import JobPost from '../../components/JobPost/JobPost.vue';
+import FooterPageComponent from '../../components/FooterPageComponent/FooterPageComponent.vue';
 
 export default {
   name: 'account-page',
   components: {
     'navigation-frame': NavigationFrame,
     'job-post': JobPost,
+    'footer-page-component': FooterPageComponent,
   },
   computed: {
     ...mapState('UserAuthorization', ['userInfo']),
+    ...mapState('AccountPage', ['appliedPosts']),
   },
-  mounted() {
-    this.getUserInfo()
-      .then(() => {
-        this.userInfoLocal = this.userInfo;
-      })
-      .catch(() => {
-      });
+  async mounted() {
+    window.scrollTo(0, 0);
+    try {
+      await this.getUserInfo();
+      this.userInfoLocal = this.userInfo;
+    } catch (error) {
+      this.$message('No session');
+      setTimeout(() => {
+        this.$router.push({ name: 'login' });
+      }, 2000);
+    }
+
+    try {
+      await this.getAllAppliedPosts({ page: 0, limit: 10 });
+      this.isLoaded = true;
+    } catch (error) {
+      this.$message('Server error');
+    }
   },
   methods: {
     ...mapActions('UserAuthorization', ['getUserInfo']),
-    handleLogout(event) {
-      event.preventDefault();
+    ...mapActions('AccountPage', ['getAllAppliedPosts']),
+    handleLogout() {
+      localStorage.removeItem('LOGIN_TOKEN');
+      this.$router.push({ name: 'login' });
     },
-    handleEditInfoRoute(event) {
-      event.preventDefault();
+    handleEditInfoRoute() {
       this.$router.push({ name: 'editInfo' });
+    },
+    handleFindJob() {
+      this.$router.push({ name: 'jobs' });
     },
   },
   data() {
     return {
       userInfoLocal: {},
-      isLoaded: true,
+      isLoaded: false,
     };
   },
 };
@@ -96,8 +148,7 @@ export default {
 @import "../../assets/scss/_globalVariable.scss";
 
 .account-page-container {
-  height: 100vh;
-  padding-top: 5rem;
+  padding: 5rem 0;
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
@@ -157,7 +208,7 @@ export default {
         font-size: 14px;
         font-weight: bold;
         margin-top: 1rem;
-        color: $pColorYellow;
+        color: $pColorPink;
       }
 
       .log-out-wrapper {
@@ -166,20 +217,20 @@ export default {
         align-items: center;
 
         #log-out-icon {
-          width: 18px;
+          width: 14px;
           margin-right: 10px;
-          fill: #406aa8;
+          fill: $pColorBlue;
         }
 
         a {
-          color: #406aa8;
+          color: $pColorBlue;
         }
       }
     }
 
     .middle-col {
       padding: 3rem 32px;
-      width: 800px;
+      width: 900px;
 
       @media only screen and (max-width: 769px) {
         padding: 0;
@@ -187,6 +238,35 @@ export default {
 
       .job-post {
         margin-bottom: 2rem;
+      }
+
+      .application-title {
+        margin-bottom: 3rem;
+        color: $titleFontColor;
+      }
+
+      .no-result-wrapper {
+        display: flex;
+        align-items: center;
+
+        .icon {
+          width: 16px;
+          height: 16px;
+          fill: $subfontColor;
+          margin-right: 10px;
+        }
+
+        .no-result-label {
+          display: block;
+          color: $subfontColor;
+          margin-right: 5px;
+        }
+
+        .find-job-button {
+          color: $pColorPink;
+          font-weight: bold;
+          display: block;
+        }
       }
     }
 

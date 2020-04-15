@@ -26,7 +26,7 @@ export default {
           });
       });
     },
-    updateJobPost(context, { postID, postInfo }) {
+    bookInterviewDate(context, { applicationID, interviewInfo }) {
       return new Promise((resolve, reject) => {
         if (!localStorage.getItem("LOGIN_TOKEN")) {
           reject();
@@ -36,7 +36,7 @@ export default {
               authorization: `Bearer ${localStorage.getItem("LOGIN_TOKEN")}`
             }
           };
-          Axios.put(`https://recruitmentswdapi.azurewebsites.net/posts/${postID}`, postInfo, params)
+          Axios.put(`https://recruitmentswdapi.azurewebsites.net/applications/${applicationID}`, interviewInfo, params)
             .then(response => {
               resolve();
             })
@@ -46,7 +46,7 @@ export default {
         }
       });
     },
-    deletePost(context, postID) {
+    setApplicationStatus(context, { applicationID, status }) {
       return new Promise((resolve, reject) => {
         if (!localStorage.getItem("LOGIN_TOKEN")) {
           reject();
@@ -56,7 +56,27 @@ export default {
               authorization: `Bearer ${localStorage.getItem("LOGIN_TOKEN")}`
             }
           };
-          Axios.delete(`https://recruitmentswdapi.azurewebsites.net/posts/${postID}`, params)
+          Axios.put(`https://recruitmentswdapi.azurewebsites.net/applications/${applicationID}`, {status}, params)
+            .then(response => {
+              resolve();
+            })
+            .catch(err => {
+              reject(err);
+            });
+        }
+      });
+    },
+    deleteCandidateRequest(context, applicationID) {
+      return new Promise((resolve, reject) => {
+        if (!localStorage.getItem("LOGIN_TOKEN")) {
+          reject();
+        } else {
+          let params = {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("LOGIN_TOKEN")}`
+            }
+          };
+          Axios.delete(`https://recruitmentswdapi.azurewebsites.net/applications/${applicationID}`, params)
             .then(response => {
               resolve(response);
             })

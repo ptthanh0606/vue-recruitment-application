@@ -85,6 +85,9 @@ export default {
   computed: {
     ...mapState('CreateAccountPage', ['bearerLoginToken']),
   },
+  mounted() {
+    window.scrollTo(0, 0);
+  },
   data() {
     return {
       userName: '',

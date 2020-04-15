@@ -12,7 +12,9 @@ import mainDashboard from './MainDashboard/MainDashboard';
 import jobsDashboard from './JobsDashboard/jobsDashboard';
 import postJobDashboard from './PostJobDashboard/postJobDashboard';
 import candidateDashboard from './CandidateDashboard/candidateDashboard';
+import accountPage from './AccountPage/accountPage';
 import dropdownDataStore from './DropdownDataStore/dropdownDataStore';
+import editInfoPage from './EditInfoPage/editInfoPage';
 
 Vue.use(Vuex);
 
@@ -29,5 +31,7 @@ export default new Vuex.Store({
     PostJobDashboard: postJobDashboard,
     CandidateDashboard: candidateDashboard,
     DropdownDataStore: dropdownDataStore,
+    AccountPage: accountPage,
+    EditInfoPage: editInfoPage,
   },
 });

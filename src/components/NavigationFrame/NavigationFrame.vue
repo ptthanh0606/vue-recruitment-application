@@ -54,7 +54,7 @@ export default {
   name: 'navigation-bar',
 
   computed: {
-    ...mapState('UserAuthorization', ['userCompany']),
+    ...mapState('UserAuthorization', ['userCompany', 'userInfo']),
   },
 
   updated() {
@@ -269,7 +269,7 @@ export default {
   },
 
   methods: {
-    ...mapActions('UserAuthorization', ['getUserCompanyInfo']),
+    ...mapActions('UserAuthorization', ['getUserCompanyInfo', 'getUserInfo']),
 
     addHoverListener(elementQuery, mouseOverFunction, mouseOutFunction) {
       document
@@ -292,11 +292,17 @@ export default {
 
       if (routeName === 'employers') {
         try {
-          this.menuActiveFlg = false;
-          await this.getUserCompanyInfo();
-          finalRoute = 'employers';
+          await this.getUserInfo();
+          try {
+            this.menuActiveFlg = false;
+            await this.getUserCompanyInfo();
+            finalRoute = 'employers';
+          } catch (error) {
+            finalRoute = 'createCompany';
+            this.menuActiveFlg = false;
+          }
         } catch (error) {
-          finalRoute = 'createCompany';
+          finalRoute = 'login';
           this.menuActiveFlg = false;
         }
       }

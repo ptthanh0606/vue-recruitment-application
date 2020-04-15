@@ -119,7 +119,7 @@
       </div>
     </div>
     <div class="lazy-load-mark"></div>
-    <span class="eor-label">Not found what you want? Try searching for another job</span>
+    <span class="eor-label">Not found what you want? Try searching for another job.</span>
 
     <footer-page-component></footer-page-component>
   </div>
@@ -145,7 +145,7 @@ export default {
   },
   filters: {
     filterDateTime(stringDate) {
-      return moment(stringDate.slice(0, 7)).format('MMMM Do YYYY');
+      return moment(stringDate.slice(0, 8)).format('MMMM Do YYYY');
     },
   },
   methods: {
@@ -159,6 +159,7 @@ export default {
       'getNumberOfAllPost',
       'getNumberOfSearchPostByName',
       'getNumberOfSearchPostByFullInfo',
+      'applyForJob',
     ]),
     handleDropdownchange(event) {
       this.selectedCityID = event.target.value;
@@ -246,6 +247,7 @@ export default {
       this.$router.push({ name: 'welcome' });
     },
     handleViewPostDetail(postID) {
+      this.selectedPostID = postID;
       if (!this.detailDisplayFlg) {
         this.loadingDisplayFlg = true;
         this.getJobDetail({ postID }).then(() => {
@@ -263,21 +265,35 @@ export default {
         this.loadingDisplayFlg = true;
         setTimeout(() => {
           this.detailDisplayFlg = false;
-        }, 300);
-        this.getJobDetail({ postID }).then(() => {
-          this.jobDetailLocal = this.jobDetail;
-          setTimeout(() => {
-            this.detailDisplayFlg = true;
-            this.loadingDisplayFlg = false;
-            this.detailLoadFlg = true;
+          this.getJobDetail({ postID }).then(() => {
+            this.jobDetailLocal = this.jobDetail;
             setTimeout(() => {
-              this.detailLoadFlg = false;
-            }, 100);
-          }, 2000);
-        });
+              this.detailDisplayFlg = true;
+              this.loadingDisplayFlg = false;
+              this.detailLoadFlg = true;
+              setTimeout(() => {
+                this.detailLoadFlg = false;
+              }, 100);
+            }, 2000);
+          });
+        }, 1000);
       }
     },
-    handleApplyButton() {},
+    handleApplyButton() {
+      this.applyForJob(this.selectedPostID).then(() => {
+        this.$message({
+          type: 'success',
+          message: 'You info is sent to the recruiter. Good luck!',
+          customClass: 'custom-confirm-button',
+        });
+      }).catch(() => {
+        this.$alert('You have applied for this job!', {
+          type: 'warning',
+          showClose: true,
+          showConfirmButton: false,
+        });
+      });
+    },
     handleCancelButton() {
       this.detailDisplayFlg = false;
       this.detailLoadFlg = false;
@@ -424,6 +440,7 @@ export default {
   },
   data() {
     return {
+      selectedPostID: '',
       jobResultCol: [],
       searchJobInput: '',
       userInfoLocal: {},

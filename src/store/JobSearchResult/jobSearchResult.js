@@ -115,5 +115,28 @@ export default {
         });
       });
     },
+
+    applyForJob(context, postID) {
+      return new Promise((resolve, reject) => {
+        if (!localStorage.getItem("LOGIN_TOKEN")) {
+          reject();
+        } else {
+          let params = {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("LOGIN_TOKEN")}`
+            }
+          };
+        Axios.post(`https://recruitmentswdapi.azurewebsites.net/applications`, {
+          postID
+        }, params)
+          .then(response => {
+            resolve();
+          })
+          .catch(err => {
+            reject(err);
+          });
+        }
+      });
+    },
   }
 };

@@ -29,7 +29,8 @@
     </div>
     <div v-if="isCandidate" class="row candidate-interview-date-wrapper">
       <span class="inteview-date">Interview on</span>
-      <span class="interview-label">Waiting</span>
+      <span v-if="jobInfo.interviewDateTime" class="interview-label">{{jobInfo.interviewDateTime | filterDateTime}}</span>
+      <span v-else class="interview-label">Waiting</span>
     </div>
   </div>
 </template>
@@ -42,7 +43,7 @@ export default {
   props: ['isCandidate', 'jobInfo'],
   filters: {
     filterDateTime(stringDate) {
-      return moment(stringDate.slice(0, 7)).format('MMMM Do YYYY');
+      return moment(stringDate.substring(0, 8)).format('MMMM Do YYYY');
     },
   },
 };
@@ -52,11 +53,11 @@ export default {
 @import "../../assets/scss/_globalVariable.scss";
 
 .job-post {
+  width: 100%;
   border-radius: 15px;
   box-shadow: 4px 4px 8px #0000003b, -4px -4px 10px #ffffffbb;
   padding: 2rem;
   transition: all ease-in-out 500ms;
-  width: 100%;
   animation: rgbPostBorder infinite 15s;
 
   &:hover {
@@ -114,11 +115,10 @@ export default {
   }
 
   .skills-n-salary-wrapper {
-    align-items: flex-end;
+    align-items: flex-start;
     margin-top: 2rem;
 
     .skills-wrapper-detail {
-      margin-top: 1.5rem;
       display: flex;
       flex-wrap: wrap;
 
@@ -137,6 +137,7 @@ export default {
     .salary {
       font-weight: bold;
       color: $subfontColor;
+      margin-top: 0.5rem;
     }
   }
 

@@ -1,15 +1,15 @@
 <template>
   <div class="candidate-post-preview">
     <div class="header-title">
-      <span class="candidate-id-label">{{candidate.applicationID}}</span>
-      <span class="candidate-date-uploaded">{{candidate.uploadDate}}</span>
+      <span class="candidate-id-label">#{{candidate.applicationID}}</span>
+      <span class="candidate-date-uploaded">on {{candidate.uploadDate | filterDateTime}}</span>
     </div>
     <div class="post-content">
       <h3 class="post-title">{{candidate.postTitle}}</h3>
     </div>
     <div class="footer-desc">
       <div class="candidate-wrapper">
-        <img :src="candidate.imageUrl" class="candidate-image" />
+        <img src="https://i.imgur.com/nb30rLD.jpg" class="candidate-image" />
         <span class="candidate-name">{{candidate.fullName}}</span>
       </div>
     </div>
@@ -17,9 +17,16 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   name: 'candidate-post-preview',
   props: ['candidate'],
+  filters: {
+    filterDateTime(stringDate) {
+      return moment(stringDate.substring(0, 8)).format('MMMM Do YYYY');
+    },
+  },
 };
 </script>
 
@@ -38,6 +45,15 @@ export default {
     display: flex;
     justify-content: space-between;
     color: $subfontColor;
+
+    .candidate-id-label {
+      font-weight: bold;
+    }
+
+    .candidate-date-uploaded {
+      font-weight: bold;
+      font-size: 14px;
+    }
   }
 
   .post-content {
@@ -54,9 +70,19 @@ export default {
 
     .candidate-wrapper {
       display: flex;
+      align-items: center;
+      color: $fontColor;
 
       .candidate-image {
         margin-right: 10px;
+        height: 25px;
+        width: 25px;
+        border-radius: 30px;
+      }
+
+      .candidate-name {
+        font-weight: bolder;
+        animation: rgb-label infinite 15s;
       }
     }
 

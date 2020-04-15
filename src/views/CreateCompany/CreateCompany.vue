@@ -87,6 +87,7 @@
         </div>
       </div>
     </div>
+    <footer-page-component></footer-page-component>
   </div>
 </template>
 
@@ -94,11 +95,13 @@
 import { mapActions, mapState } from 'vuex';
 
 import NavigationFrame from '../../components/NavigationFrame/NavigationFrame.vue';
+import FooterPageComponent from '../../components/FooterPageComponent/FooterPageComponent.vue';
 
 export default {
   name: 'create-company',
   components: {
     'navigation-frame': NavigationFrame,
+    'footer-page-component': FooterPageComponent,
   },
   computed: {
     ...mapState('DropdownDataStore', ['cityList', 'companyTypes']),
@@ -116,6 +119,7 @@ export default {
     };
   },
   async mounted() {
+    window.scrollTo(0, 0);
     await this.initCity();
     await this.initCompanyTypes();
   },

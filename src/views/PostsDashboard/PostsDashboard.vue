@@ -11,10 +11,19 @@
       </div>
       <div class="content">
         <div class="main-col">
-          <h3 class="instant-start-label">Instant start with these suggestions</h3>
+          <h3 class="instant-start-label">Available jobs</h3>
           <div class="marginT jobs-wrapper">
             <job-post
               v-for="(job, index) in jobList"
+              :jobInfo="job"
+              :key="index"
+              @click.native="handlePostClick(job)"
+            ></job-post>
+          </div>
+          <h3 class="marginT instant-start-label">Outdated jobs</h3>
+          <div class="marginT jobs-wrapper">
+            <job-post
+              v-for="(job, index) in outdatedJobList"
               :jobInfo="job"
               :key="index"
               @click.native="handlePostClick(job)"
@@ -117,7 +126,7 @@ export default {
   },
   computed: {
     ...mapState('DropdownDataStore', ['addresses', 'jobTypes']),
-    ...mapState('JobsDashboard', ['jobList']),
+    ...mapState('JobsDashboard', ['jobList', 'outdatedJobList']),
     ...mapState('UserAuthorization', ['userCompany']),
   },
   async mounted() {
@@ -125,6 +134,7 @@ export default {
     await this.initAddress(this.userCompany.compID);
     await this.initJobTypes();
     await this.initJobListByCompID(this.userCompany.compID);
+    await this.initOutdatedJobListByCompID(this.userCompany.compID);
   },
   data() {
     return {
@@ -143,6 +153,7 @@ export default {
     ...mapActions('DropdownDataStore', ['initAddress', 'initJobTypes']),
     ...mapActions('JobsDashboard', [
       'initJobListByCompID',
+      'initOutdatedJobListByCompID',
       'updateJobPost',
       'deletePost',
     ]),
@@ -161,7 +172,7 @@ export default {
         });
         const skillStringlist = skills.join(', ');
         this.updateSkillStringList = skillStringlist;
-        this.updateValidUntil = moment(postInfo.expiryDateTime.substring(0, 7)).format(
+        this.updateValidUntil = moment(postInfo.expiryDateTime.substring(0, 8)).format(
           'YYYY-MM-DD',
         );
 
@@ -180,7 +191,7 @@ export default {
           });
           const skillStringlist = skills.join(', ');
           this.updateSkillStringList = skillStringlist;
-          this.updateValidUntil = moment(postInfo.expiryDateTime.substring(0, 7)).format(
+          this.updateValidUntil = moment(postInfo.expiryDateTime.substring(0, 8)).format(
             'YYYY-MM-DD',
           );
 
@@ -224,14 +235,22 @@ export default {
           },
         }).then(() => {
           this.initJobListByCompID(this.userCompany.compID).then(() => {
-            this.updateClickedFlg = false;
+            this.initOutdatedJobListByCompID(this.userCompany.compID).then(() => {
+              this.updateClickedFlg = false;
+            });
           });
+        });
+      } else {
+        this.$message({
+          type: 'warning',
+          message: 'Please select your address branch and type of the job',
         });
       }
     },
     handleDeletePost(postID) {
       this.deletePost(postID).then(() => {
         this.initJobListByCompID(this.userCompany.compID);
+        this.initOutdatedJobListByCompID(this.userCompany.compID);
       });
     },
   },

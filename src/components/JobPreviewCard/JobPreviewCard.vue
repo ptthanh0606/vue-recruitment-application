@@ -77,7 +77,7 @@ export default {
   },
   filters: {
     filterDateTime(stringDate) {
-      return moment(stringDate.slice(0, 7)).format('MMMM Do YYYY');
+      return moment(stringDate.slice(0, 8)).format('MMMM Do YYYY');
     },
   },
 };
