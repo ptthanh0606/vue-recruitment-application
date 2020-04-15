@@ -51,7 +51,7 @@
             <input
               class="userinput phoneNumber"
               type="tel"
-              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+              pattern="[0-9]{10}"
               title="Example: 0765413668"
               placeholder="Phone number"
               v-model="phoneNumber"
@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 import { DatePicker } from 'element-ui';
 import NavigationFrame from '../../components/NavigationFrame/NavigationFrame.vue';
 
@@ -80,6 +81,9 @@ export default {
   components: {
     'date-picker': DatePicker,
     'navigation-frame': NavigationFrame,
+  },
+  computed: {
+    ...mapState('CreateAccountPage', ['bearerLoginToken']),
   },
   data() {
     return {
@@ -93,20 +97,37 @@ export default {
     };
   },
   methods: {
+    ...mapActions('CreateAccountPage', ['createAccount']),
+    ...mapActions('LoginPage', ['login']),
     handleCreateAccount() {
-      // let month = this.inputDate.getMonth() + 1;
-      // let date = this.inputDate.getDate();
-      // month = month < 10 ? `0${month}` : `${month}`;
-      // date = date < 10 ? `0${date}` : `${date}`;
+      let month = this.inputDate.getMonth() + 1;
+      let date = this.inputDate.getDate();
+      month = month < 10 ? `0${month}` : `${month}`;
+      date = date < 10 ? `0${date}` : `${date}`;
 
-      // console.log({
-      //   userName: this.userName,
-      //   password: this.userPassword,
-      //   email: this.userEmail,
-      //   fullname: `${this.userLastName} ${this.userFirstName}`,
-      //   phoneNumber: this.phoneNumber,
-      //   dateOfBirth: this.inputDate.getFullYear().toString() + month + date,
-      // });
+      this.createAccount({
+        userName: this.userName,
+        password: this.userPassword,
+        email: this.userEmail,
+        fullName: `${this.userLastName} ${this.userFirstName}`,
+        phoneNumber: this.phoneNumber,
+        dateOfBirth: this.inputDate.getFullYear().toString() + month + date,
+      }).then(() => {
+        this.login({
+          email: this.userEmail,
+          password: this.userPassword,
+        })
+          .then(() => {
+            localStorage.setItem(
+              'LOGIN_TOKEN',
+              this.bearerLoginToken.accessToken,
+            );
+            this.$router.push({ name: 'account' });
+          })
+          .catch(() => {
+            this.isLoginFailed = true;
+          });
+      });
     },
   },
 };
@@ -162,24 +183,6 @@ export default {
 
         &:focus {
           animation: rgb-border infinite 6s;
-
-          @keyframes rgb-border {
-            0% {
-              border: 1.5px solid #adadad;
-            }
-            25% {
-              border: 1.5px solid #ff00f2;
-            }
-            50% {
-              border: 1.5px solid #02d1c7;
-            }
-            75% {
-              border: 1.5px solid #ff00f2;
-            }
-            100% {
-              border: 1.5px solid #adadad;
-            }
-          }
         }
       }
 
@@ -235,8 +238,8 @@ export default {
         border-radius: 10px;
         color: $backgroundColor;
         font-weight: bolder;
-        box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.377),
-          -3px -3px 7px rgba(255, 255, 255, 0.671);
+        box-shadow: 5px 5px 10px #00000046,
+            -5px -5px 10px #ffffff;
 
         &:focus {
           outline: none;
@@ -252,27 +255,7 @@ export default {
   .rgb-bar {
     width: 100%;
     height: 6px;
-    animation: 10s rgb infinite;
-
-    @keyframes rgb {
-      0% {
-        background-color: #ff5b5b;
-      }
-
-      25% {
-        background-color: #80ff59;
-      }
-      50% {
-        background-color: #6156ff;
-      }
-      75% {
-        background-color: #ff5fcf;
-      }
-
-      100% {
-        background-color: #ff5b5b;
-      }
-    }
+    animation: 10s rgb-bar infinite;
   }
 }
 </style>

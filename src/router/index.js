@@ -45,11 +45,26 @@ const routes = [
         component: () => import('../views/CandidatesDashboard/CandidatesDashboard.vue'),
       },
       {
-        path: 'postJob',
+        path: 'post-job',
         name: 'postJob',
-        component: () => import('../views/PostJobDashboard/PostJobDashboard.vue'),
+        component: () => import('../views/CreatePostDashboard/CreatePostDashboard.vue'),
       },
     ],
+  },
+  {
+    path: '/account',
+    name: 'account',
+    component: () => import('../views/AccountPage/AccountPage.vue'),
+  },
+  {
+    path: '/account/edit-info',
+    name: 'editInfo',
+    component: () => import('../views/EditInfoPage/EditInfoPage.vue'),
+  },
+  {
+    path: '/create-company',
+    name: 'createCompany',
+    component: () => import('../views/CreateCompany/CreateCompany.vue'),
   },
   {
     path: '/test',

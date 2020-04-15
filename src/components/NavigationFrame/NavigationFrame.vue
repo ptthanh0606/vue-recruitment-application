@@ -28,7 +28,7 @@
             <a @click="handleMenuRoute($event, 'employers')" href item="employers">EMPLOYERS</a>
           </li>
           <li class="menu-item" v-if="isLogin">
-            <a href item="account">ACCOUNT</a>
+            <a @click="handleMenuRoute($event, 'account')" href item="account">ACCOUNT</a>
           </li>
           <li class="menu-item">
             <a href item="about">ABOUT</a>
@@ -47,10 +47,15 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 import Anime from 'animejs';
 
 export default {
   name: 'navigation-bar',
+
+  computed: {
+    ...mapState('UserAuthorization', ['userCompany']),
+  },
 
   updated() {
     this.addHoverListener(
@@ -264,13 +269,7 @@ export default {
   },
 
   methods: {
-    showSearchOverlay() {
-      if (this.searchOverlayShowFlg) {
-        document.querySelector('.search-overlay-box').style.width = '0%';
-      } else document.querySelector('.search-overlay-box').style.width = '100%';
-
-      this.searchOverlayShowFlg = !this.searchOverlayShowFlg;
-    },
+    ...mapActions('UserAuthorization', ['getUserCompanyInfo']),
 
     addHoverListener(elementQuery, mouseOverFunction, mouseOutFunction) {
       document
@@ -281,14 +280,31 @@ export default {
         .addEventListener('mouseout', mouseOutFunction);
     },
 
-    handleMenuRoute(event, routeName) {
+    async handleMenuRoute(event, routeName) {
       event.preventDefault();
       let finalRoute = routeName;
 
       if (routeName === 'log-out') {
         localStorage.removeItem('LOGIN_TOKEN');
         finalRoute = 'login';
+        this.menuActiveFlg = false;
       }
+
+      if (routeName === 'employers') {
+        try {
+          this.menuActiveFlg = false;
+          await this.getUserCompanyInfo();
+          finalRoute = 'employers';
+        } catch (error) {
+          finalRoute = 'createCompany';
+          this.menuActiveFlg = false;
+        }
+      }
+
+      if (routeName === this.$route.name) {
+        window.location.reload();
+      }
+
       this.menuActiveFlg = false;
       setTimeout(() => {
         this.$router.push({ name: finalRoute });

@@ -1,0 +1,153 @@
+<template>
+  <!-- eslint-disable object-shorthand -->
+  <!-- eslint-disable max-len -->
+  <!-- eslint-disable prefer-const -->
+  <!-- eslint-disable no-unused-vars -->
+  <div class="job-post">
+    <div class="row job-container-title">
+      <h3>{{jobInfo.postTitle}}</h3>
+      <span class="until-date">Until {{jobInfo.expiryDateTime | filterDateTime}}</span>
+    </div>
+    <div class="row address-n-type-container">
+      <div class="address-wrapper-detail">
+        <svg class="location-pin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.99 19.315">
+          <path
+            class="cls-1"
+            d="M54.687,0a7,7,0,0,0-7,7c0,4.787,6.26,11.814,6.526,12.111a.63.63,0,0,0,.937,0c.267-.3,6.526-7.324,6.526-12.111A7,7,0,0,0,54.687,0Zm0,10.514A3.519,3.519,0,1,1,58.206,7,3.523,3.523,0,0,1,54.687,10.514Z"
+            transform="translate(-47.692 0)"
+          />
+        </svg>
+        <span class="address-detail">{{jobInfo.address}}</span>
+      </div>
+      <span class="job-type">{{jobInfo.jobType}}</span>
+    </div>
+    <div class="row skills-n-salary-wrapper">
+      <div class="skills-wrapper-detail">
+        <div v-for="(skill, index) in jobInfo.skills" :key="index" class="skill-detail">{{skill.skillName}}</div>
+      </div>
+      <span class="salary">${{jobInfo.monthlySalary}}</span>
+    </div>
+    <div v-if="isCandidate" class="row candidate-interview-date-wrapper">
+      <span class="inteview-date">Interview on</span>
+      <span class="interview-label">Waiting</span>
+    </div>
+  </div>
+</template>
+
+<script>
+import moment from 'moment';
+
+export default {
+  name: 'job-post',
+  props: ['isCandidate', 'jobInfo'],
+  filters: {
+    filterDateTime(stringDate) {
+      return moment(stringDate.slice(0, 7)).format('MMMM Do YYYY');
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+@import "../../assets/scss/_globalVariable.scss";
+
+.job-post {
+  border-radius: 15px;
+  box-shadow: 4px 4px 8px #0000003b, -4px -4px 10px #ffffffbb;
+  padding: 2rem;
+  transition: all ease-in-out 500ms;
+  width: 100%;
+  animation: rgbPostBorder infinite 15s;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+    box-shadow: 4px 4px 20px #00000021, -4px -4px 20px #ffffff;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .job-container-title {
+    align-items: flex-end;
+    animation: rgb-label infinite 15s;
+
+    .until-date {
+      font-size: 14px;
+      color: $subfontColor;
+    }
+  }
+
+  .address-n-type-container {
+    margin-top: 0.5rem;
+
+    .address-wrapper-detail {
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: flex-end;
+
+      .location-pin {
+        width: 0.8rem;
+        margin-right: 10px;
+        fill: $iconColor;
+      }
+
+      .address-detail {
+        font-weight: bold;
+        color: $subfontColor;
+        font-size: 14px;
+      }
+    }
+
+    .job-type {
+      font-size: 20px;
+      font-weight: bold;
+      color: $fontColor;
+    }
+  }
+
+  .skills-n-salary-wrapper {
+    align-items: flex-end;
+    margin-top: 2rem;
+
+    .skills-wrapper-detail {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+
+      .skill-detail {
+        color: $iconColor;
+        font-size: 14px;
+        border-radius: 20px;
+        padding: 10px 16px 10px 16px;
+        margin-bottom: 1rem;
+        margin-right: 16px;
+        background-color: $backgroundColor;
+        box-shadow: 2px 2px 5px #0000003d, -2px -2px 5px #ffffff;
+      }
+    }
+
+    .salary {
+      font-weight: bold;
+      color: $subfontColor;
+    }
+  }
+
+  .candidate-interview-date-wrapper {
+    margin-top: 2rem;
+    font-weight: bold;
+    color: $fontColor;
+
+    .interview-label {
+      animation: rgb-label infinite 15s;
+    }
+  }
+}
+</style>

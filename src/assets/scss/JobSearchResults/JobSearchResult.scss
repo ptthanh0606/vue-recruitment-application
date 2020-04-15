@@ -1,19 +1,18 @@
 @import "../globalVariable";
 
 .JobSearchResult-container {
-	padding-top: 5rem;
+	padding: 5rem 0;
 
 	.JobSearchResult-wrapper {
 		width: 100%;
 		max-width: 1350px;
 		margin: 0 auto;
-		padding: 1rem;
+		padding: 0.5rem;
 		display: flex;
 		flex-wrap: wrap;
 
 		.left-col {
 			width: 240px;
-			margin-bottom: 7rem;
 
 			@media only screen and (max-width: 769px) {
 				width: 100%;
@@ -22,54 +21,8 @@
 			display: flex;
 			flex-direction: column;
 
-			.user-info-wrapper {
-				height: 150px;
-
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-
-				.user-avatar {
-					width: 3.5rem;
-					height: 3.5rem;
-					overflow: hidden;
-					border-radius: 30px;
-					margin-bottom: 1rem;
-				}
-
-				.user-name {
-					width: fit-content;
-					color: $fontColor;
-					font-size: 18px;
-					font-weight: bolder;
-				}
-
-				.user-email {
-					color: $subfontColor;
-					font-weight: normal;
-					font-size: 14px;
-				}
-
-				.log-out-wrapper {
-					margin-top: auto;
-					display: flex;
-					align-items: center;
-
-					#log-out-icon {
-						width: 18px;
-						margin-right: 10px;
-						fill: #406aa8;
-					}
-
-					a {
-						color: #406aa8;
-					}
-				}
-			}
-
 			.search-wrapper {
 				height: 260px;
-				margin-top: 48px;
 				display: flex;
 				flex-direction: column;
 				position: sticky;
@@ -77,7 +30,7 @@
 
 				.search-label {
 					color: $fontColor;
-					margin-bottom: 2rem;
+					margin-bottom: 0.7rem;
 				}
 
 				.input-box {
@@ -117,7 +70,7 @@
 					justify-content: center;
 					border: none;
 					border-radius: 7px;
-					background: $pColorCyan;
+					animation: rgb-button-color infinite 30s;
 					color: #f7f7f7;
 					font-weight: bold;
 					box-shadow: 3px 3px 7px #0000001e, -3px -3px 7px #ffffffd0;
@@ -153,14 +106,15 @@
 
 			.search-result-number {
 				.found-label {
-					font-size: 1.5rem;
+					font-size: 1.2rem;
+					font-weight: bold;
 					color: $fontColor;
 				}
 
 				.number-of-results {
 					margin-top: 1rem;
 					font-size: 4rem;
-					color: $pColorCyan;
+					animation: rgb-label infinite 30s;
 				}
 
 				.desired-job-name {
@@ -192,6 +146,7 @@
 						}
 					}
 
+					
 					&:nth-of-type(1) {
 						margin-right: 20px;
 
@@ -204,60 +159,62 @@
 		}
 
 		.right-col {
+			flex: 1;
 			display: flex;
 			flex-direction: column;
-			height: 100vh;
-			width: 433px;
+			height: 100%;
 			overflow: hidden;
 			opacity: 0;
-			transition: all ease-in-out 0.5s;
+			transition: all ease-in-out 0.3s;
 
 			@media only screen and (max-width: 769px) {
 				width: 100%;
 			}
 
 			background-color: $backgroundColor;
-			position: fixed;
+			position: sticky;
 			right: -433px;
-			top: 0;
+			top: 6rem;
 			z-index: 1;
-			box-shadow: -8px 0px 6px 0px #ffffff63;
-			padding: 5rem 1.5rem 0 1.5rem;
+			padding: 0 0 0 1rem;
 
-			.company-image-detail-wrapper {
-				width: 100%;
-				text-align: center;
+			// .company-image-detail-wrapper {
+			// 	width: 100%;
 
-				.company-logo-detail {
-					width: 4rem;
-					height: 4rem;
-					border-radius: 300px;
-				}
-			}
+			// 	.company-logo-detail {
+			// 		width: 4rem;
+			// 		height: 4rem;
+			// 		border-radius: 300px;
+			// 	}
+			// }
 
 			.company-title-detail,.company-type-detail {
 				width: 100%;
-				text-align: center;
 				display: block;
 				color: $fontColor;
 			}
 
 			.company-title-detail {
 				margin-top: 1.5rem;
+				font-size: 16px;
 			}
 
 			.company-type-detail {
 				font-weight: bold;
-				font-size: 14px;
+				font-size: 13px;
 				color: $subfontColor;
 			}
 
 			.post-title-wrapper-detail {
-				margin-top: 2rem;
+				margin-top: 3rem;
 				color: $fontColor;
 				display: flex;
 				justify-content: space-between;
 				align-items: flex-end;
+
+				.post-title-detail {
+					font-size: 14px;
+				}
 
 				.post-until-detail {
 					font-weight: bold;
@@ -287,6 +244,8 @@
 			.skills-wrapper-detail {
 				margin-top: 1.5rem;
 				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
 
 				.skill-detail {
 					color: $iconColor;
@@ -294,13 +253,14 @@
 					border-radius: 20px;
 					padding: 10px 16px 10px 16px;
 					margin-right: 16px;
+					margin-bottom: 16px;
 					background-color: $backgroundColor;
 					box-shadow: 2px 2px 5px #0000003d, -2px -2px 5px #ffffff;
 				}
 			}
 
 			.post-type-detail {
-				margin-top: 2rem;
+				margin-top: 1rem;
 				color: $fontColor;
 			}
 
@@ -311,7 +271,7 @@
 			}
 
 			.description-label-detail {
-				margin-top: 2rem;
+				margin-top: 1.5rem;
 				color: $fontColor;
 			}
 
@@ -322,20 +282,22 @@
 			}
 
 			.button-wrapper {
-				margin-top: auto;
+				margin-top: 4rem;
+
 				.login-alert {
 					display: block;
 					width: 100%;
-					text-align: center;
 					color: $pColorPink;
 					margin-bottom: 1rem;
 				}
+
 				.button {
-					width: 100%;
+					width: 35%;
 					padding: 0.8rem;
+					margin-right: 16px;
 					border: none;
 					border-radius: 10px;
-					background-color: $fontColor;
+					background-color: $darkBlueGray;
 					color: white;
 					font-weight: bold;
 					margin-bottom: 2rem;
@@ -344,6 +306,10 @@
 					&:hover {
 						cursor: pointer;
 					}
+				}
+
+				.apply {
+					animation: rgb-button-color infinite 30s;
 				}
 	
 				.apply {
@@ -360,7 +326,7 @@
 			height: 100vh;
 			width: 433px;
 			opacity: 1;
-			transition: all ease-in-out 0.5s;
+			transition: all ease-in-out 1s;
 
 			@media only screen and (max-width: 769px) {
 				width: 100%;
@@ -370,7 +336,6 @@
 			right: -433px;
 			top: 0;
 			z-index: 1;
-			box-shadow: -8px 0px 6px 0px #ffffff63;
 			padding: 5rem 1.5rem 0 1.5rem;
 			background-color: $backgroundColor;
 		}
@@ -390,7 +355,7 @@
 		}
 
 		.loading-overlay {
-			flex: 1;
+			flex: 5;
 			height: calc(100vh - 24px - 6rem);
 			display: flex;
 			align-items: center;
@@ -416,7 +381,7 @@
 			}
 
 			&:before {
-				background-color: $pColorCyan;
+				background-color: $pColorYellow;
 				animation: selection-cw-animate infinite 1s;
 			}
 
@@ -480,4 +445,18 @@
 			}
 		}
 	}
+}
+
+.eor-label {
+	display: block;
+	width: 100%;
+	text-align: center;
+	padding-bottom: 5rem;
+	color: $subfontColor;
+}
+
+.lazy-load-mark {
+	width: 100%;
+	display: block;
+	padding: 2rem;
 }

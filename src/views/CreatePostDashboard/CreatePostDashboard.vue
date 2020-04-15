@@ -20,8 +20,7 @@
           />
           <select name="address-dropdown" class="userinput address-dropdown" v-model="selectedCity">
             <option value disabled selected>Select a city</option>
-            <option value="hcm">Ho chi Minh</option>
-            <option value="hn">Ha Noi</option>
+            <option v-for="(address, index) in addresses" :key="index" :value="address.addressBranchID">{{address.address}}</option>
           </select>
           <select
             name="job-type-dropdown"
@@ -29,8 +28,11 @@
             v-model="selectedJobType"
           >
             <option value disabled selected>Specify job type</option>
-            <option value="full-time">Full-time</option>
-            <option value="part-time">Part-time</option>
+            <option
+              v-for="(type, index) in jobTypes"
+              :key="index"
+              :value="type.jobTypeID"
+            >{{type.jobTypeName}}</option>
           </select>
           <input
             class="userinput createSalary"
@@ -69,12 +71,47 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 import { DatePicker } from 'element-ui';
 
 export default {
   name: 'post-job-dashboard',
   components: {
     'date-picker': DatePicker,
+  },
+  computed: {
+    ...mapState('DropdownDataStore', ['addresses', 'jobTypes']),
+    ...mapState('UserAuthorization', ['userCompany']),
+  },
+  async mounted() {
+    await this.getUserCompanyInfo();
+    await this.initAddress(this.userCompany.compID);
+    await this.initJobTypes();
+  },
+  methods: {
+    ...mapActions('PostJobDashboard', ['createPost']),
+    ...mapActions('DropdownDataStore', ['initAddress', 'initCompanyTypes', 'initJobTypes']),
+    ...mapActions('UserAuthorization', ['getUserCompanyInfo']),
+    handleCreatePost(event) {
+      event.preventDefault();
+      const skills = this.createSkillStringList
+        .trim()
+        .split(',')
+        .map(skill => skill.trim());
+      let selectedMonth = this.createValidUntil.getMonth() + 1;
+      selectedMonth = selectedMonth < 10 ? `0${selectedMonth}` : `${selectedMonth}`;
+      const stringDate = `${this.createValidUntil.getFullYear()}${selectedMonth}${this.createValidUntil.getDate()}`;
+
+      this.createPost({
+        postTitle: this.createPostTitle,
+        monthlySalary: this.createSalaryValue,
+        skills,
+        expiryDateTime: stringDate,
+        addressBranchID: this.selectedCity,
+        jobTypeID: this.selectedJobType,
+        postDesc: this.createPostDesc,
+      });
+    },
   },
   data() {
     return {
@@ -86,29 +123,6 @@ export default {
       selectedJobType: '',
       createPostDesc: '',
     };
-  },
-  methods: {
-    handleCreatePost(event) {
-      event.preventDefault();
-      // const skills = this.createSkillStringList
-      //   .trim()
-      //   .split(',')
-      //   .map(skill => skill.trim());
-      // let selectedMonth = this.createValidUntil.getMonth() + 1;
-      // selectedMonth = selectedMonth < 10 ? `0${selectedMonth}` : `${selectedMonth}`;
-      // const stringDate = `${this.createValidUntil.getFullYear()}-${selectedMonth}-
-      // ${this.createValidUntil.getDate()}`;
-
-      // console.log({
-      //   postTitle: this.createPostTitle,
-      //   monthlySalary: this.createSalaryValue,
-      //   skills,
-      //   expiryDate: stringDate,
-      //   addressBranchID: this.selectedCity,
-      //   jobType: this.selectedJobType,
-      //   postDesc: this.createPostDesc,
-      // });
-    },
   },
 };
 </script>
@@ -196,24 +210,6 @@ export default {
 
           &:focus {
             animation: rgb-border infinite 6s;
-
-            @keyframes rgb-border {
-              0% {
-                border: 1.5px solid #adadad;
-              }
-              25% {
-                border: 1.5px solid #ff00f2;
-              }
-              50% {
-                border: 1.5px solid #02d1c7;
-              }
-              75% {
-                border: 1.5px solid #ff00f2;
-              }
-              100% {
-                border: 1.5px solid #adadad;
-              }
-            }
           }
         }
 
@@ -249,9 +245,9 @@ export default {
 
         .create-button {
           white-space: nowrap;
-          width: 100%;
+          width: 25%;
           height: 2.8rem;
-          background-color: $darkBlueGray;
+          animation: rgb-button-color infinite 15s;
           border: none;
           border-radius: 10px;
           color: $backgroundColor;

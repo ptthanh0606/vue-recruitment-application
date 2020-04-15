@@ -229,24 +229,6 @@ export default {
     box-shadow: 0px 3px 5px #0000004d, -3px -3px 5px #ffffffd5;
 
     animation: rgbFuncButtonBorder infinite 15s;
-
-    @keyframes rgbFuncButtonBorder {
-      0% {
-        border-right: 5px solid #adadad;
-      }
-      25% {
-        border-right: 5px solid #ff00f2;
-      }
-      50% {
-        border-right: 5px solid #02d1c7;
-      }
-      75% {
-        border-right: 5px solid #ff00f2;
-      }
-      100% {
-        border-right: 5px solid #adadad;
-      }
-    }
   }
 
   .home-function-button {

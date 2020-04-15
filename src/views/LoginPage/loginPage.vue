@@ -81,7 +81,7 @@ export default {
             'LOGIN_TOKEN',
             this.bearerLoginToken.accessToken,
           );
-          this.$router.push({ name: 'welcome' });
+          this.$router.push({ name: 'account' });
         })
         .catch(() => {
           this.isLoginFailed = true;
@@ -166,24 +166,6 @@ export default {
 
             &:focus {
               animation: rgb-border infinite 6s;
-
-              @keyframes rgb-border {
-                0% {
-                  border: 1.5px solid #adadad;
-                }
-                25% {
-                  border: 1.5px solid #ff00f2;
-                }
-                50% {
-                  border: 1.5px solid #02d1c7;
-                }
-                75% {
-                  border: 1.5px solid #ff00f2;
-                }
-                100% {
-                  border: 1.5px solid #adadad;
-                }
-              }
             }
           }
 
@@ -261,24 +243,6 @@ export default {
     width: 100%;
     height: 6px;
     animation: 10s rgb-bar infinite;
-
-    @keyframes rgb-bar {
-      0% {
-        background-color: $pColorCyan;
-      }
-      25% {
-        background-color: #ff0000;
-      }
-      50% {
-        background-color: #00ff2a;
-      }
-      75% {
-        background-color: #2600ff;
-      }
-      100% {
-        background-color: $pColorCyan;
-      }
-    }
   }
 }
 </style>

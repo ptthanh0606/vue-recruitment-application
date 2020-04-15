@@ -6,7 +6,123 @@ $titleFontColor: #2b2b2b;
 $darkBlueGray: #393E46;
 $subfontColor: #777777;
 
-$pColorPink: #c544bf;
-$pColorCyan: #44c1c5;
+$pColorYellow: #f8bc61;
+$pColorPink: #f06f6f;
+$pColorPurple: #a249cf;
+// $pColorYellow: #ffa41b;
+// $pColorPink: #ff5151;
+// $pColorPurple: #9818d6;
 
 $serifFont: 'Prata', serif;
+
+@keyframes rgb-bar {
+  0% {
+    background-color: #f8bc61;
+  }
+
+  25% {
+    background-color: #f06f6f;
+  }
+
+  50% {
+    background-color: #a249cf;
+  }
+
+  75% {
+    background-color: #f06f6f;
+  }
+
+  100% {
+    background-color: #f8bc61;
+  }
+}
+
+@keyframes rgbFuncButtonBorder {
+  0% {
+    border-right: 5px solid #adadad;
+  }
+  25% {
+    border-right: 5px solid #ffa41b;
+  }
+  50% {
+    border-right: 5px solid #ff5151;
+  }
+  75% {
+    border-right: 5px solid #9818d6;
+  }
+  100% {
+    border-right: 5px solid #adadad;
+  }
+}
+
+@keyframes rgbPostBorder {
+  0% {
+    border-right: 5px solid #adadad;
+  }
+  25% {
+    border-right: 5px solid #ffa41b;
+  }
+  50% {
+    border-right: 5px solid #ff5151;
+  }
+  75% {
+    border-right: 5px solid #9818d6;
+  }
+  100% {
+    border-right: 5px solid #adadad;
+  }
+}
+
+@keyframes rgb-button-color {
+  0% {
+    background-color: #adadad;
+  }
+  25% {
+    background-color: #ffa41b;
+  }
+  50% {
+    background-color: #ff5151;
+  }
+  75% {
+    background-color: #9818d6;
+  }
+  100% {
+    background-color: #adadad;
+  }
+}
+
+@keyframes rgb-border {
+  0% {
+    border: 1.5px solid #adadad;
+  }
+  25% {
+    border: 1.5px solid #ffa41b;
+  }
+  50% {
+    border: 1.5px solid #ff5151;
+  }
+  75% {
+    border: 1.5px solid #9818d6;
+  }
+  100% {
+    border: 1.5px solid #adadad;
+  }
+}
+
+@keyframes rgb-label {
+  0% {
+    color: #7a7a7a;
+  }
+  25% {
+    color: #e79f31;
+  }
+  50% {
+    color: #ff5151;
+  }
+  75% {
+    color: #9818d6;
+  }
+  100% {
+    color: #7a7a7a;
+  }
+}

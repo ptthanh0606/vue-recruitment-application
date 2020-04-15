@@ -5,12 +5,7 @@ export default {
   namespaced: true,
   state: {
     jobsList: [],
-    allPostCount: 0,
-    userInfo: {
-      email: "",
-      fullName: "",
-      imageUrl: ""
-    },
+    postCount: 0,
     cityList: [],
     jobDetail: {}
   },
@@ -18,11 +13,8 @@ export default {
     setJobsList(state, data) {
       state.jobsList = data;
     },
-    setAllPostCount(state, data) {
-      state.allPostCount = data;
-    },
-    setUserInfo(state, data) {
-      state.userInfo = data;
+    setPostCount(state, data) {
+      state.postCount = data;
     },
     setCityList(state, data) {
       state.cityList = data;
@@ -34,22 +26,30 @@ export default {
   actions: {
     initAllJobs(context, { limit, page }) {
       return new Promise((resolve, reject) => {
-        Axios.get(
-          `https://recruitmentswdapi.azurewebsites.net/posts?limit=${limit}&page=${page}`
-        ).then(response => {
-          context.commit("setJobsList", response.data);
-          resolve();
-        });
+        Axios.get(`https://recruitmentswdapi.azurewebsites.net/posts?limit=${limit}&page=${page}`)
+          .then(response => {
+            context.commit("setJobsList", response.data);
+            resolve();
+          })
+          .catch(err => {
+            reject(err);
+          });
       });
     },
-    initAllPostCount(context) {
+
+    getNumberOfAllPost(context) {
       return new Promise((resolve, reject) => {
-        Axios.get(`https://recruitmentswdapi.azurewebsites.net/posts/count`).then(response => {
-          context.commit("setAllPostCount", response.data);
-          resolve();
-        });
+        Axios.get(`https://recruitmentswdapi.azurewebsites.net/posts/count`)
+          .then(response => {
+            context.commit("setPostCount", response.data);
+            resolve();
+          })
+          .catch(err => {
+            reject(err);
+          });
       });
     },
+
     searchJobByName(context, { limit, page, jobName }) {
       return new Promise((resolve, reject) => {
         Axios.get(
@@ -60,16 +60,44 @@ export default {
         });
       });
     },
-    searchJobByFullInfo(context, { limit, page, jobName, searchCompName, searchAddress }) {
+
+    getNumberOfSearchPostByName(context, searchJobName) {
+      return new Promise((resolve, reject) => {
+        Axios.get(`https://recruitmentswdapi.azurewebsites.net/posts/count?searchJobName=${searchJobName}`)
+          .then(response => {
+            context.commit("setPostCount", response.data);
+            resolve();
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
+    },
+
+    searchJobByFullInfo(context, { limit, page, jobName, searchCompName, cityID }) {
       return new Promise((resolve, reject) => {
         Axios.get(
-          `https://recruitmentswdapi.azurewebsites.net/posts?limit=${limit}&page=${page}&searchJobName=${jobName}&searchCompName=${searchCompName}&addressID=${searchAddress}`
+          `https://recruitmentswdapi.azurewebsites.net/posts?limit=${limit}&page=${page}&searchJobName=${jobName}&searchCompName=${searchCompName}&cityID=${cityID}`
         ).then(response => {
           context.commit("setJobsList", response.data);
           resolve();
         });
       });
     },
+
+    getNumberOfSearchPostByFullInfo(context, { jobName, searchCompName, cityID }) {
+      return new Promise((resolve, reject) => {
+        Axios.get(`https://recruitmentswdapi.azurewebsites.net/posts/count?searchJobName=${jobName}&searchCompName=${searchCompName}&cityID=${cityID}`)
+          .then(response => {
+            context.commit("setPostCount", response.data);
+            resolve();
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
+    },
+
     initDropdownCity(context) {
       return new Promise((resolve, reject) => {
         Axios.get(`https://recruitmentswdapi.azurewebsites.net/cities`).then(response => {
@@ -78,6 +106,7 @@ export default {
         });
       });
     },
+
     getJobDetail(context, { postID }) {
       return new Promise((resolve, reject) => {
         Axios.get(`https://recruitmentswdapi.azurewebsites.net/posts/${postID}`).then(response => {
@@ -86,29 +115,5 @@ export default {
         });
       });
     },
-    authorizationBearer(context) {
-      return new Promise((resolve, reject) => {
-        if (!localStorage.getItem("LOGIN_TOKEN")) {
-          reject();
-        } else {
-          let params = {
-            headers: {
-              authorization: `Bearer ${localStorage.getItem("LOGIN_TOKEN")}`
-            }
-          };
-          Axios.get(
-            `https://cors-anywhere.herokuapp.com/https://recruitmentswdapi.azurewebsites.net/user/me`,
-            params
-          )
-            .then(response => {
-              context.commit("setUserInfo", response.data);
-              resolve();
-            })
-            .catch(err => {
-              reject();
-            });
-        }
-      });
-    }
   }
 };

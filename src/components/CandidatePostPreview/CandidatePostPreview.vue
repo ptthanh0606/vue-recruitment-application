@@ -1,16 +1,16 @@
 <template>
   <div class="candidate-post-preview">
     <div class="header-title">
-      <span class="candidate-id-label">#11345</span>
-      <span class="candidate-date-uploaded">Feb, 2 12:00 AM</span>
+      <span class="candidate-id-label">{{candidate.applicationID}}</span>
+      <span class="candidate-date-uploaded">{{candidate.uploadDate}}</span>
     </div>
     <div class="post-content">
-      <h3 class="post-title">ReactJS Developer</h3>
+      <h3 class="post-title">{{candidate.postTitle}}</h3>
     </div>
     <div class="footer-desc">
       <div class="candidate-wrapper">
-        <img src="#" class="candidate-image" />
-        <span class="candidate-name">Phan Thong Thanh</span>
+        <img :src="candidate.imageUrl" class="candidate-image" />
+        <span class="candidate-name">{{candidate.fullName}}</span>
       </div>
     </div>
   </div>
@@ -19,6 +19,7 @@
 <script>
 export default {
   name: 'candidate-post-preview',
+  props: ['candidate'],
 };
 </script>
 

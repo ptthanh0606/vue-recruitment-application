@@ -6,7 +6,7 @@
   <div class="main-dashboard-container">
     <div class="header">
       <h1 class="screen-title">Dashboard</h1>
-      <span class="welcome-label">Welcome, Phan Thong Thanh</span>
+      <span class="welcome-label">Welcome, {{userInfo.fullName}}</span>
     </div>
     <div class="content">
       <div class="main-col">
@@ -99,17 +99,17 @@
         <div class="marginT container-box statistic-wrapper">
           <div class="statistic-item">
             <h3 class="statictic-title">We have</h3>
-            <span class="statistic-value">6</span>
+            <span class="statistic-value">{{numberOfCurrentJob}}</span>
             <span class="statistic-desc">Jobs currently</span>
           </div>
           <div class="statistic-item">
             <h3 class="statictic-title">Outdated</h3>
-            <span class="statistic-value">1</span>
-            <span class="statistic-desc">Item(s)</span>
+            <span class="statistic-value">{{numberOfOutdatedJob}}</span>
+            <span class="statistic-desc">Job(s)</span>
           </div>
           <div class="statistic-item">
             <h3 class="statictic-title">Achived</h3>
-            <span class="statistic-value">304</span>
+            <span class="statistic-value">{{numberOfAppliedCandidate}}</span>
             <span class="statistic-desc">Applied candidates</span>
           </div>
         </div>
@@ -125,9 +125,7 @@
           >view all</a>
         </div>
         <div class="post-candidates-list">
-          <candidate-post-preview></candidate-post-preview>
-          <candidate-post-preview></candidate-post-preview>
-          <candidate-post-preview></candidate-post-preview>
+          <candidate-post-preview :candidate="cand" v-for="(cand, index) in latestCandidates" :key="index"></candidate-post-preview>
         </div>
       </div>
     </div>
@@ -135,12 +133,46 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+
 import CandidatePostPreview from '../../components/CandidatePostPreview/CandidatePostPreview.vue';
 
 export default {
   name: 'main-dashboard',
   components: {
     'candidate-post-preview': CandidatePostPreview,
+  },
+  computed: {
+    ...mapState('MainDashboard', [
+      'numberOfCurrentJob',
+      'numberOfOutdatedJob',
+      'numberOfAppliedCandidate',
+      'latestCandidates',
+    ]),
+    ...mapState('UserAuthorization', [
+      'userCompany',
+      'userInfo',
+    ]),
+  },
+  methods: {
+    ...mapActions('MainDashboard', [
+      'getNumberOfCurrentJob',
+      'getNumberOfOutdatedJob',
+      'getNumberOfAppliedCandidate',
+      'getLatestCandidates',
+    ]),
+    ...mapActions('UserAuthorization', [
+      'getUserCompanyInfo',
+      'getUserInfo',
+    ]),
+  },
+  async mounted() {
+    await this.getUserInfo();
+    await this.getUserCompanyInfo();
+    await this.getNumberOfCurrentJob(this.userCompany.compID);
+    await this.getNumberOfOutdatedJob(this.userCompany.compID);
+    await this.getNumberOfAppliedCandidate(this.userCompany.compID);
+    await this.getLatestCandidates(this.userCompany.compID);
   },
 };
 </script>
@@ -229,24 +261,6 @@ export default {
           font-weight: bolder;
           color: #adadad;
           animation: rgb-label infinite 15s;
-
-          @keyframes rgb-label {
-            0% {
-              color: #adadad;
-            }
-            25% {
-              color: #ff00f2;
-            }
-            50% {
-              color: #02d1c7;
-            }
-            75% {
-              color: #ff00f2;
-            }
-            100% {
-              color: #adadad;
-            }
-          }
         }
 
         .statistic-desc {

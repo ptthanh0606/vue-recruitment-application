@@ -28,7 +28,7 @@
 			position: absolute;
 			left: 0;
 			bottom: 0;
-			background-color: $pColorCyan;
+			background-color: $pColorYellow;
 			transition: 0.4s;
 		}
 
@@ -214,27 +214,7 @@
 			font-weight: bolder;
 
 			-webkit-text-stroke-width: 1px;
-			animation: 10s rgb infinite;
-
-			@keyframes rgb {
-				0% {
-					-webkit-text-stroke: 1px #ff5b5b;
-				}
-
-				25% {
-					-webkit-text-stroke: 1px #80ff59;
-				}
-				50% {
-					-webkit-text-stroke: 1px #6156ff;
-				}
-				75% {
-					-webkit-text-stroke: 1px #ff5fcf;
-				}
-
-				100% {
-					-webkit-text-stroke: 1px #ff5b5b;
-				}
-			}
+			animation: 10s rgb-bar infinite;
 			color: transparent;
 		}
 	}

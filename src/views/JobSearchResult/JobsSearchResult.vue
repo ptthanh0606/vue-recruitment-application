@@ -8,32 +8,6 @@
     <div class="JobSearchResult-container">
       <div class="JobSearchResult-wrapper">
         <div class="left-col">
-          <div class="user-info-wrapper">
-            <div class="user-avatar">
-              <a href="#">
-                <img :src="this.userInfoLocal.imageUrl" height="50px" width="80px" alt />
-              </a>
-            </div>
-            <a href="#" class="user-name">{{ this.userInfoLocal.fullName }}</a>
-            <span class="user-email">{{ this.userInfoLocal.email }}</span>
-            <div class="log-out-wrapper" v-if="this.loginFlg">
-              <svg id="log-out-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 19">
-                <path
-                  data-name="Path 2"
-                  class="cls-1"
-                  d="M9.024,17.395H2.256a.752.752,0,0,1-.752-.752V3.106a.752.752,0,0,1,.752-.752H9.024a.752.752,0,0,0,0-1.5H2.256A2.259,2.259,0,0,0,0,3.106V16.643A2.259,2.259,0,0,0,2.256,18.9H9.024a.752.752,0,1,0,0-1.5Z"
-                />
-                <path
-                  data-name="Path 1"
-                  class="cls-1"
-                  d="M181.969,111.893l-4.572-4.512a.752.752,0,1,0-1.056,1.071l3.268,3.225h-8.756a.752.752,0,0,0,0,1.5h8.756l-3.268,3.225a.752.752,0,1,0,1.056,1.071l4.572-4.512a.752.752,0,0,0,0-1.071Z"
-                  transform="translate(-164.084 -102.554)"
-                />
-              </svg>
-              <a href @click="handleLogout">Log out</a>
-            </div>
-          </div>
-
           <form class="search-wrapper" @submit="this.handleSearchFullInfo">
             <h3 class="search-label">Search for jobs</h3>
             <div class="input-box">
@@ -80,7 +54,7 @@
             <h3 class="desired-job-name">{{ this.searchJobInput }} Jobs</h3>
           </div>
           <div class="job-list-result">
-            <div class="job-column" v-for="(postCol, index) in jobResultCol" :key="index">
+            <div class="job-column" v-for="(postCol, index) in this.jobResultCol" :key="index">
               <job-card
                 @click.native="handleViewPostDetail(postInfo.postID)"
                 v-for="(postInfo, index) in postCol"
@@ -90,14 +64,12 @@
             </div>
           </div>
         </div>
+
         <div v-else class="loading-overlay">
           <div class="loading-icon"></div>
         </div>
 
         <div class="right-col" :class="{'display': detailDisplayFlg}">
-          <div class="company-image-detail-wrapper">
-            <img :src="this.jobDetailLocal.imageUrl" class="company-logo-detail" />
-          </div>
           <h3 class="company-title-detail">{{ this.jobDetailLocal.compName }}</h3>
           <span class="company-type-detail">{{ this.jobDetailLocal.compType }}</span>
           <div class="post-title-wrapper-detail">
@@ -140,12 +112,16 @@
 
         <div
           class="detail-loading-overlay"
-          :class="[{'done-load' : detailLoadFlg}, {'loading': detailDisplayFlg}]"
+          :class="[{'done-load' : detailLoadFlg}, {'loading': loadingDisplayFlg}]"
         >
           <div class="loading-icon"></div>
         </div>
       </div>
     </div>
+    <div class="lazy-load-mark"></div>
+    <span class="eor-label">Not found what you want? Try searching for another job</span>
+
+    <footer-page-component></footer-page-component>
   </div>
 </template>
 <script>
@@ -153,21 +129,19 @@ import moment from 'moment';
 import { mapState, mapActions } from 'vuex';
 import JobPreviewCard from '../../components/JobPreviewCard/JobPreviewCard.vue';
 import NavigationFrame from '../../components/NavigationFrame/NavigationFrame.vue';
+import FooterPageComponent from '../../components/FooterPageComponent/FooterPageComponent.vue';
 
 export default {
   name: 'jobs-search-result',
   components: {
     'job-card': JobPreviewCard,
     'navigation-frame': NavigationFrame,
+    'footer-page-component': FooterPageComponent,
   },
   computed: {
-    ...mapState('JobSearchResult', [
-      'jobsList',
-      'allPostCount',
-      'userInfo',
-      'cityList',
-      'jobDetail',
-    ]),
+    ...mapState('JobSearchResult', ['jobsList', 'postCount', 'jobDetail']),
+    ...mapState('DropdownDataStore', ['cityList', 'companyTypes']),
+    ...mapState('UserAuthorization', ['userInfo']),
   },
   filters: {
     filterDateTime(stringDate) {
@@ -175,40 +149,96 @@ export default {
     },
   },
   methods: {
+    ...mapActions('DropdownDataStore', ['initCity', 'initCompanyTypes']),
+    ...mapActions('UserAuthorization', ['getUserInfo']),
     ...mapActions('JobSearchResult', [
       'initAllJobs',
-      'initAllPostCount',
-      'initDropdownCity',
-      'authorizationBearer',
       'searchJobByName',
       'searchJobByFullInfo',
       'getJobDetail',
+      'getNumberOfAllPost',
+      'getNumberOfSearchPostByName',
+      'getNumberOfSearchPostByFullInfo',
     ]),
     handleDropdownchange(event) {
-      this.selectedCityName = event.target.value;
+      this.selectedCityID = event.target.value;
     },
-    handleSearchFullInfo(event) {
+    async handleSearchFullInfo(event) {
+      this.pageLoadCount = 1;
+      this.observerInstance.unobserve(document.querySelector('.lazy-load-mark'));
+
       window.scrollTo(0, 0);
       event.preventDefault();
 
-      this.searchJobByFullInfo({
-        limit: 10,
+      await this.searchJobByFullInfo({
+        limit: 5,
         page: 0,
         jobName: this.searchJobNameValue,
         searchCompName: this.searchCompanyNameValue,
-        searchAddress: this.selectedCityName,
-      }).then(() => {
-        this.searchJobInput = this.searchJobNameValue;
-        this.jobResultCol.length = 0;
-        const colleft = this.jobsList.slice(0, this.jobsList.length / 2);
-        const colright = this.jobsList.slice(
-          this.jobsList.length / 2,
-          this.jobsList.length,
-        );
-        this.jobResultCol.push(colleft);
-        this.jobResultCol.push(colright);
-        this.postCount = this.jobsList.length;
+        cityID: this.selectedCityID,
       });
+      this.searchJobInput = this.searchJobNameValue;
+      this.jobResultCol.length = 0;
+      const colleft = this.jobsList.slice(0, this.jobsList.length / 2);
+      const colright = this.jobsList.slice(
+        this.jobsList.length / 2,
+        this.jobsList.length,
+      );
+      if (colleft.length) {
+        this.jobResultCol.push(colleft);
+      }
+      if (colright.length) {
+        this.jobResultCol.push(colright);
+      }
+      this.getNumberOfSearchPostByFullInfo({
+        jobName: this.searchJobNameValue,
+        searchCompName: this.searchCompanyNameValue,
+        cityID: this.selectedCityID,
+      });
+
+      setTimeout(() => {
+        this.observerInstance = new IntersectionObserver(
+          () => {
+            this.searchJobByFullInfo({
+              limit: 5,
+              page: this.pageLoadCount,
+              jobName: this.searchJobNameValue,
+              searchCompName: this.searchCompanyNameValue,
+              cityID: this.selectedCityID,
+            }).then(() => {
+              if (this.jobsList.length) {
+                this.pageLoadCount += 1;
+                let colleftlocal = [];
+                let colrightlocal = [];
+                if (this.jobResultCol[0].length < this.jobResultCol[1].length) {
+                  colleftlocal = this.jobsList.slice(
+                    this.jobsList.length / 2,
+                    this.jobsList.length,
+                  );
+                  colrightlocal = this.jobsList.slice(0, this.jobsList.length / 2);
+                } else {
+                  colleftlocal = this.jobsList.slice(0, this.jobsList.length / 2);
+                  colrightlocal = this.jobsList.slice(
+                    this.jobsList.length / 2,
+                    this.jobsList.length,
+                  );
+                }
+
+                const left = [...this.jobResultCol[0], ...colleftlocal];
+                const right = [...this.jobResultCol[1], ...colrightlocal];
+
+                this.jobResultCol.length = 0;
+                this.jobResultCol.push(left);
+                this.jobResultCol.push(right);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+          },
+        );
+        this.observerInstance.observe(document.querySelector('.lazy-load-mark'));
+      }, 1000);
     },
     handleLogout(event) {
       event.preventDefault();
@@ -217,23 +247,32 @@ export default {
     },
     handleViewPostDetail(postID) {
       if (!this.detailDisplayFlg) {
-        this.detailDisplayFlg = true;
+        this.loadingDisplayFlg = true;
         this.getJobDetail({ postID }).then(() => {
           this.jobDetailLocal = this.jobDetail;
           setTimeout(() => {
+            this.detailDisplayFlg = true;
+            this.loadingDisplayFlg = false;
             this.detailLoadFlg = true;
+            setTimeout(() => {
+              this.detailLoadFlg = false;
+            }, 100);
           }, 2000);
         });
       } else {
-        this.detailDisplayFlg = false;
-        this.detailLoadFlg = false;
+        this.loadingDisplayFlg = true;
         setTimeout(() => {
-          this.detailDisplayFlg = true;
-        }, 800);
+          this.detailDisplayFlg = false;
+        }, 300);
         this.getJobDetail({ postID }).then(() => {
           this.jobDetailLocal = this.jobDetail;
           setTimeout(() => {
+            this.detailDisplayFlg = true;
+            this.loadingDisplayFlg = false;
             this.detailLoadFlg = true;
+            setTimeout(() => {
+              this.detailLoadFlg = false;
+            }, 100);
           }, 2000);
         });
       }
@@ -244,72 +283,162 @@ export default {
       this.detailLoadFlg = false;
     },
   },
-  mounted() {
+  async mounted() {
     window.scrollTo(0, 0);
-    this.authorizationBearer()
-      .then(() => {
-        this.userInfoLocal = this.userInfo;
-        this.loginFlg = true;
-      })
-      .catch(() => {
-        this.userInfoLocal = {
-          email: '',
-          fullName: 'Guest',
-          imageUrl: 'https://i.imgur.com/nb30rLD.jpg',
-        };
-        this.loginFlg = false;
-      });
 
-    this.initDropdownCity().then(() => {
-      this.cityListLocal = this.cityList;
-    });
+    await this.initCity();
+    this.cityListLocal = this.cityList;
+
+    try {
+      await this.getUserInfo();
+      if (this.userInfo) {
+        this.loginFlg = true;
+      }
+    } catch (error) {
+      this.loginFlg = false;
+    }
 
     if (this.$route.query.jobName) {
       this.searchJobInput = this.$route.query.jobName;
-      this.searchJobByName(this.$route.query).then(() => {
-        this.jobResultCol.length = 0;
-        const colleft = this.jobsList.slice(0, this.jobsList.length / 2);
-        const colright = this.jobsList.slice(
-          this.jobsList.length / 2,
-          this.jobsList.length,
-        );
-        this.jobResultCol.push(colleft);
-        this.jobResultCol.push(colright);
-        this.postCount = this.jobsList.length;
-        this.isLoaded = true;
-      });
-    } else {
-      this.initAllJobs({
-        limit: 10,
+      await this.searchJobByName({
+        limit: 5,
         page: 0,
-      }).then(() => {
-        this.jobResultCol.length = 0;
-        const colleft = this.jobsList.slice(0, this.jobsList.length / 2);
-        const colright = this.jobsList.slice(
-          this.jobsList.length / 2,
-          this.jobsList.length,
-        );
-        this.jobResultCol.push(colleft);
-        this.jobResultCol.push(colright);
-        this.postCount = this.jobsList.length;
-        this.isLoaded = true;
+        jobName: this.$route.query.jobName,
       });
+      this.jobResultCol.length = 0;
+      const colleft = this.jobsList.slice(0, this.jobsList.length / 2);
+      const colright = this.jobsList.slice(
+        this.jobsList.length / 2,
+        this.jobsList.length,
+      );
+      this.jobResultCol.push(colleft);
+      this.jobResultCol.push(colright);
+      await this.getNumberOfSearchPostByName(this.$route.query.jobName);
+      this.isLoaded = true;
+      this.pageLoadType = 'byName';
+    } else {
+      await this.initAllJobs({
+        limit: 5,
+        page: 0,
+      });
+      this.jobResultCol.length = 0;
+      const colleft = this.jobsList.slice(0, this.jobsList.length / 2);
+      const colright = this.jobsList.slice(
+        this.jobsList.length / 2,
+        this.jobsList.length,
+      );
+      this.jobResultCol.push(colleft);
+      this.jobResultCol.push(colright);
+      await this.getNumberOfAllPost();
+      this.isLoaded = true;
+      this.pageLoadType = 'init';
+    }
+
+    switch (this.pageLoadType) {
+      case 'init':
+        setTimeout(() => {
+          this.observerInstance = new IntersectionObserver(
+            () => {
+              this.initAllJobs({
+                limit: 5,
+                page: this.pageLoadCount,
+                // eslint-disable-next-line no-loop-func
+              }).then(() => {
+                if (this.jobsList.length) {
+                  this.pageLoadCount += 1;
+                  let colleft = [];
+                  let colright = [];
+                  if (
+                    this.jobResultCol[0].length < this.jobResultCol[1].length
+                  ) {
+                    colleft = this.jobsList.slice(
+                      this.jobsList.length / 2,
+                      this.jobsList.length,
+                    );
+                    colright = this.jobsList.slice(0, this.jobsList.length / 2);
+                  } else {
+                    colleft = this.jobsList.slice(0, this.jobsList.length / 2);
+                    colright = this.jobsList.slice(
+                      this.jobsList.length / 2,
+                      this.jobsList.length,
+                    );
+                  }
+
+                  const left = [...this.jobResultCol[0], ...colleft];
+                  const right = [...this.jobResultCol[1], ...colright];
+
+                  this.jobResultCol.length = 0;
+                  this.jobResultCol.push(left);
+                  this.jobResultCol.push(right);
+                }
+              });
+            },
+            {
+              threshold: 0.1,
+            },
+          );
+          this.observerInstance.observe(document.querySelector('.lazy-load-mark'));
+        }, 500);
+        break;
+
+      case 'byName':
+        setTimeout(() => {
+          this.observerInstance = new IntersectionObserver(
+            () => {
+              this.searchJobByName({
+                limit: 5,
+                page: this.pageLoadCount,
+                jobName: this.$route.query.jobName,
+              }).then(() => {
+                if (this.jobsList.length) {
+                  this.pageLoadCount += 1;
+
+                  const colleft = this.jobsList.slice(
+                    0,
+                    this.jobsList.length / 2,
+                  );
+                  const colright = this.jobsList.slice(
+                    this.jobsList.length / 2,
+                    this.jobsList.length,
+                  );
+                  const left = [...this.jobResultCol[0], ...colleft];
+                  const right = [...this.jobResultCol[1], ...colright];
+
+                  this.jobResultCol.length = 0;
+                  this.jobResultCol.push(left);
+                  this.jobResultCol.push(right);
+                }
+              });
+            },
+            {
+              threshold: 0.1,
+            },
+          );
+          this.observerInstance.observe(document.querySelector('.lazy-load-mark'));
+        }, 500);
+        break;
+
+      default:
+        break;
     }
   },
   data() {
     return {
       jobResultCol: [],
-      postCount: 0,
       searchJobInput: '',
       userInfoLocal: {},
       cityListLocal: [],
-      selectedCityName: '',
+      selectedCityID: '',
       searchJobNameValue: '',
       searchCompanyNameValue: '',
       loginFlg: false,
       isLoaded: false,
       detailDisplayFlg: false,
+      loadingDisplayFlg: false,
       detailLoadFlg: false,
+      pageLoadCount: 1,
+      pageLoadType: '',
+      observerInstance: {},
       jobDetailLocal: {
         postID: '120200327175012',
         imageUrl: 'https://i.imgur.com/iVtNw0H.png',

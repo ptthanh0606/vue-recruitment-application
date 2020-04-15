@@ -139,6 +139,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 import { DatePicker } from 'element-ui';
 
 export default {
@@ -146,13 +147,27 @@ export default {
   components: {
     'date-picker': DatePicker,
   },
+  computed: {
+    ...mapState('CandidateDashboard', ['candidateList']),
+    ...mapState('UserAuthorization', ['userCompany']),
+  },
   data() {
     return {
       detailClickedFlg: false,
       candidateInterviewDate: '',
     };
   },
+  async mounted() {
+    await this.getUserCompanyInfo();
+    await this.initCandidateList({
+      compID: this.userCompany.compID,
+      limit: 10,
+      page: 0,
+    });
+  },
   methods: {
+    ...mapActions('UserAuthorization', ['getUserCompanyInfo']),
+    ...mapActions('CandidateDashboard', ['initCandidateList']),
     handleCandidateClick() {
       if (!this.detailClickedFlg) {
         this.detailClickedFlg = true;
@@ -211,24 +226,6 @@ export default {
           width: 100%;
           animation: rgbPostBorder infinite 15s;
 
-          @keyframes rgbPostBorder {
-            0% {
-              border-right: 5px solid #adadad;
-            }
-            25% {
-              border-right: 5px solid #ff00f2;
-            }
-            50% {
-              border-right: 5px solid #02d1c7;
-            }
-            75% {
-              border-right: 5px solid #ff00f2;
-            }
-            100% {
-              border-right: 5px solid #adadad;
-            }
-          }
-
           &:hover {
             cursor: pointer;
             transform: translateY(-5px);
@@ -277,13 +274,15 @@ export default {
               }
 
               .job-title {
-                color: $pColorCyan;
+                color: $pColorYellow;
                 animation: rgb-label infinite 15s;
               }
             }
 
             .job-type-label {
-              font-size: 21px;
+              font-size: 18px;
+              font-weight: bold;
+              color: $iconColor;
             }
           }
 
@@ -446,24 +445,6 @@ export default {
       }
 
       animation: rgb-button-color infinite 15s;
-
-      @keyframes rgb-button-color {
-        0% {
-          background-color: #adadad;
-        }
-        25% {
-          background-color: #ff00f2;
-        }
-        50% {
-          background-color: #02d1c7;
-        }
-        75% {
-          background-color: #ff00f2;
-        }
-        100% {
-          background-color: #adadad;
-        }
-      }
     }
 
     .date-picker {

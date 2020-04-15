@@ -13,166 +13,12 @@
         <div class="main-col">
           <h3 class="instant-start-label">Instant start with these suggestions</h3>
           <div class="marginT jobs-wrapper">
-            <div class="container-box job-container" @click="handlePostClick">
-              <div class="row job-container-title">
-                <h3>Senior ReactJS developer</h3>
-                <span class="until-date">Until 16 Oct 2020</span>
-              </div>
-              <div class="row address-n-type-container">
-                <div class="address-wrapper-detail">
-                  <svg
-                    class="location-pin"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 13.99 19.315"
-                  >
-                    <path
-                      class="cls-1"
-                      d="M54.687,0a7,7,0,0,0-7,7c0,4.787,6.26,11.814,6.526,12.111a.63.63,0,0,0,.937,0c.267-.3,6.526-7.324,6.526-12.111A7,7,0,0,0,54.687,0Zm0,10.514A3.519,3.519,0,1,1,58.206,7,3.523,3.523,0,0,1,54.687,10.514Z"
-                      transform="translate(-47.692 0)"
-                    />
-                  </svg>
-                  <span class="address-detail">Ho Chi Minh</span>
-                </div>
-                <span class="job-type">Full-time</span>
-              </div>
-              <div class="row skills-n-salary-wrapper">
-                <div class="skills-wrapper-detail">
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                </div>
-                <span class="salary">$1000</span>
-              </div>
-            </div>
-            <div class="container-box job-container" @click="handlePostClick">
-              <div class="row job-container-title">
-                <h3>Senior ReactJS developer</h3>
-                <span class="until-date">Until 16 Oct 2020</span>
-              </div>
-              <div class="row address-n-type-container">
-                <div class="address-wrapper-detail">
-                  <svg
-                    class="location-pin"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 13.99 19.315"
-                  >
-                    <path
-                      class="cls-1"
-                      d="M54.687,0a7,7,0,0,0-7,7c0,4.787,6.26,11.814,6.526,12.111a.63.63,0,0,0,.937,0c.267-.3,6.526-7.324,6.526-12.111A7,7,0,0,0,54.687,0Zm0,10.514A3.519,3.519,0,1,1,58.206,7,3.523,3.523,0,0,1,54.687,10.514Z"
-                      transform="translate(-47.692 0)"
-                    />
-                  </svg>
-                  <span class="address-detail">Ho Chi Minh</span>
-                </div>
-                <span class="job-type">Full-time</span>
-              </div>
-              <div class="row skills-n-salary-wrapper">
-                <div class="skills-wrapper-detail">
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                </div>
-                <span class="salary">$1000</span>
-              </div>
-            </div>
-            <div class="container-box job-container">
-              <div class="row job-container-title">
-                <h3>Senior ReactJS developer</h3>
-                <span class="until-date">Until 16 Oct 2020</span>
-              </div>
-              <div class="row address-n-type-container">
-                <div class="address-wrapper-detail">
-                  <svg
-                    class="location-pin"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 13.99 19.315"
-                  >
-                    <path
-                      class="cls-1"
-                      d="M54.687,0a7,7,0,0,0-7,7c0,4.787,6.26,11.814,6.526,12.111a.63.63,0,0,0,.937,0c.267-.3,6.526-7.324,6.526-12.111A7,7,0,0,0,54.687,0Zm0,10.514A3.519,3.519,0,1,1,58.206,7,3.523,3.523,0,0,1,54.687,10.514Z"
-                      transform="translate(-47.692 0)"
-                    />
-                  </svg>
-                  <span class="address-detail">Ho Chi Minh</span>
-                </div>
-                <span class="job-type">Full-time</span>
-              </div>
-              <div class="row skills-n-salary-wrapper">
-                <div class="skills-wrapper-detail">
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                </div>
-                <span class="salary">$1000</span>
-              </div>
-            </div>
-            <div class="container-box job-container">
-              <div class="row job-container-title">
-                <h3>Senior ReactJS developer</h3>
-                <span class="until-date">Until 16 Oct 2020</span>
-              </div>
-              <div class="row address-n-type-container">
-                <div class="address-wrapper-detail">
-                  <svg
-                    class="location-pin"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 13.99 19.315"
-                  >
-                    <path
-                      class="cls-1"
-                      d="M54.687,0a7,7,0,0,0-7,7c0,4.787,6.26,11.814,6.526,12.111a.63.63,0,0,0,.937,0c.267-.3,6.526-7.324,6.526-12.111A7,7,0,0,0,54.687,0Zm0,10.514A3.519,3.519,0,1,1,58.206,7,3.523,3.523,0,0,1,54.687,10.514Z"
-                      transform="translate(-47.692 0)"
-                    />
-                  </svg>
-                  <span class="address-detail">Ho Chi Minh</span>
-                </div>
-                <span class="job-type">Full-time</span>
-              </div>
-              <div class="row skills-n-salary-wrapper">
-                <div class="skills-wrapper-detail">
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                </div>
-                <span class="salary">$1000</span>
-              </div>
-            </div>
-            <div class="container-box job-container">
-              <div class="row job-container-title">
-                <h3>Senior ReactJS developer</h3>
-                <span class="until-date">Until 16 Oct 2020</span>
-              </div>
-              <div class="row address-n-type-container">
-                <div class="address-wrapper-detail">
-                  <svg
-                    class="location-pin"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 13.99 19.315"
-                  >
-                    <path
-                      class="cls-1"
-                      d="M54.687,0a7,7,0,0,0-7,7c0,4.787,6.26,11.814,6.526,12.111a.63.63,0,0,0,.937,0c.267-.3,6.526-7.324,6.526-12.111A7,7,0,0,0,54.687,0Zm0,10.514A3.519,3.519,0,1,1,58.206,7,3.523,3.523,0,0,1,54.687,10.514Z"
-                      transform="translate(-47.692 0)"
-                    />
-                  </svg>
-                  <span class="address-detail">Ho Chi Minh</span>
-                </div>
-                <span class="job-type">Full-time</span>
-              </div>
-              <div class="row skills-n-salary-wrapper">
-                <div class="skills-wrapper-detail">
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                  <div class="skill-detail">ReactJS</div>
-                </div>
-                <span class="salary">$1000</span>
-              </div>
-            </div>
+            <job-post
+              v-for="(job, index) in jobList"
+              :jobInfo="job"
+              :key="index"
+              @click.native="handlePostClick(job)"
+            ></job-post>
           </div>
         </div>
       </div>
@@ -192,10 +38,10 @@
               transform="translate(0 -42.021)"
             />
           </svg>
-          <a href class="delete-post-button">Delete this post</a>
+          <a href class="delete-post-button" @click.prevent="handleDeletePost(updatePostID)">Delete this post</a>
         </div>
-        <span class="postID-label">ID: #123123</span>
-        <form class="update-form" @submit="handleUpdatePost">
+        <span class="postID-label">ID: #{{updatePostID}}</span>
+        <form class="update-form" @submit.prevent="handleUpdatePost">
           <input
             class="userinput updateTitle"
             type="text"
@@ -203,10 +49,17 @@
             v-model="updatePostTitle"
             required
           />
-          <select name="address-dropdown" class="userinput address-dropdown" v-model="selectedCity">
+          <select
+            name="address-dropdown"
+            class="userinput address-dropdown"
+            v-model="selectedBranchID"
+          >
             <option value disabled selected>Select a city</option>
-            <option value="hcm">Ho chi Minh</option>
-            <option value="hcm">Ho chi Minh</option>
+            <option
+              v-for="(address, index) in addresses"
+              :key="index"
+              :value="address.addressBranchID"
+            >{{address.address}}</option>
           </select>
           <select
             name="job-type-dropdown"
@@ -214,8 +67,11 @@
             v-model="selectedJobType"
           >
             <option value disabled selected>Specify job type</option>
-            <option value="hcm">Ho chi Minh</option>
-            <option value="hcm">Ho chi Minh</option>
+            <option
+              v-for="(type, index) in jobTypes"
+              :key="index"
+              :value="type.jobTypeID"
+            >{{type.jobTypeName}}</option>
           </select>
           <input
             class="userinput updateSalary"
@@ -248,58 +104,134 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 import { DatePicker } from 'element-ui';
+import moment from 'moment';
+import JobPost from '../../components/JobPost/JobPost.vue';
 
 export default {
   name: 'post-dashboard',
   components: {
     'date-picker': DatePicker,
+    'job-post': JobPost,
+  },
+  computed: {
+    ...mapState('DropdownDataStore', ['addresses', 'jobTypes']),
+    ...mapState('JobsDashboard', ['jobList']),
+    ...mapState('UserAuthorization', ['userCompany']),
+  },
+  async mounted() {
+    await this.getUserCompanyInfo();
+    await this.initAddress(this.userCompany.compID);
+    await this.initJobTypes();
+    await this.initJobListByCompID(this.userCompany.compID);
   },
   data() {
     return {
       updateClickedFlg: false,
+      updatePostID: '',
       updatePostTitle: '',
       updateSalaryValue: '',
       updateSkillStringList: '',
       updateValidUntil: '',
       updatePostDesc: '',
-      selectedCity: '',
+      selectedBranchID: '',
       selectedJobType: '',
     };
   },
   methods: {
-    handlePostClick() {
+    ...mapActions('DropdownDataStore', ['initAddress', 'initJobTypes']),
+    ...mapActions('JobsDashboard', [
+      'initJobListByCompID',
+      'updateJobPost',
+      'deletePost',
+    ]),
+    ...mapActions('UserAuthorization', ['getUserCompanyInfo']),
+
+    handlePostClick(postInfo) {
       if (!this.updateClickedFlg) {
         this.updateClickedFlg = true;
+        this.updatePostID = postInfo.postID;
+        this.updatePostTitle = postInfo.postTitle;
+        this.updateSalaryValue = postInfo.monthlySalary;
+
+        const skills = [];
+        postInfo.skills.forEach((el) => {
+          skills.push(el.skillName);
+        });
+        const skillStringlist = skills.join(', ');
+        this.updateSkillStringList = skillStringlist;
+        this.updateValidUntil = moment(postInfo.expiryDateTime.substring(0, 7)).format(
+          'YYYY-MM-DD',
+        );
+
+        this.updatePostDesc = postInfo.postDesc;
       } else {
         this.updateClickedFlg = false;
         setTimeout(() => {
           this.updateClickedFlg = true;
+          this.updatePostID = postInfo.postID;
+          this.updatePostTitle = postInfo.postTitle;
+          this.updateSalaryValue = postInfo.monthlySalary;
+
+          const skills = [];
+          postInfo.skills.forEach((el) => {
+            skills.push(el.skillName);
+          });
+          const skillStringlist = skills.join(', ');
+          this.updateSkillStringList = skillStringlist;
+          this.updateValidUntil = moment(postInfo.expiryDateTime.substring(0, 7)).format(
+            'YYYY-MM-DD',
+          );
+
+          this.updatePostDesc = postInfo.postDesc;
         }, 800);
       }
     },
     handleCloseUpdateBox() {
       this.updateClickedFlg = false;
     },
-    handleUpdatePost(event) {
-      event.preventDefault();
+    handleUpdatePost() {
+      let month = '';
+      let date = '';
+      let stringDate = '';
+      if (this.updateValidUntil instanceof Date) {
+        month = this.updateValidUntil.getMonth() + 1;
+        date = this.updateValidUntil.getDate();
+        month = month < 10 ? `0${month}` : `${month}`;
+        date = date < 10 ? `0${date}` : `${date}`;
+        stringDate = this.updateValidUntil.getFullYear().toString() + month + date;
+      } else {
+        stringDate = this.updateValidUntil.split('-').join('');
+      }
+
       const skills = this.updateSkillStringList
         .trim()
         .split(',')
         .map(skill => skill.trim());
 
-      let selectedMonth = this.updateValidUntil.getMonth() + 1;
-      selectedMonth = selectedMonth < 10 ? `0${selectedMonth}` : `${selectedMonth}`;
-      const stringDate = `${this.updateValidUntil.getFullYear()}-${selectedMonth}-${this.updateValidUntil.getDate()}`;
-
-      console.log({
-        postTitle: this.updatePostTitle,
-        monthlySalary: this.updateSalaryValue,
-        skills,
-        expiryDate: stringDate,
-        addressBranchID: this.selectedCity,
-        jobType: this.selectedJobType,
-        postDesc: this.updatePostDesc,
+      if (this.selectedBranchID && this.selectedJobType) {
+        this.updateJobPost({
+          postID: this.updatePostID,
+          postInfo: {
+            postTitle: this.updatePostTitle,
+            postDesc: this.updatePostDesc,
+            expiryDateTime: stringDate,
+            monthlySalary: this.updateSalaryValue,
+            skills,
+            addressBranchID: this.selectedBranchID,
+            jobTypeID: this.selectedJobType,
+          },
+        }).then(() => {
+          this.initJobListByCompID(this.userCompany.compID).then(() => {
+            this.updateClickedFlg = false;
+          });
+        });
+      }
+    },
+    handleDeletePost(postID) {
+      this.deletePost(postID).then(() => {
+        this.initJobListByCompID(this.userCompany.compID);
       });
     },
   },
@@ -320,6 +252,7 @@ export default {
   height: 100%;
   padding: 2rem 2rem 0 2rem;
   color: $fontColor;
+  transition: all ease-in-out 500ms;
 
   .header {
     width: 100%;
@@ -350,116 +283,11 @@ export default {
         display: flex;
         flex-direction: column;
 
-        .job-container {
-          margin-top: 2rem;
-          width: 100%;
-          animation: rgbPostBorder infinite 15s;
-
-          @keyframes rgbPostBorder {
-            0% {
-              border-right: 5px solid #adadad;
-            }
-            25% {
-              border-right: 5px solid #ff00f2;
-            }
-            50% {
-              border-right: 5px solid #02d1c7;
-            }
-            75% {
-              border-right: 5px solid #ff00f2;
-            }
-            100% {
-              border-right: 5px solid #adadad;
-            }
-          }
-
-          &:hover {
-            cursor: pointer;
-            transform: translateY(-5px);
-            box-shadow: 4px 4px 20px #00000021, -4px -4px 20px #ffffff;
-          }
-
-          &:first-child {
-            margin-top: 0;
-          }
-
-          .row {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-          }
-
-          .job-container-title {
-            align-items: flex-end;
-            animation: rgb-label infinite 15s;
-
-            .until-date {
-              font-size: 14px;
-              color: $subfontColor;
-            }
-          }
-
-          .address-n-type-container {
-            margin-top: 0.5rem;
-
-            .address-wrapper-detail {
-              margin-top: 0.5rem;
-              display: flex;
-              align-items: flex-end;
-
-              .location-pin {
-                width: 0.8rem;
-                margin-right: 10px;
-                fill: $iconColor;
-              }
-
-              .address-detail {
-                font-weight: bold;
-                color: $subfontColor;
-                font-size: 14px;
-              }
-            }
-
-            .job-type {
-              font-size: 20px;
-              font-weight: bold;
-            }
-          }
-
-          .skills-n-salary-wrapper {
-            align-items: flex-end;
-            margin-top: 2rem;
-
-            .skills-wrapper-detail {
-              margin-top: 1.5rem;
-              display: flex;
-
-              .skill-detail {
-                color: $iconColor;
-                font-size: 14px;
-                border-radius: 20px;
-                padding: 10px 16px 10px 16px;
-                margin-right: 16px;
-                background-color: $backgroundColor;
-                box-shadow: 2px 2px 5px #0000003d, -2px -2px 5px #ffffff;
-              }
-            }
-
-            .salary {
-              font-weight: bold;
-              color: $subfontColor;
-            }
-          }
+        .job-post {
+          margin-bottom: 2rem;
         }
       }
     }
-  }
-
-  .container-box {
-    border-radius: 15px;
-    box-shadow: 4px 4px 8px #0000003b, -4px -4px 10px #ffffffbb;
-    padding: 2rem;
-    transition: all ease-in-out 500ms;
   }
 }
 
@@ -525,24 +353,6 @@ export default {
 
         &:focus {
           animation: rgb-border infinite 6s;
-
-          @keyframes rgb-border {
-            0% {
-              border: 1.5px solid #adadad;
-            }
-            25% {
-              border: 1.5px solid #ff00f2;
-            }
-            50% {
-              border: 1.5px solid #02d1c7;
-            }
-            75% {
-              border: 1.5px solid #ff00f2;
-            }
-            100% {
-              border: 1.5px solid #adadad;
-            }
-          }
         }
       }
 
