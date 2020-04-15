@@ -294,7 +294,7 @@
       <!--  -->
       <section id="sixthSection">
         <div class="start-button-wrapper">
-          <div class="selection employee" :class="{ 'display' : btnJoinFlg }">
+          <div class="selection employee" @click="handleRoutingSelection('jobs')" :class="{ 'display' : btnJoinFlg }">
             <div class="contain-box">
               <h1 class="role-card-title">Employee</h1>
               <p class="role-card-detail">Discover hiring.</p>
@@ -312,7 +312,7 @@
             </div>
           </div>
 
-          <div class="selection employer" :class="{ 'display' : btnJoinFlg }">
+          <div class="selection employer" @click="handleRoutingSelection('employers')" :class="{ 'display' : btnJoinFlg }">
             <div class="contain-box">
               <h1 class="role-card-title">Employer</h1>
               <p class="role-card-detail">Control your HR.</p>
@@ -567,6 +567,9 @@ export default {
 
   methods: {
     ...mapActions('Welcome', ['getInitJobs']),
+    handleRoutingSelection(routeName) {
+      this.$router.push({ name: routeName });
+    },
     createIntersectObserver(callback, animateOption, intersectOption) {
       return new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
