@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Axios from "axios";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import 'firebase/firebase-auth';
 
 export default {
   namespaced: true,
@@ -60,11 +61,14 @@ export default {
                   resolve();
                 })
                 .catch(err => {
-                  reject();
+                  console.log(err);
+                  reject(err);
                 });
             });
           })
-          .catch(error => {});
+          .catch(error => {
+            console.log(error);
+          });
       });
     }
   }

@@ -107,7 +107,9 @@ export default {
         this.$router.push({ name: 'account' });
         window.scrollTo(0, 0);
       })
-        .catch(() => {
+        .catch((error) => {
+          console.log(error);
+
           vue.$message({
             message: 'Login failed, incorrect username or password',
             type: 'error',
