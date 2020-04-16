@@ -9,7 +9,7 @@
     </div>
     <div class="footer-desc">
       <div class="candidate-wrapper">
-        <img src="https://i.imgur.com/nb30rLD.jpg" class="candidate-image" />
+        <img src="https://i.imgur.com/3QW3B3c.png" class="candidate-image" />
         <span class="candidate-name">{{candidate.fullName}}</span>
       </div>
     </div>
