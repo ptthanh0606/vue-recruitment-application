@@ -1,7 +1,7 @@
 @import "../globalVariable";
 
 .JobSearchResult-container {
-	padding: 5rem 0;
+	padding: 5rem 0 0 0;
 
 	.JobSearchResult-wrapper {
 		width: 100%;
@@ -441,16 +441,12 @@
 	display: block;
 	width: 100%;
 	text-align: center;
-	padding-bottom: 5rem;
+	padding-bottom: 10rem;
 	color: $subfontColor;
 }
 
 .lazy-load-mark {
 	width: 100%;
 	display: block;
-	padding: 2rem;
-}
-
-.custom-confirm-button {
-	background-color: red;
+	padding: 7rem;
 }

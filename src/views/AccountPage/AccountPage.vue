@@ -111,6 +111,7 @@ export default {
       this.$message('No session');
       setTimeout(() => {
         this.$router.push({ name: 'login' });
+        window.scrollTo(0, 0);
       }, 2000);
     }
 
@@ -127,12 +128,15 @@ export default {
     handleLogout() {
       localStorage.removeItem('LOGIN_TOKEN');
       this.$router.push({ name: 'login' });
+      window.scrollTo(0, 0);
     },
     handleEditInfoRoute() {
       this.$router.push({ name: 'editInfo' });
+      window.scrollTo(0, 0);
     },
     handleFindJob() {
       this.$router.push({ name: 'jobs' });
+      window.scrollTo(0, 0);
     },
   },
   data() {
@@ -145,220 +149,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../assets/scss/_globalVariable.scss";
-
-.account-page-container {
-  padding: 5rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: space-between;
-
-  .center-wrapper {
-    width: 100%;
-    max-width: 1350px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-
-    .left-col {
-      position: sticky;
-      top: 5rem;
-      width: 240px;
-      height: 80vh;
-
-      @media only screen and (max-width: 769px) {
-        width: 100%;
-      }
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
-      .user-info-wrapper {
-        margin-top: 3rem;
-        height: 130px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        .user-avatar {
-          width: 3.5rem;
-          height: 3.5rem;
-          overflow: hidden;
-          border-radius: 30px;
-          margin-bottom: 2rem;
-        }
-
-        .user-name {
-          width: fit-content;
-          color: $fontColor;
-          font-size: 18px;
-          font-weight: bolder;
-        }
-
-        .user-email {
-          color: $subfontColor;
-          font-weight: normal;
-          font-size: 14px;
-        }
-      }
-
-      .edit-info-label {
-        display: block;
-        font-size: 14px;
-        font-weight: bold;
-        margin-top: 1rem;
-        color: $pColorPink;
-      }
-
-      .log-out-wrapper {
-        margin-top: auto;
-        display: flex;
-        align-items: center;
-
-        #log-out-icon {
-          width: 14px;
-          margin-right: 10px;
-          fill: $pColorBlue;
-        }
-
-        a {
-          color: $pColorBlue;
-        }
-      }
-    }
-
-    .middle-col {
-      padding: 3rem 32px;
-      width: 900px;
-
-      @media only screen and (max-width: 769px) {
-        padding: 0;
-      }
-
-      .job-post {
-        margin-bottom: 2rem;
-      }
-
-      .application-title {
-        margin-bottom: 3rem;
-        color: $titleFontColor;
-      }
-
-      .no-result-wrapper {
-        display: flex;
-        align-items: center;
-
-        .icon {
-          width: 16px;
-          height: 16px;
-          fill: $subfontColor;
-          margin-right: 10px;
-        }
-
-        .no-result-label {
-          display: block;
-          color: $subfontColor;
-          margin-right: 5px;
-        }
-
-        .find-job-button {
-          color: $pColorPink;
-          font-weight: bold;
-          display: block;
-        }
-      }
-    }
-
-    .loading-overlay {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .loading-icon {
-      width: 50px;
-      height: 50px;
-      background-color: $backgroundColor;
-      border-radius: 1000px;
-      position: relative;
-
-      &:before,
-      &:after {
-        content: "";
-        position: absolute;
-        display: block;
-        width: 50px;
-        height: 50px;
-        border-radius: 1000px;
-        z-index: -1;
-      }
-
-      &:before {
-        background-color: $pColorYellow;
-        animation: selection-cw-animate infinite 1s;
-      }
-
-      &:after {
-        background-color: $pColorPink;
-        animation: selection-ccw-animate infinite 1.5s;
-      }
-    }
-
-    @keyframes selection-cw-animate {
-      0% {
-        top: -5%;
-        left: 0;
-      }
-
-      25% {
-        top: 0;
-        left: 5%;
-      }
-
-      50% {
-        top: 5%;
-        left: 0;
-      }
-
-      75% {
-        top: 0;
-        left: -5%;
-      }
-
-      100% {
-        top: -5%;
-        left: 0;
-      }
-    }
-
-    @keyframes selection-ccw-animate {
-      0% {
-        top: -5%;
-        left: 0;
-      }
-
-      25% {
-        top: 0;
-        left: -5%;
-      }
-
-      50% {
-        top: 5%;
-        left: 0;
-      }
-
-      75% {
-        top: 0;
-        left: 5%;
-      }
-
-      100% {
-        top: -5%;
-        left: 0;
-      }
-    }
-  }
-}
+@import '../../assets/scss/AccountPage/AccountPage.scss';
 </style>

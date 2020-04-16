@@ -1,0 +1,219 @@
+@import "../../assets/scss/_globalVariable.scss";
+
+.edit-info-container {
+  width: 100%;
+  padding: 5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+
+  .center-wrapper {
+    width: 100%;
+    max-width: 1350px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    .left-col {
+      position: sticky;
+      top: 5rem;
+      width: 240px;
+      height: 80vh;
+
+      @media only screen and (max-width: 769px) {
+        width: 100%;
+      }
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .user-info-wrapper {
+        margin-top: 3rem;
+        height: 130px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .user-avatar {
+          width: 3.5rem;
+          height: 3.5rem;
+          overflow: hidden;
+          border-radius: 30px;
+          margin-bottom: 2rem;
+        }
+
+        .user-name {
+          width: fit-content;
+          color: $fontColor;
+          font-size: 18px;
+          font-weight: bolder;
+        }
+
+        .user-email {
+          color: $subfontColor;
+          font-weight: normal;
+          font-size: 14px;
+        }
+      }
+
+      .edit-info-label {
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 1rem;
+        color: $pColorPink;
+      }
+
+      .log-out-wrapper {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+
+        #log-out-icon {
+          width: 14px;
+          margin-right: 10px;
+          fill: $pColorBlue;
+        }
+
+        a {
+          color: $pColorBlue;
+        }
+      }
+    }
+
+    .middle-col {
+      padding: 3rem 32px;
+      width: 800px;
+      color: $fontColor;
+
+      @media only screen and (max-width: 769px) {
+        padding: 0;
+      }
+
+      .change-info-title {
+        color: $fontColor;
+        margin-bottom: 2rem;
+      }
+
+      form {
+        .desc-title {
+          display: flex;
+          align-items: center;
+          margin-top: 3rem;
+
+          .section-label {
+            color: $fontColor;
+            margin-right: 5px;
+          }
+
+          .required-label {
+            margin-right: 10px;
+            font-size: 13px;
+            color: $subfontColor;
+          }
+
+          .icon {
+            width: 14px;
+            height: 14px;
+            fill: $subfontColor;
+          }
+        }
+
+        .userinput {
+          width: 100%;
+          border: none;
+          background-color: transparent;
+          border-radius: 10px;
+          border: 1.5px solid #adadad;
+          outline: none;
+          padding: 0.6rem;
+          margin-top: 1.5rem;
+          transition: border-bottom ease-in-out 0.2s;
+
+          &:focus {
+            animation: rgb-border infinite 6s;
+          }
+        }
+
+        .full-name-input-container {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+
+          .userinput {
+            width: 48%;
+          }
+        }
+
+        .birthday-input-container {
+          width: 100%;
+          margin-top: 2rem;
+          display: flex;
+          align-items: center;
+
+          .birthday-label {
+            display: block;
+            font-weight: bold;
+            color: $subfontColor;
+            margin-right: 2rem;
+          }
+
+          ::placeholder {
+            color: $fontColor;
+          }
+
+          .el-input {
+            flex: 1;
+          }
+
+          .el-input__inner {
+            border-radius: 10px;
+            background-color: $backgroundColor;
+            box-shadow: inset 8px 8px 8px rgba(0, 0, 0, 0.137),
+              inset -8px -8px 8px rgba(255, 255, 255, 0.596);
+          }
+
+          .el-input__prefix {
+            color: $iconColor;
+          }
+        }
+
+        .buttons-wrapper {
+          width: 40%;
+          display: flex;
+          justify-content: space-between;
+
+          button {
+            margin-top: 2rem;
+            height: 2.5rem;
+            border: none;
+            border-radius: 10px;
+            color: $backgroundColor;
+            font-weight: bolder;
+            box-shadow: 4px 4px 5px #00000046, -4px -4px 5px #ffffff;
+
+            &:focus {
+              outline: none;
+            }
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+
+          .apply-button {
+            width: 60%;
+            animation: rgb-button-color infinite 15s;
+          }
+
+          .clear-button {
+            width: 30%;
+            background-color: $darkBlueGray;
+            color: $backgroundColor;
+          }
+        }
+      }
+    }
+  }
+}

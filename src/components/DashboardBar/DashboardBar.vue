@@ -4,7 +4,7 @@
   <!-- eslint-disable prefer-const -->
   <!-- eslint-disable no-unused-vars -->
   <div class="dashboard-bar-container">
-    <img src="https://i.imgur.com/nb30rLD.jpg" alt class="userImage" />
+    <img src="https://i.imgur.com/3QW3B3c.png" alt class="userImage" />
     <div class="freq-function-button">
       <div
         class="func-button main-dashboard"
@@ -100,6 +100,7 @@ export default {
           this.isCandClicked = false;
           if (currentRouteName !== 'main') {
             this.$router.push({ name: 'main' });
+            window.scrollTo(0, 0);
           }
           break;
         case 'posts':
@@ -108,6 +109,7 @@ export default {
           this.isCandClicked = false;
           if (currentRouteName !== 'posts') {
             this.$router.push({ name: 'posts' });
+            window.scrollTo(0, 0);
           }
           break;
         case 'candidates':
@@ -116,13 +118,16 @@ export default {
           this.isCandClicked = true;
           if (currentRouteName !== 'candidates') {
             this.$router.push({ name: 'candidates' });
+            window.scrollTo(0, 0);
           }
           break;
         case 'home':
           this.$router.push({ name: 'welcome' });
+          window.scrollTo(0, 0);
           break;
         default:
           this.$router.push({ name: '' });
+          window.scrollTo(0, 0);
       }
     },
   },
@@ -130,6 +135,7 @@ export default {
     const currentRouteName = this.$route.name;
     if (currentRouteName !== 'main') {
       this.$router.push({ name: 'main' });
+      window.scrollTo(0, 0);
     }
   },
   data() {
@@ -165,6 +171,7 @@ export default {
           break;
         default:
           this.$router.push({ name: '' });
+          window.scrollTo(0, 0);
       }
     },
   },
@@ -172,75 +179,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../assets/scss/_globalVariable.scss";
-
-.dashboard-bar-container {
-  position: fixed;
-  width: 80px;
-  height: 100%;
-  background-color: $backgroundColor;
-  border-top-right-radius: 30px;
-  box-shadow: 4px 4px 10px #00000031;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  .userImage {
-    width: 50px;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 2rem;
-  }
-
-  .freq-function-button {
-    display: flex;
-    width: 100%;
-    height: 190px;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .func-button {
-    width: 55px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0 10px 10px 0;
-    background-color: $backgroundColor;
-    box-shadow: 3px 3px 5px #0000004d, -3px -3px 5px #ffffffd5;
-    transition: all ease-in-out 300ms;
-
-    .icon {
-      width: 20px;
-      height: 20px;
-      fill: $fontColor;
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .clicked {
-    width: 80px;
-    border-radius: 0;
-    box-shadow: 0px 3px 5px #0000004d, -3px -3px 5px #ffffffd5;
-
-    animation: rgbFuncButtonBorder infinite 15s;
-  }
-
-  .home-function-button {
-    width: 100%;
-    .home-dashboard {
-      margin-bottom: 2rem;
-      background-color: $darkBlueGray;
-
-      .icon {
-        fill: white;
-      }
-    }
-  }
-}
+@import '../../assets/scss/DashboardBar/DashboardBar.scss';
 </style>

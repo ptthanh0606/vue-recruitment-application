@@ -6,7 +6,7 @@
   <div class="candidate-card-preview">
     <div class="row candidates-container-header">
       <div class="user-info-container">
-        <img src="https://i.imgur.com/nb30rLD.jpg" alt class="userImage" />
+        <img src="https://i.imgur.com/3QW3B3c.png" alt class="userImage" />
         <h4 class="candidateFullName">{{candidateInfo.fullName}}</h4>
       </div>
       <span class="apply-time-label">Applied on {{candidateInfo.uploadDate | filterDateTime}}</span>
@@ -71,109 +71,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../assets/scss/_globalVariable.scss";
-
-.candidate-card-preview {
-  border-radius: 15px;
-  box-shadow: 4px 4px 8px #0000003b, -4px -4px 10px #ffffffbb;
-  padding: 2rem;
-  transition: all ease-in-out 500ms;
-  margin-top: 3rem;
-  width: 100%;
-  animation: rgbPostBorder infinite 15s;
-
-  &:hover {
-    cursor: pointer;
-    transform: translateY(-5px);
-    box-shadow: 4px 4px 20px #00000021, -4px -4px 20px #ffffff;
-  }
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  .row {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .candidates-container-header {
-    height: 40px;
-    .user-info-container {
-      display: flex;
-
-      .userImage {
-        width: 70px;
-        height: 70px;
-        border-radius: 1000px;
-        transform: translateY(-50px);
-        margin-right: 30px;
-      }
-    }
-
-    .apply-time-label {
-      font-size: 14px;
-      font-weight: bold;
-      color: $subfontColor;
-    }
-  }
-
-  .candidates-container-title {
-    .apply-for-job-label-pair {
-      display: flex;
-      align-items: center;
-
-      .apply-label {
-        margin-right: 44px;
-        font-size: 14px;
-      }
-
-      .job-title {
-        color: $pColorYellow;
-        animation: rgb-label infinite 15s;
-      }
-    }
-
-    .job-type-label {
-      font-size: 18px;
-      font-weight: bold;
-      color: $iconColor;
-    }
-  }
-
-  .icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 16px;
-    fill: $subfontColor;
-  }
-
-  .candidates-container-email {
-    display: flex;
-    justify-content: initial;
-    align-items: center;
-    margin-top: 2rem;
-    color: $subfontColor;
-    font-weight: bold;
-  }
-
-  .candidates-container-phone-date-apply {
-    display: flex;
-    align-items: center;
-    margin-top: 1rem;
-    color: $subfontColor;
-    font-weight: bold;
-
-    .phone-container {
-      display: flex;
-      justify-content: initial;
-      align-items: center;
-    }
-  }
-
-  .date-apply-state {
-    animation: rgb-label infinite 15s;
-  }
-}
+@import '../../assets/scss/CandidateCardPreview/CandidateCardPreview.scss';
 </style>

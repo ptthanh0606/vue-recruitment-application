@@ -314,6 +314,7 @@ export default {
       this.menuActiveFlg = false;
       setTimeout(() => {
         this.$router.push({ name: finalRoute });
+        window.scrollTo(0, 0);
       }, 500);
     },
   },

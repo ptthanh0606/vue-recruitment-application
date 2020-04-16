@@ -17,6 +17,7 @@
             @click="() => {
               if (this.$route.name !== 'postJob') {
                 this.$router.push({name: 'postJob'})
+                window.scrollTo(0, 0);
               }
             }"
           >
@@ -45,7 +46,10 @@
           </div>
           <div
             class="container-box manage-post-container"
-            @click="() => {this.$router.push({name: 'posts'})}"
+            @click="() => {
+              this.$router.push({name: 'posts'})
+              window.scrollTo(0, 0);
+            }"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +129,11 @@
           >view all</a>
         </div>
         <div class="post-candidates-list">
-          <candidate-post-preview :candidate="cand" v-for="(cand, index) in latestCandidates" :key="index"></candidate-post-preview>
+          <candidate-post-preview
+            :candidate="cand"
+            v-for="(cand, index) in latestCandidates"
+            :key="index"
+          ></candidate-post-preview>
         </div>
       </div>
     </div>
@@ -149,10 +157,7 @@ export default {
       'numberOfAppliedCandidate',
       'latestCandidates',
     ]),
-    ...mapState('UserAuthorization', [
-      'userCompany',
-      'userInfo',
-    ]),
+    ...mapState('UserAuthorization', ['userCompany', 'userInfo']),
   },
   methods: {
     ...mapActions('MainDashboard', [
@@ -161,10 +166,7 @@ export default {
       'getNumberOfAppliedCandidate',
       'getLatestCandidates',
     ]),
-    ...mapActions('UserAuthorization', [
-      'getUserCompanyInfo',
-      'getUserInfo',
-    ]),
+    ...mapActions('UserAuthorization', ['getUserCompanyInfo', 'getUserInfo']),
   },
   async mounted() {
     await this.getUserInfo();
@@ -178,131 +180,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../assets/scss/_globalVariable.scss";
-
-.main-dashboard-container {
-  width: 100%;
-  height: 100%;
-  padding: 2rem 2rem 0 2rem;
-  color: $fontColor;
-
-  .header {
-    width: 100%;
-    color: $darkBlueGray;
-
-    .welcome-label {
-      color: $subfontColor;
-    }
-  }
-
-  .content {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 2.5rem;
-
-    .main-col {
-      flex-basis: 50%;
-      display: flex;
-      flex-direction: column;
-
-      .icon {
-        fill: $iconColor;
-        width: 50px;
-        height: 50px;
-      }
-
-      .marginT {
-        margin-top: 2rem;
-      }
-
-      .start-wrapper {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-
-        .container-title {
-          margin-top: 1rem;
-        }
-
-        .description {
-          display: block;
-          margin-top: 0.5rem;
-          color: $subfontColor;
-        }
-
-        .post-job-container {
-          flex-basis: 48%;
-          &:hover {
-            cursor: pointer;
-          }
-        }
-
-        .manage-post-container {
-          flex-basis: 48%;
-          &:hover {
-            cursor: pointer;
-          }
-        }
-      }
-
-      .statistic-label {
-        margin-top: 3rem;
-      }
-
-      .statistic-wrapper {
-        display: flex;
-        justify-content: space-between;
-
-        .statistic-value {
-          display: block;
-          margin-top: 1rem;
-          font-size: 2rem;
-          font-weight: bolder;
-          color: #adadad;
-          animation: rgb-label infinite 15s;
-        }
-
-        .statistic-desc {
-          display: block;
-          margin-top: 1rem;
-        }
-      }
-    }
-
-    .candidates-col {
-      flex-basis: 25%;
-
-      .candidates-title {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-
-        .title-label {
-          font-size: 28px;
-        }
-        .view-all-button {
-          color: #009fa5;
-          font-weight: bold;
-          animation: rgb-label infinite 15s;
-        }
-      }
-
-      .post-candidates-list {
-        margin-top: 1.5rem;
-      }
-
-      .candidate-post-preview {
-        margin-bottom: 16px;
-      }
-    }
-  }
-
-  .container-box {
-    border-radius: 15px;
-    box-shadow: 4px 4px 8px #0000003b, -4px -4px 10px #ffffffbb;
-    padding: 2rem;
-    transition: all ease-in-out 500ms;
-  }
-}
+@import "../../assets/scss/MainDashboard/MainDashboard.scss";
 </style>

@@ -44,7 +44,7 @@
     <!--  -->
     <div class="card-body">
       <div class="company-info-wrapper">
-        <img class="company-logo" :src="postInfo.imageUrl" alt />
+        <img class="company-logo" src="https://i.imgur.com/FTYB5EN.png" alt />
         <h3 class="company-name">{{ postInfo.compName }}</h3>
         <h4 class="job-name">{{ postInfo.postTitle }}</h4>
       </div>
@@ -85,5 +85,4 @@ export default {
 
 <style lang="scss">
 @import "../../../src/assets/scss/JobPreviewCard/JobPreviewCard.scss";
-@import "../../../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss";
 </style>

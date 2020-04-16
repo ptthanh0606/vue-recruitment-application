@@ -1,0 +1,62 @@
+@import '../../assets/scss/_globalVariable.scss';
+
+.rgb-bar {
+  width: 100%;
+  height: 5px;
+  animation: 10s rgb-bar infinite;
+}
+
+footer {
+  position: relative;
+  z-index: 0;
+  text-align: center;
+  padding: 90px 0;
+  overflow: hidden;
+  background-color: #3d3d3d;
+
+  .social-wrapper {
+    width: 100%;
+    max-width: 150px;
+    margin: 0 auto;
+    padding: 16px 0;
+
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    #facebook-icon {
+      width: 13px;
+      fill: #b1b1b1;
+      transition: all ease-in-out 1s;
+    }
+
+    #instagram-icon {
+      width: 23px;
+      fill: #b1b1b1;
+      transition: all ease-in-out 1s;
+    }
+
+    #twitter-icon {
+      width: 25px;
+      fill: #b1b1b1;
+      transition: all ease-in-out 1s;
+    }
+
+    svg:hover {
+      cursor: pointer;
+      fill: #f1f1f1;
+    }
+  }
+
+  .copyright {
+    width: 100%;
+    margin: 0 auto;
+
+    font-size: 12px;
+    color: #b1b1b1;
+
+    @media only screen and (max-width: 769px) {
+      font-size: 12px;
+    }
+  }
+}

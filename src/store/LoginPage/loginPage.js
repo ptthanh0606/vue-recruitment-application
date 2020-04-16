@@ -1,5 +1,6 @@
 /* eslint-disable */
 import Axios from "axios";
+import firebase from "firebase";
 
 export default {
   namespaced: true,
@@ -27,28 +28,43 @@ export default {
           });
       });
     },
-    loginWithFireBase(context, { email, password }) {
+
+    getLoginWithFireBase(context) {
       return new Promise((resolve, reject) => {
+        let config = {
+          apiKey: "AIzaSyBfTbgUnKBCW_272vknMtfMU9gGjYOrvwk",
+          authDomain: "swd301-9b526.firebaseapp.com",
+          databaseURL: "https://swd301-9b526.firebaseio.com",
+          projectId: "swd301-9b526",
+          storageBucket: "swd301-9b526.appspot.com",
+          messagingSenderId: "25540816755",
+          appId: "1:25540816755:web:26102b7a1f4b8997a79f06",
+          measurementId: "G-EH50JBLQ7W"
+        };
+        firebase.initializeApp(config);
 
-        
-        // var provider = new firebase.auth.GoogleAuthProvider();
+        let provider = new firebase.auth.GoogleAuthProvider();
 
-        // firebase.auth().signInWithPopup(provider).then(function(result) {
-        //   // This gives you a Google Access Token. You can use it to access the Google API.
-        //   var token = result.credential.accessToken;
-        //   // The signed-in user info.
-        //   var user = result.user;
-        //   // ...
-        // }).catch(function(error) {
-        //   // Handle Errors here.
-        //   var errorCode = error.code;
-        //   var errorMessage = error.message;
-        //   // The email of the user's account used.
-        //   var email = error.email;
-        //   // The firebase.auth.AuthCredential type that was used.
-        //   var credential = error.credential;
-        //   // ...
-        // });
+        firebase
+          .auth()
+          .signInWithPopup(provider)
+          .then(result => {
+            result.user.getIdToken().then(responseGoogleToken => {
+              let idToken = responseGoogleToken;
+
+              Axios.post("https://recruitmentswdapi.azurewebsites.net/auth/google", {
+                googleToken: idToken
+              })
+                .then(response => {
+                  context.commit("setBearerLoginToken", response.data);
+                  resolve();
+                })
+                .catch(err => {
+                  reject();
+                });
+            });
+          })
+          .catch(error => {});
       });
     }
   }

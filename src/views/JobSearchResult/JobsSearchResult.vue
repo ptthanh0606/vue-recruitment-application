@@ -245,6 +245,7 @@ export default {
       event.preventDefault();
       localStorage.removeItem('LOGIN_TOKEN');
       this.$router.push({ name: 'welcome' });
+      window.scrollTo(0, 0);
     },
     handleViewPostDetail(postID) {
       this.selectedPostID = postID;

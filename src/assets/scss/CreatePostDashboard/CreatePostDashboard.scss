@@ -1,0 +1,138 @@
+@import "../../assets/scss/_globalVariable.scss";
+
+.post-job-dashboard-container {
+  width: 100%;
+  height: 100%;
+  padding: 2rem 2rem 0 2rem;
+  color: $fontColor;
+
+  .header {
+    width: 100%;
+    color: $darkBlueGray;
+
+    .welcome-label {
+      color: $subfontColor;
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 2.5rem;
+
+    .main-col {
+      flex-basis: 50%;
+      display: flex;
+      flex-direction: column;
+
+      .icon {
+        fill: $iconColor;
+        width: 50px;
+        height: 50px;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .create-container-top-row {
+        .close-create {
+          width: 28px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .delete-post-button {
+          display: block;
+          text-align: right;
+          width: 100%;
+          color: rgb(214, 107, 107);
+          font-weight: bold;
+          white-space: nowrap;
+        }
+      }
+
+      .postID-label {
+        display: block;
+        margin-top: 1rem;
+        font-size: 14px;
+        font-weight: bold;
+        color: $subfontColor;
+        white-space: nowrap;
+      }
+
+      .create-form {
+        margin-top: 1rem;
+
+        .userinput {
+          width: 100%;
+          background-color: transparent;
+          border-radius: 10px;
+          border: 1.5px solid #adadad;
+          outline: none;
+          padding: 0.6rem;
+          margin-bottom: 1rem;
+
+          &:focus {
+            animation: rgb-border infinite 6s;
+          }
+        }
+
+        .address-dropdown {
+          width: 100%;
+        }
+
+        .el-input {
+          width: 100%;
+          margin-bottom: 1rem;
+
+          ::placeholder {
+            color: $subfontColor;
+          }
+        }
+
+        .el-input__inner {
+          padding-left: 3rem;
+          border-radius: 10px;
+          background-color: $backgroundColor;
+          box-shadow: inset 8px 8px 8px rgba(0, 0, 0, 0.137),
+            inset -8px -8px 8px rgba(255, 255, 255, 0.596);
+        }
+
+        .el-input__prefix {
+          padding-left: 0.5rem;
+          color: $iconColor;
+        }
+
+        .input-create-desc {
+          height: 110px;
+        }
+
+        .create-button {
+          white-space: nowrap;
+          width: 25%;
+          height: 2.8rem;
+          animation: rgb-button-color infinite 15s;
+          border: none;
+          border-radius: 10px;
+          color: $backgroundColor;
+          font-weight: bolder;
+          box-shadow: 3px 3px 7px #00000060, -3px -3px 7px #ffffffab;
+
+          &:focus {
+            outline: none;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

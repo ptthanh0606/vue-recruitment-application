@@ -321,8 +321,6 @@
         </div>
       </section>
       <!--  -->
-      <div class="rgb-bar"></div>
-      <!--  -->
       <footer-page-component></footer-page-component>
     </div>
   </div>
@@ -569,6 +567,7 @@ export default {
     ...mapActions('Welcome', ['getInitJobs']),
     handleRoutingSelection(routeName) {
       this.$router.push({ name: routeName });
+      window.scrollTo(0, 0);
     },
     createIntersectObserver(callback, animateOption, intersectOption) {
       return new IntersectionObserver((entries) => {
@@ -588,6 +587,7 @@ export default {
           jobName: this.jobSeachValue,
         },
       });
+      window.scrollTo(0, 0);
     },
   },
 
