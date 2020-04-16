@@ -248,9 +248,13 @@ export default {
       }
     },
     handleDeletePost(postID) {
-      this.deletePost(postID).then(() => {
-        this.initJobListByCompID(this.userCompany.compID);
-        this.initOutdatedJobListByCompID(this.userCompany.compID);
+      this.$confirm('Are you sure you want to delete this post?', 'Delete post').then((msgdata) => {
+        if (msgdata === 'confirm') {
+          this.deletePost(postID).then(() => {
+            this.initJobListByCompID(this.userCompany.compID);
+            this.initOutdatedJobListByCompID(this.userCompany.compID);
+          });
+        }
       });
     },
   },

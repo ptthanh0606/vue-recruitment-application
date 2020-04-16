@@ -110,6 +110,13 @@ export default {
         addressBranchID: this.selectedCity,
         jobTypeID: this.selectedJobType,
         postDesc: this.createPostDesc,
+      }).then(() => {
+        this.$message('Post created, now just wait for canidate to apply.');
+      }).catch(() => {
+        this.$message({
+          message: 'Something went wrong. Try create another post.',
+          type: 'warning',
+        });
       });
     },
   },
